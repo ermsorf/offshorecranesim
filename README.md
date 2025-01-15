@@ -1,1 +1,1 @@
-# Offshore Crane Simulation yay
+# Offshore Crane Simulation
