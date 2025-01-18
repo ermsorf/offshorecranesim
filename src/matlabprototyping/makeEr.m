@@ -1,4 +1,4 @@
-function T = makeEr(axis, theta)
+    function T = makeEr(frame)
     % Create an SE3 transformation matrix for a given rotation axis
     % Inputs:
     % axis - Integer (1, 2, or 3) specifying the axis of rotation:
@@ -6,6 +6,8 @@ function T = makeEr(axis, theta)
     % theta - Scalar or symbolic variable for the rotation angle (in radians)
     % Output:
     % T - 4x4 SE3 transformation matrix
+    axis = frame.rotationaxis;
+    theta = frame.rotationvar;
 
     % Validate input
     if ~ismember(axis, [1, 2, 3])

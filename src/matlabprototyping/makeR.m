@@ -1,9 +1,8 @@
 function [R,Rdot] = makeR(frame)
-%UNTITLED15 Summary of this function goes here
-%   Detailed explanation goes here
+% Generate relative R matrices from frame struct
     axis = frame.rotationaxis ;
     var  = frame.rotationvar ;
-    vardot = frame.rotationvardot ; 
+    vardot = frame.rotationvardot ;
     
     c = cos(var); 
     s = sin(var);
