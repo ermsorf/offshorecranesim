@@ -641,3 +641,8 @@ FodyWeavers.xsd
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,visualstudio,matlab,python
 /.vs
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/offshorecranesim/v17/DocumentLayout.json
+.vs/offshorecranesim/v17/DocumentLayout.backup.json
+.vs/offshorecranesim/v17/.wsuo
