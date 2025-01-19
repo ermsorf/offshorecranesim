@@ -1,25 +1,28 @@
+clr()
+
+% Create Sym variables
 syms t real
 
-framecount = 2;
-n_theta = framecount; 
-theta = sym('theta',[1, n_theta],'real'); thetadot = sym('thetadot',[1, n_theta],'real')
-n_length = framecount; directions = 3; 
+% Create frames
+framecount = 5;
+n_theta = framecount;
+n_length = framecount;
 
-length = sym('L',[n_length,directions],'real')  ;
+%Create sym vars within frames
+theta = sym('theta',[1, n_theta],'real');
+thetadot = sym('thetadot',[1, n_theta],'real');
+thetaddot = sym('thetaddot',[1, n_theta],'real');
+length = sym('L',[n_length,3],'real');
+
 
 for i = 1:framecount
-    frame(i) = makeFrame();
-    frame(i).rotationaxis = 3;
-    frame(i).rotationvar = theta(i);
-    frame(i).rotationvardot = thetadot(i); 
-    frame(i).joint2cm = [length(i,1), length(i,2), length(i,3)];
-    frame(i).cm2joint = [0,0,0];
-
-    frame(i).Qcoordinates(1,i) = theta(i);
-    frame(i).Qcoordinates(2,i) = thetadot(i);
-
+    frames(i) = makeFrame();
+    frames(i).framenumber = i; 
+    frames(i).rotationaxis = 3;
+    frames(i).rotationvar = theta(i);
+    frames(i).rotationvardot = thetadot(i); 
+    frames(i).Qcoordinates(1,1) = theta(i);
+    frames(i).Qcoordinates(2,1) = thetadot(i);
 end
 
-for i = 1:framecount;
-    makeEdot(frame(i))
-end
+makeEdot(frames(3),frames)
