@@ -1,4 +1,6 @@
 function [R,Rdot] = makeR(frame)
+error('NotImplemented')
+%% Incorrect
 % Generate relative R matrices from frame struct
     axis = frame.rotationaxis ;
     var  = frame.rotationvar ;
@@ -17,7 +19,7 @@ function [R,Rdot] = makeR(frame)
             Rdot = [0,0,vardot; 0,0,0; -vardot,0,0]
 
         case 3
-            R = [c,-s,0; s,c,0; 0,0,1]
-            Rdot = [0,-vardot,0; vardot,0,0; 0,0,0]
+            R = [c,-s,0; s,c,0; 0,0,1];
+            Rdot = [0,-vardot,0; vardot,0,0; 0,0,0];
     end
 end

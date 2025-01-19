@@ -1,4 +1,4 @@
-function T = makeSE3v(dispv)
+function T = makeEv(dispv)
     % Create an SE3 transformation matrix for a given translation vector
     % Inputs:
     % dispv - 1x3 vector specifying the translation along [x, y, z]

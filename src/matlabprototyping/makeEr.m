@@ -23,13 +23,13 @@
 
     % Rotation matrix depending on the chosen axis
     switch axis
-        case 1 % Rotation about the x-axis
+        case 1 
             T(2,2) = c;  T(2,3) = -s;
             T(3,2) = s;  T(3,3) = c;
-        case 2 % Rotation about the y-axis
+        case 2 
             T(1,1) = c;  T(1,3) = s;
             T(3,1) = -s; T(3,3) = c;
-        case 3 % Rotation about the z-axis
+        case 3 
             T(1,1) = c;  T(1,2) = -s;
             T(2,1) = s;  T(2,2) = c;
     end
