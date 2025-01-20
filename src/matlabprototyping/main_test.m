@@ -25,9 +25,20 @@ for i = 1:framecount
     frames(i).Qcoordinates(2,1) = thetadot(i);
 
     frames(i).cm2joint = [length(i,1), length(i,2), length(i,3)];
+
 end
 
 E3 = makeE(3,frames)
+
 Edot3 = makeEdot(3,frames)
 
 O3 = simplify(E3^-1 * Edot3)
+
+O3v = unskew(O3(1:3,1:3))' 
+
+Q = getQs(3, frames)
+qSize = size(Q)
+% O3 = simplify(E3^-1 * Edot3)
+
+makeB(2,frames)
+
