@@ -1,5 +1,5 @@
 clr
-
+syms
 theta = sym('theta',[1, 5],'real');
 thetadot = sym('thetadot',[1, 5],'real');
 thetaddot = sym('thetaddot',[1, 5],'real');
