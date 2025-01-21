@@ -1,44 +1,32 @@
-clr()
+clr
 
-% Create Sym variables
-syms t real
+theta = sym('theta',[1, 5],'real');
+thetadot = sym('thetadot',[1, 5],'real');
+thetaddot = sym('thetaddot',[1, 5],'real');
 
-% Create frames
-framecount = 5;
-n_theta = framecount;
-n_length = framecount;
+syms L1 L2 real
 
-%Create sym vars within frames
-theta = sym('theta',[1, n_theta],'real');
-thetadot = sym('thetadot',[1, n_theta],'real');
-thetaddot = sym('thetaddot',[1, n_theta],'real');
-length = sym('L',[n_length,3],'real');
+frames(1) = struct( ...
+        'framenumber', [1], ...
+        'rotationaxis', [3],...
+        'rotationvar', [theta(1)], ...
+        'rotationvardot', [thetadot(1)], ...
+        'cm2joint', [0,0,0], ...
+        'joint2cm', [L1/2,0,0], ...
+        'Qcoordinates', sym([theta(1); thetadot(1); thetaddot(1)]), ...
+        'mass',[],'Jmatrix',[],'Ematrix', [],'Edotmatrix', [],'Rmatrix', [],'Rdotmatrix', [],'Omatrix', [],'Bmatrix', [],'Bdotmatrix', []);
+
+frames(2) = struct ( ...
+        'framenumber', [2], ...
+        'rotationaxis', [3],...
+        'rotationvar', [theta(2)], ...
+        'rotationvardot', [thetadot(2)], ...
+        'cm2joint', [0,0,0], ...
+        'joint2cm', [L2/2,0,0], ...
+        'Qcoordinates', sym([theta(2); thetadot(2); thetaddot(2)]), ...
+        'mass',[],'Jmatrix',[],'Ematrix', [],'Edotmatrix', [],'Rmatrix', [],'Rdotmatrix', [],'Omatrix', [],'Bmatrix', [],'Bdotmatrix', []);
+
+B = makeB(2,frames)
 
 
-for i = 1:framecount
-    frames(i) = makeFrame();
-    frames(i).framenumber = i; 
-    frames(i).rotationaxis = 3;
-    frames(i).rotationvar = theta(i);
-    frames(i).rotationvardot = thetadot(i); 
-    frames(i).Qcoordinates(1,1) = theta(i);
-    frames(i).Qcoordinates(2,1) = thetadot(i);
-
-    frames(i).cm2joint = [length(i,1), length(i,2), length(i,3)];
-
-end
-
-E3 = makeE(3,frames)
-
-Edot3 = makeEdot(3,frames)
-
-O3 = simplify(E3^-1 * Edot3)
-
-O3v = unskew(O3(1:3,1:3))' 
-
-Q = getQs(3, frames)
-qSize = size(Q)
-% O3 = simplify(E3^-1 * Edot3)
-
-makeB(2,frames)
 

@@ -3,7 +3,28 @@
   "WorkspaceRootPath": "C:\\GitHub\\offshorecranesim\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\GraphicsLibrary.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\MathLibrary.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\math.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\RK4Function.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\MyNumerics.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
@@ -21,10 +42,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,17 +51,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "math.js",
               "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\math.js",
               "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\math.js",
               "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\math.js",
               "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\math.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-01-15T17:38:12.791Z",
               "IsPinned": true,
@@ -53,6 +70,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MathLibrary.js",
+              "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\MathLibrary.js",
+              "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\MathLibrary.js",
+              "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\MathLibrary.js",
+              "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\MathLibrary.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-16T13:45:55.607Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GraphicsLibrary.js",
+              "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\GraphicsLibrary.js",
+              "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\GraphicsLibrary.js",
+              "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\GraphicsLibrary.js",
+              "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\Libraries\\MyLibrary\\GraphicsLibrary.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-16T13:44:09.413Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RK4Function.js",
+              "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\RK4Function.js",
+              "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\RK4Function.js",
+              "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\RK4Function.js",
+              "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\RK4Function.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-16T13:28:41.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": ".gitattributes",
+              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\.gitattributes",
+              "RelativeDocumentMoniker": ".gitattributes",
+              "ToolTip": "C:\\GitHub\\offshorecranesim\\.gitattributes",
+              "RelativeToolTip": ".gitattributes",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-16T13:27:15.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\index.html",
+              "RelativeDocumentMoniker": "index.html",
+              "ToolTip": "C:\\GitHub\\offshorecranesim\\index.html",
+              "RelativeToolTip": "index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-01-16T13:26:10.08Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "MyNumerics.js",
               "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\MyNumerics.js",
               "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\MyNumerics.js",
@@ -65,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "TestingB.js",
               "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\TestingB.js",
               "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\TestingB.js",
@@ -78,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "physics.js",
               "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\physics.js",
               "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\knuckle\\physics.js",
@@ -91,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "math.js",
               "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\src\\math.js",
               "RelativeDocumentMoniker": "src\\math.js",
@@ -104,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "README.md",
               "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -112,8 +194,7 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-01-15T14:43:09.501Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T14:43:09.501Z"
             },
             {
               "$type": "Document",
