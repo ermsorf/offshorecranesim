@@ -38,11 +38,3 @@ frames(3) = struct ( ...
 
 B = makeB(2,frames)
 
-O1 = makeO(1,frames)
-O2 = makeO(2,frames)
-
-E1_1 = makeErel(frames(1))
-E1_2 = makeErel(frames(2))
-
-v = E1_1(1:3,4) + E1_2(1:3,4)
-unitv = sqrt(v(1)^2 + v(2)^2 + v(3)^2)
