@@ -3,5 +3,4 @@ function O = makeO(framenumber, frameslist)
 %   Detailed explanation goes here
 T = makeE(framenumber, frameslist)^-1 * makeEdot(framenumber,frameslist);
 O = simplify(T);
-framelist(framenumber).Omatrix = O;
 end

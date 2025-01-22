@@ -24,7 +24,6 @@ function Edot = makeEdot(framenumber, framelist)
     for i = 1:Qsize(2)  % Replace t*Q(2,i) with Q(1,i)
         Edot = subs(Edot, t*Q(2,i), Q(1,i));
     end
-    
-    framelist(framenumber).Edotmatrix = Edot;
+
     Edot = simplify(Edot);  % Simplify result
 end

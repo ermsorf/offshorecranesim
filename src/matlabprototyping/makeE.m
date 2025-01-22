@@ -12,7 +12,6 @@ function E = makeE(framenumber, framelist)
         % Multiply current transformation matrix with frame-specific transformations
         E = E * makeEv(framelist(i).cm2joint) * makeEr(framelist(i)) * makeEv(framelist(i).joint2cm);
     end
-    
-    framelist(framenumber).Ematrix = E;
+
     E = simplify(E);  % Simplify the resulting matrix
 end
