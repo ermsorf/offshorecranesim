@@ -3,22 +3,12 @@
   "WorkspaceRootPath": "C:\\GitHub\\offshorecranesim\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\prepareBD.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:js\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\main.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\src\\matlabprototyping\\makeB.m||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\matlabprototyping\\makeB.m||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\GitHub\\offshorecranesim\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,72 +17,34 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 162,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "prepareBD.js",
-              "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\prepareBD.js",
-              "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\prepareBD.js",
-              "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\prepareBD.js",
-              "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\prepareBD.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-21T11:00:31.647Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "main.js",
-              "DocumentMoniker": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\main.js",
-              "RelativeDocumentMoniker": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\main.js",
-              "ToolTip": "C:\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\main.js",
-              "RelativeToolTip": "..\\..\\Users\\erlan\\OneDrive - H\u00F8gskulen p\u00E5 Vestlandet\\MAS350 - Bacheloroppgave IMM 24-25\\Webpages\\Webpages\\2019\\robot\\main.js",
-              "ViewState": "AgIAALEAAAAAAAAAAAAAALYAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-01-21T10:59:44.767Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "makeB.m",
-              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\src\\matlabprototyping\\makeB.m",
-              "RelativeDocumentMoniker": "src\\matlabprototyping\\makeB.m",
-              "ToolTip": "C:\\GitHub\\offshorecranesim\\src\\matlabprototyping\\makeB.m",
-              "RelativeToolTip": "src\\matlabprototyping\\makeB.m",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAYAAAAAAAAAA==",
-              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAANPSURBVDhPlZNbaBNZGMf/Z85MYpLJ5DbTS5rWRo3WlbJFRC2Gig\u002BiEFxUUPRN8UWfRN/EZUGfXNh927e\u002B\u002BLL4UF9kwZXdegXxhni/sthgW5ukTdJcmkyauXhmMmpqn/YXPuacM9/3z/kuQ\u002BBw7vfRO7H4uqRKXHBPPE9zk29nMsnDw4FmxfH4xj9XLv165dLoGWcLmKbJO0ubbUNr8PhDEXOVl7FU9EV3sPcIhPUbnLctHr6cQH3nTydcbrd37OIfJ\u002B1DQgi1F4zdqb1H36q\u002Bvutjf0FJj3PJPpNfmPJAGUnCJVAIPIXbxWM6Nw/KC0IisaZf8AZXvXry4KoVbwt1Hvxlg8ejpN7cGO/G3at0q6\u002BAhOJC8V0B8r5DMC0n07T\u002BGB8zBWQLJYATfGJQjociSu/rpw\u002BvUf/GVGrVvtPHVF3YqN3/278295puWbkCXUGgNl0EN7ANgiJDN0xohg5KOHCUEspUA5Lo473hnhtPJkY5Ing8lUfXG6F6rryW1JoDAUAOieB7EhBHdmL29i0YmsZETDSbOjojfvwQ78YAs3hUZjm5CLqGRK784PLldxfPn\u002B2Ze/ZsJNpobEoICCXiqA8fRPPQceS5ErLVGWQXMsgwmypNo65VEQn4EA6IVtI2TtdmC\u002BL6wb7hXXxIKUjI9W1HZl0StdoUqnuGMTf7wq6Pbhi2d8y3EqLbb6\u002B/8LX9Pq0MYdMBZL378b6Yg7f0AT9GhlhNWNHVWUhCCIT1xmAp6iYTZMVvh3OeLYiMFSQMmYYhkSCylTxMFhhyK4BB7GJbP7Zp\u002BbfxnRCHYqOAdPk/ZOqfsKBXcXPyX9yfuYeaVnec2GWYfS\u002B1VIihFilKaRdKkzzqeQMdZicCmoRqqYz5Yh6fZnJIT2YwZ81SG8uEuiQZg7EEViu9CHslRKUYZI8CylmzS8BTDh424W5BaAU4LBFi3x7rDjtkp5TFWfWsNzTb1EWdmYaa2kClpkJtLDpRLZbdyCroosZKyorAWYoMylS/mPV5GqxKhtW5NpYIlasqu7Ib/T3diHZ2wO\u002BXlllXh8zeR\u002BEXRcxXak6klbTDqZ8vjPWuHtysgyOtmyydEwsr7bYQe0Cz\u002BXL2tz/H93w7tejfEUQk4XF2/wPgM76tNjoBXLzxAAAAAElFTkSuQmCC",
-              "WhenOpened": "2025-01-18T12:56:03.512Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\GitHub\\offshorecranesim\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAA0BAAAAAAAAAAAwwB8BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-18T12:42:41.303Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "README.md",
-              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\README.md",
-              "RelativeDocumentMoniker": "README.md",
-              "ToolTip": "C:\\GitHub\\offshorecranesim\\README.md",
-              "RelativeToolTip": "README.md",
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\index.html",
+              "RelativeDocumentMoniker": "index.html",
+              "ToolTip": "C:\\GitHub\\offshorecranesim\\index.html",
+              "RelativeToolTip": "index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-01-18T12:42:39.859Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-01-22T14:57:17.259Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.js",
+              "DocumentMoniker": "C:\\GitHub\\offshorecranesim\\js\\main.js",
+              "RelativeDocumentMoniker": "js\\main.js",
+              "ToolTip": "C:\\GitHub\\offshorecranesim\\js\\main.js",
+              "RelativeToolTip": "js\\main.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-01-22T17:35:46.522Z",
               "EditorCaption": ""
             }
           ]
