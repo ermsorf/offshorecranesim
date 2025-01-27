@@ -14,14 +14,13 @@ classdef Frame < handle
         Edotmatrix
         Omatrix
         Bmatrix
+        Bdotmatrix
 
         mass
         Jmatrix
         Mmatrix
 
         Dmatrix
-
-        
 
     end
 
@@ -59,16 +58,16 @@ classdef Frame < handle
             fprintf('Q Coordinates: %s\n', mat2str(obj.Qcoordinates));
         end
 
-        function M = skew(vector)
+        function skewmat = skew(vector)
         % Skew a 1x3 or 3x1 vector
         %   Detailed explanation goes here
             if length(vector) == 1 
                 vector = vector' ; 
             end
-            M = zeros(3,3);
-            M(2,3) = -vector(1); M(3,2) =  vector(1);
-            M(1,3) =  vector(2); M(3,1) = -vector(2);
-            M(1,2) = -vector(3); M(2,1) =  vector(3);
+            skewmat = zeros(3,3);
+            skewmat(2,3) = -vector(1); skewmat(3,2) =  vector(1);
+            skewmat(1,3) =  vector(2); skewmat(3,1) = -vector(2);
+            skewmat(1,2) = -vector(3); skewmat(2,1) =  vector(3);
         end
         function V = unskew(matrix)
             % Unskew SO3 matrix to vector
@@ -126,11 +125,8 @@ classdef Frame < handle
             E = eye(4);  % Initialize as identity matrix
             for i = 1:obj.framenumber
                 % Multiply current transformation matrix with frame-specific transformations
-                if ~isempty(framelist(i).Ematrix)
-                    E = E * framelist(i).Ematrix;
-                else
                     E = E * makeEv(framelist(i).cm2joint) * makeEr(framelist(i)) * makeEv(framelist(i).joint2cm);
-                end
+                    framelist(i).Ematrix = E;
             end
             obj.Ematrix = simplify(E);  % Simplify the resulting matrix
         end
@@ -162,7 +158,7 @@ classdef Frame < handle
         function Q_combined = getQs(obj, framelist)
             % Combines time-dependent Q coordinates from multiple frames
             Q_combined = sym([]);
-            for i = 1:obj.framenumber
+            for i = 1:(obj.framenumber)
                 Q_combined = [Q_combined; framelist(i).Qcoordinates];
             end
         end
@@ -188,15 +184,17 @@ classdef Frame < handle
             Q = getQs(obj, framelist);    % Initialize B matrix
             B = sym(zeros(obj.framenumber*6, height(Q)));
             for i = 1:obj.framenumber
-                if ~isempty(obj.Edotmatrix)
-                    Edot = obj.Edotmatrix;
+                if ~isempty(framelist(i).Edotmatrix)
+                    Edot = framelist(i).Edotmatrix;
                 else
-                    Edot = makeEdot(obj, framelist);
+                    Edot = makeEdot(framelist(i), framelist);
+                    framelist(i).Edotmatrix = Edot;
                 end % if Edot
-                if ~isempty(obj.Omatrix)
+                if ~isempty(framelist(i).Omatrix)
                     O = obj.Omatrix;
                 else
-                    O = makeO(obj, framelist);
+                    O = makeO(framelist(i), framelist);
+                    framelist(i).Omatrix = O;
                 end % if O
                 posvec = Edot(1:3,4);
                 Ovec = unskew(O(1:3,1:3)); %%%%%%%%%%ADD UNSKEW TO CLASS
@@ -235,11 +233,7 @@ classdef Frame < handle
 
         function Bdot = makeBdot(obj,framelist)
             % Get Bdot
-            if ~isempty(obj.Bmatrix)
-                B = obj.Bmatrix;
-            else
                 B = makeB(obj,framelist);
-            end
             Q = getQs(obj, framelist);  % Get Q values
             syms t real
             prediff = B;
@@ -278,11 +272,14 @@ classdef Frame < handle
             % Makes M matrix
             size = obj.framenumber *6;
             Mmatrix = sym(zeros(size,size));
-
+            
             for i = 1:obj.framenumber
-                massIdentity = framelist(obj.framenumber).mass .* eye(3);
+                if isempty(framelist(i).mass) | isempty(framelist(i).Jmatrix)
+                    error('Missing mass or J for frame %i',framelist(i).framenumber)
+                end
+                massIdentity = framelist(i).mass .* eye(3);
                 Mmatrix(i*6-5:i*6-3,i*6-5:i*6-3) = massIdentity;
-                Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(obj).Jmatrix;
+                Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(i).Jmatrix;
             end
         end % function makeM
         
