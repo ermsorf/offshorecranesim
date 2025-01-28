@@ -8,7 +8,7 @@ classdef Frame < handle
         cm2joint = [0, 0, 0]
         joint2cm = [0, 0, 0]
 
-        Qcoordinates % Format: [theta, thetadot, thetaddot] for each coordinate
+        Qcoordinates % Format: [theta, thetadot, thetaddot;...] for each coordinate
         
         Ematrix
         Edotmatrix
@@ -74,32 +74,40 @@ classdef Frame < handle
             V = [matrix(3,2), matrix(1,3), matrix(2,1)];
         end
         % Make E's
-        function Er = makeEr(obj)
+        function Ertemp = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;
-            % Validate input
-            if ~ismember(axis, [1, 2, 3])
-                error('Axis must be 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
-            end
-            % Symbolic cos(theta) and sin(theta) for symbolic compatibility
-            c = cos(theta);
-            s = sin(theta);
-            % Initialize identity SE3 matrix
             Er = sym(eye(4));
-            % Rotation matrix depending on the chosen axis
-            switch axis
-                case 1 
-                    Er(2,2) = c;  Er(2,3) = -s;
-                    Er(3,2) = s;  Er(3,3) = c;
-                case 2 
-                    Er(1,1) = c;  Er(1,3) = s;
-                    Er(3,1) = -s; Er(3,3) = c;
-                case 3 
-                    Er(1,1) = c;  Er(1,2) = -s;
-                    Er(2,1) = s;  Er(2,2) = c;
+
+            for i = 1:length(axis)
+                % Validate input
+                if ~ismember(axis(i), [1, 2, 3])
+                    error('Axis must be 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
+                end
+                % Initialize identity SE3 matrix
+                Ertemp = sym(eye(4));
+                % Symbolic cos(theta) and sin(theta) for symbolic compatibility
+                c = cos(theta(i));
+                s = sin(theta(i));
+
+                switch axis(i) % Rotation matrix depending on the chosen axis
+                    case 1 
+                        Ertemp(2,2) = c;  Ertemp(2,3) = -s;
+                        Ertemp(3,2) = s;  Ertemp(3,3) = c;
+                    case 2 
+                        Ertemp(1,1) = c;  Ertemp(1,3) = s;
+                        Ertemp(3,1) = -s; Ertemp(3,3) = c;
+                    case 3 
+                        Ertemp(1,1) = c;  Ertemp(1,2) = -s;
+                        Ertemp(2,1) = s;  Ertemp(2,2) = c;
+                end
+                Er = Er*Ertemp;
             end
+
         end
+
+
 
         function Ev = makeEv(dispv)
             % Create an SE3 transformation matrix for a given translation vector
