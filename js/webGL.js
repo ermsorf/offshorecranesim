@@ -9,32 +9,43 @@ renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
 graphicsDiv.appendChild(renderer.domElement);
 // --------------------
 renderer.setClearColor(0xDDDDDD, 1.0);
+renderer.shadowMap.enabled = true;
+
+var light = new THREE.SpotLight(0xffffff);   //create light
+  light.position.set(0, 0, 300);
+  light.castShadow = true;              // Allow light to cast shadows
+  light.intensity = 200000;                  // Set light intensity
+  light.distance = 500                // Set light travel distance
+  light.shadow.mapSize.width = 4096;  // Default is 512
+  light.shadow.mapSize.height = 4096; // Default is 512
+  light.shadow.radius = 1; // Softens the shadow edges
+  scene.add(light)
+
 
 camera.up.set(0,0,1)
-camera.position.set(500, 500, 500);
+camera.position.set(50, 50, 50);
 camera.lookAt(0, 0, 0);
 
 
 
 // Adding objects to the scene:
-const BoxGeometry = new THREE.BoxGeometry(100, 100, 100, 10, 10, 10);
-const BoxMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00});
+const BoxGeometry = new THREE.BoxGeometry(10, 10, 10, 10, 10, 10);
+const BoxMaterial = new THREE.MeshStandardMaterial({color:0xb85858});
 const cube = new THREE.Mesh(BoxGeometry, BoxMaterial);
-cube.position.set(0, 0, 100);  // Raise the cube above the plane
+cube.castShadow = true;
+cube.receiveShadow = true;
+cube.position.set(0, 0, 30);  // Raise the cube above the plane
 scene.add(cube);
 
-const planeGeometry = new THREE.PlaneGeometry(200, 200);  // Make the plane larger to see the effect better
-const planeMaterial = new THREE.MeshBasicMaterial({color: 0xAAAAAA});
+const planeGeometry = new THREE.PlaneGeometry(100, 100);  // Make the plane larger to see the effect better
+const planeMaterial = new THREE.MeshStandardMaterial({color:0x004d91});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+plane.receiveShadow = true;
 plane.rotation.set(0, 0, 0);  // Rotate the plane to lay flat along XZ plane
 plane.position.set(0, 0, 0); 
 scene.add(plane);
 
-var light = new THREE.SpotLight(0xffffff);   //create light
-  light.position.set(0, 0, 300);
-  light.castShadow = true;              // Allow light to cast shadows
-  light.intensity = 1;                  // Set light intensity
-  light.distance = 1000;                // Set light travel distance
+
 
 
 // Animation loop
