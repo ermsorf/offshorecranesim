@@ -2,6 +2,7 @@ import * as THREE from '../libs/three/three.module.js';
 import { OBJLoader } from '../libs/three/loaders/OBJLoader.js';
 import { MTLLoader } from '../libs/three/loaders/MTLLoader.js';
 import { TrackballControls } from '../libs/three/controls/TrackballControls.js'
+import { OrbitControls } from '../libs/three/controls/OrbitControls.js'
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('gray');
@@ -12,15 +13,17 @@ camera.up.set
 // Move the camera further back and also higher up
 
 // Make the camera look at the center of the scene
-camera.lookAt(0, 1000, 0);
+camera.lookAt(10, 1000, 10000);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
 graphicsDiv.appendChild(renderer.domElement);
 
-const controls = new TrackballControls( camera, renderer.domElement );
+// Camera controlls 
+
+const controls = new OrbitControls( camera, renderer.domElement );
 //controls.update() must be called after any manual changes to the camera's transform
-camera.position.set( 0, 20, 100 );
+camera.position.set( 0, 1000,40000,150000);
 controls.update();
 
 // Add lighting to the scene
