@@ -16,7 +16,7 @@
             height: 100%;
         }
 
-        #content {
+        #controls {
             width: 25%;
             height: 100%;
             background: #f0f0f0;
@@ -28,8 +28,13 @@
 </head>
 <body>
     <div id="graphics"></div>
-    <div id="content">Input control box goes here</div> 
-
+    <div id="controls">
+        <h3>Joystick Input:</h3>
+        <pre id="gamepadStatus">Waiting for input...</pre>
+    </div>
+    
+    <script type="module" src="js/controllerinput.js"></script>
+    
     <script type="module" src="js/webGL.js"></script> 
     <script src="js/main.js"></script>
 </body>
