@@ -2,6 +2,7 @@ import * as THREE from '../libs/three/three.module.js';
 import { OrbitControls } from '../libs/three/controls/OrbitControls.js';
 import GUI from '../libs/three/lil-gui.module.min.js'; 
 
+import { loadModel, sceneObjects } from './modelLoader.js';
 
 // Setting up the scene
 const scene = new THREE.Scene();
@@ -41,62 +42,20 @@ scene.add(directionalLight);
 
 
 
-
-function loadModel(objPath, mtlPath, position = { x: 0, y: 0, z: 0 }, scene) {
-    const mtlLoader = new MTLLoader();
-    
-    mtlLoader.load(mtlPath, (materials) => {
-        materials.preload();
-
-        const objLoader = new OBJLoader();
-        objLoader.setMaterials(materials);
-
-        objLoader.load(objPath, (object) => {
-            object.position.set(position.x, position.y, position.z);
-            scene.add(object);
-        }, 
-        (xhr) => console.log(`Loading ${objPath}: ${(xhr.loaded / xhr.total) * 100}% loaded`), 
-        (error) => console.error(`Error loading ${objPath}:`, error));
-    });
-}
-
-// Global variable to store the loaded model
-let loadedObject = null;
-
-loadModel('../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: -0, y: 0, z: 0 }, scene);
+loadModel('PartOne', '../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: -2, y: 0, z: 0 }, scene, gui);
 
 
-
-// Animation loop
 function animate() {
     requestAnimationFrame(animate);
-
-    if (loadedObject) {
-        loadedObject.rotation.y = obj.rotationY; // Apply rotation from GUI slider
-    }
-    
-    scene.add(curveObject);
-
     controls.update();
     renderer.render(scene, camera);
 }
 
-//Create a closed wavey loop
-const curve = new THREE.CatmullRomCurve3( [
-	new THREE.Vector3( -obj.rotationY * 10000, 0, 10000 ),
-	new THREE.Vector3( -50000, 50000, 50000 ),
-	new THREE.Vector3( 0, 0, 0 ),
-	new THREE.Vector3( 50000, -50000, 50000 ),
-	new THREE.Vector3( 100000, 0, 100000 )
-] );
 
-const points = curve.getPoints( 50000 );
-const geometry = new THREE.BufferGeometry().setFromPoints( points );
 
-const material = new THREE.LineBasicMaterial( { color: 0xff0000 } );
 
-// Create the final object to add to the scene
-const curveObject = new THREE.Line( geometry, material );
+
+
 
 
 animate();
