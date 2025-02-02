@@ -10,10 +10,7 @@ scene.background = new THREE.Color('white');
 
 // GUI
 const gui = new GUI();
-const obj = {
-    rotationY: 0 // This will be controlled by the GUI slider
-};
-gui.add(obj, 'rotationY', 0, Math.PI * 2).name("Rotate Y");
+
 
 // Get the div where we will attach the renderer
 const graphicsDiv = document.getElementById("graphics");
@@ -41,8 +38,18 @@ directionalLight.position.set(50, 50, 50).normalize();
 scene.add(directionalLight);
 
 
+// Load Base Object (Part 2) - No Parent
+loadModel('PartOne', '../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
+    position: { x: [0,0], y: [0,0], z:[0,0]},
+    rotation: { x: [0,0], y: [-Math.PI / 2, Math.PI / 2], z: [0, 0] }
+});
 
-loadModel('PartOne', '../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: -2, y: 0, z: 0 }, scene, gui);
+// Load Part 1 (Child of Part 2)
+loadModel('PartTwo', '../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: 1, y: 0, z: 0 }, scene, gui, 'PartOne', {
+    position: { x: [-2, 2], y: [-1, 1], z: [-2, 2] },
+    rotation: { x: [0,0], y: [0,0], z:[0,0] }
+});
+
 
 
 function animate() {
