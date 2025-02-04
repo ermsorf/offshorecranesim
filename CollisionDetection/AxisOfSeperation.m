@@ -4,7 +4,7 @@ main();
 
 function main()
     % Define Cylinder (position, axis, height, radius)
-    C_cyl = [1, 1, 0]'; % Cylinder center
+    C_cyl = [1, 6, 0]'; % Cylinder center
     R_cyl = [0; 0; 1];  % Cylinder axis (aligned with Z-axis)
     H_cyl = 3;          % Cylinder height
     R_cyl_radius = 1;   % Cylinder radius
@@ -15,7 +15,7 @@ function main()
     R1 = eye(3);       % No rotation (Identity matrix)
 
     % Define OBB2 (position, size, and orientation)
-    C2 = [1.5, 0, 0]'; % Center of OBB2
+    C2 = [3.1, 0, 0]'; % Center of OBB2
     L2 = [1, 2, 1]';   % Half-lengths
     theta = pi/4;      % Rotation angle around Z-axis
     R2 = [cos(theta), -sin(theta), 0; 
@@ -27,7 +27,7 @@ function main()
     
     % Display result
     if collision
-        fprintf('Collision detected at: [%.3f, %.3f, %.3f]\n', collision_point(1), collision_point(2), collision_point(3));
+        fprintf('Collision detected squares at: [%.3f, %.3f, %.3f]\n', collision_point(1), collision_point(2), collision_point(3));
     else
         disp('No collision.');
     end
@@ -36,17 +36,17 @@ function main()
     visualize_OBBs(C1, R1, L1, C2, R2, L2, collision_point);
 
     % Compute collision point
-    [collision, collision_point] = SAT_Cylinder_OBB(C_cyl, R_cyl, H_cyl, R_cyl_radius, C1, R1, L1);
+    %[collision, collision_point] = SAT_Cylinder_OBB(C_cyl, R_cyl, H_cyl, R_cyl_radius, C1, R1, L1);
     
     % Display result
-    if collision
-        fprintf('Collision detected at: [%.3f, %.3f, %.3f]\n', collision_point(1), collision_point(2), collision_point(3));
-    else
-        disp('No collision.');
-    end
+    %if collision
+    %    fprintf('Collision detected cylinder at: [%.3f, %.3f, %.3f]\n', collision_point(1), collision_point(2), collision_point(3));
+    %else
+    %    disp('No collision.');
+    %end
 
     % Visualize the OBB and Cylinder with collision point
-    visualize_Cylinder_OBB(C1, R1, L1, C_cyl, R_cyl, H_cyl, R_cyl_radius, collision_point);
+    %visualize_Cylinder_OBB(C1, R1, L1, C_cyl, R_cyl, H_cyl, R_cyl_radius, collision_point);
 end
 
 function visualize_OBBs(C1, R1, L1, C2, R2, L2, collision_point)
@@ -121,17 +121,28 @@ function draw_axes(center, R, half_lengths)
 end
 
 function [collision, collision_point] = SAT_OBB_With_Contact(C1, R1, L1, C2, R2, L2)
+    % Detects a collision between two OBBs using SAT.
+    % Computes the collision point from the surface, not the center.
+    
     collision = false;
     collision_point = NaN(3,1);
+    
+    % Compute translation vector from OBB1 to OBB2
     T = C2 - C1;
-    T = R1' * T;
+    
+    % Compute rotation matrix from OBB2's local space to OBB1
     R = R1' * R2;
+    
+    % Compute absolute rotation matrix to avoid floating point errors
     absR = abs(R) + 1e-6;
+    
+    % Half-lengths of both OBBs
     A = L1;
     B = L2;
     min_overlap = Inf;
     best_axis = NaN(3,1);
 
+    % Test the 3 axes of OBB1
     for i = 1:3
         ra = A(i);
         rb = B(1) * absR(i,1) + B(2) * absR(i,2) + B(3) * absR(i,3);
@@ -144,25 +155,30 @@ function [collision, collision_point] = SAT_OBB_With_Contact(C1, R1, L1, C2, R2,
         end
     end
     
+    % Test the 3 axes of OBB2
+    for i = 1:3
+        ra = A(1) * absR(1,i) + A(2) * absR(2,i) + A(3) * absR(3,i);
+        rb = B(i);
+        overlap = (ra + rb) - abs(dot(T, R(:,i)));
+        if overlap < 0
+            return;
+        elseif overlap < min_overlap
+            min_overlap = overlap;
+            best_axis = R2(:,i);
+        end
+    end
+    
+    % If no separating axis found, collision exists
     collision = true;
-    collision_point = C1 + best_axis * min_overlap * 0.5;
+    
+    % Compute collision point from the surface, not the CM
+    closest_point_on_OBB1 = C1 + best_axis * min_overlap * 0.5;
+    closest_point_on_OBB2 = C2 - best_axis * min_overlap * 0.5;
+    collision_point = (closest_point_on_OBB1 + closest_point_on_OBB2) / 2;
 end
-
 function [collision, collision_point] = SAT_Cylinder_OBB(C_cyl, R_cyl, H, R, C_obb, R_obb, L_obb)
     % Detects a collision between a cylinder and an OBB using SAT.
-    % 
-    % Inputs:
-    % C_cyl - Center of the cylinder
-    % R_cyl - Cylinder axis direction (unit vector)
-    % H     - Cylinder height
-    % R     - Cylinder radius
-    % C_obb - Center of the OBB
-    % R_obb - OBB rotation matrix (3x3)
-    % L_obb - OBB half-lengths in each axis direction
-    % 
-    % Outputs:
-    % collision - True if a collision occurs
-    % collision_point - Estimated collision coordinate
+    % Computes the collision point from the surface, not the center.
     
     collision = false;
     collision_point = NaN(3,1);
@@ -214,8 +230,11 @@ function [collision, collision_point] = SAT_Cylinder_OBB(C_cyl, R_cyl, H, R, C_o
     % If no separating axis found, collision exists
     collision = true;
     
-    % Compute an approximate collision point (project to the closest OBB face)
-    collision_point = C_cyl + R_cyl * min(H/2, max(-H/2, dot(T, R_cyl)));
+    % Compute collision point from the surface, not the CM
+    closest_point_on_cylinder = C_cyl + R_cyl * min(H/2, max(-H/2, dot(T, R_cyl)));
+    normal_to_surface = (C_obb - closest_point_on_cylinder);
+    normal_to_surface = normal_to_surface / norm(normal_to_surface + 1e-6);
+    collision_point = closest_point_on_cylinder + normal_to_surface * R;
 end
 
 function visualize_Cylinder_OBB(C1, R1, L1, C_cyl, R_cyl, H, R, collision_point)

@@ -1,0 +1,12 @@
+Model the wire and crane as a pendulum, use acceleration and velocity to compute the energy and trajectory.
+Depending on the load, we might be able to use multiple rigid bodies. 
+
+Use axis of seperation theorem to check if there is a collision over the trajectory. 
+Need to check how many points over the trajectory we need to check, this depends on the compotational load. 
+    - The theorem is not able to return the coordinate, but only if the objects are intersecting
+
+The simulation ends here in my opinion, as the accuracy after a collision is not possible to guarantee. 
+
+For illustrative purpoces we can get the coordinates and rotate the load / crate a bit. 
+If a collision is detected, use Gilbert–Johnson–Keerthi distance algorithm to approxemate the point of contact, 
+return this as a load in the MFM code to spin the crate. 
