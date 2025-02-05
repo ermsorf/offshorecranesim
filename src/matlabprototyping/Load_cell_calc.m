@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 function ReactionForces(framelist) 
 
 syms t thetad phid Re11 Re21 Re31 Xddot12 Xddot22 Xddot32 m2 m3 g real
