@@ -22,6 +22,9 @@ classdef Frame < handle
 
         Dmatrix
 
+        Fvec
+        Tvec
+
     end
 
     methods
@@ -74,7 +77,7 @@ classdef Frame < handle
             V = [matrix(3,2), matrix(1,3), matrix(2,1)];
         end
         % Make E's
-        function Ertemp = makeEr(obj)
+        function Er = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;
@@ -290,6 +293,14 @@ classdef Frame < handle
                 Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(i).Jmatrix;
             end
         end % function makeM
-        
+
+        function Fvector = makeF(obj,framelist)
+            frames = obj.framenumber;
+            Fvector = zeros(frames*6,1);
+            for i = 1:frames
+                Fvector(i*6-5:i*6-3,1) = framelist(i).Fvec;
+                Fvector(i*6-2:i*6,1) = framelist(i).Tvec;
+            end
+        end % Fvector
     end % methods
 end % classdef
