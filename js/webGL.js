@@ -21,6 +21,23 @@ renderer.shadowMap.enabled = true;
 camera.up.set(0,0,1)
 camera.position.set(100, 100, 100);
 
+
+var light = new THREE.SpotLight(0xffffff);   //create light
+  light.position.set(0, 0, 300);
+  light.castShadow = true;              // Allow light to cast shadows
+  light.intensity = 200000;                  // Set light intensity
+  light.distance = 500                // Set light travel distance
+  light.shadow.mapSize.width = 4096;  // Default is 512
+  light.shadow.mapSize.height = 4096; // Default is 512
+  light.shadow.radius = 1; // Softens the shadow edges
+  scene.add(light)
+
+
+camera.up.set(0,0,1)
+camera.position.set(50, 50, 50);
+camera.lookAt(0, 0, 0);
+
+
 const controls = new OrbitControls(camera, renderer.domElement); // Initialize OrbitControls
 controls.enableDamping = true; // Smooth damping for controls
 controls.dampingFactor = 0.25; // Controls damping factor (smoothness)
@@ -37,19 +54,6 @@ const light = new THREE.SpotLight(0xffffff);   //create light
   light.shadow.radius = 1; // Softens the shadow edges
   scene.add(light)
 
-
-
-const loader = new STLLoader();
-loader.load('../assets/models/lowpolysnorlax.stl', (geometry) => {
-    const material = new THREE.MeshStandardMaterial({ color: 0x007966 });
-    const snorlax = new THREE.Mesh(geometry, material);
-    snorlax.rotateZ(Math.PI/2)
-    scene.add(snorlax);
-}, undefined, (error) => {
-    console.error('Error loading STL:', error);
-});
-
-const plane = new THREE.Mesh( new THREE.PlaneGeometry(100,100), new THREE.MeshLambertMaterial({color: 0x555555}) )
 
 scene.add(plane)
 

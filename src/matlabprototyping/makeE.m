@@ -1,4 +1,4 @@
-function E = makeE(obj, framelist)
+function E = makeE(framenumber, framelist)
     % Creates absolute transformation matrix E
     % Inputs:
     %   framenumber - Number of frames to process
@@ -13,5 +13,5 @@ function E = makeE(obj, framelist)
         E = E * makeEv(framelist(i).cm2joint) * makeEr(framelist(i)) * makeEv(framelist(i).joint2cm);
     end
 
-    obj.Ematrix = simplify(E);  % Simplify the resulting matrix
+    E = simplify(E);  % Simplify the resulting matrix
 end

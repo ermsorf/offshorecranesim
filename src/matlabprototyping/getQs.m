@@ -6,8 +6,8 @@ function Q_combined = getQs(framenumber, framelist)
     % Output:
     %   Q_combined - Combined Q coordinates from all frames
 
-    Q_combined = sym([]);
+    Q_combined = [];
     for i = 1:framenumber
-        Q_combined = [Q_combined; framelist(i).Qcoordinates];
+        Q_combined = [Q_combined, framelist(i).Qcoordinates];
     end
 end
