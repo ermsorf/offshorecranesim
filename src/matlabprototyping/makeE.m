@@ -1,4 +1,4 @@
-function E = makeE(framenumber, frameslist)
+function E = makeE(framenumber, framelist)
     % Creates absolute transformation matrix E
     % Inputs:
     %   framenumber - Number of frames to process
@@ -10,8 +10,8 @@ function E = makeE(framenumber, frameslist)
     
     for i = 1:framenumber
         % Multiply current transformation matrix with frame-specific transformations
-        E = E * makeEv(frameslist(i).cm2joint) * makeEr(frameslist(i)) * makeEv(frameslist(i).joint2cm);
+        E = E * makeEv(framelist(i).cm2joint) * makeEr(framelist(i)) * makeEv(framelist(i).joint2cm);
     end
-    
+
     E = simplify(E);  % Simplify the resulting matrix
 end

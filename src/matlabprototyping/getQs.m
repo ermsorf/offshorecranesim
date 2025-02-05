@@ -1,4 +1,4 @@
-function Q_combined = getQs(framenumber, frameslist)
+function Q_combined = getQs(framenumber, framelist)
     % Combines time-dependent Q coordinates from multiple frames
     % Inputs:
     %   framenumber - Number of frames
@@ -8,6 +8,6 @@ function Q_combined = getQs(framenumber, frameslist)
 
     Q_combined = [];
     for i = 1:framenumber
-        Q_combined = [Q_combined, frameslist(i).Qcoordinates];
+        Q_combined = [Q_combined, framelist(i).Qcoordinates];
     end
 end

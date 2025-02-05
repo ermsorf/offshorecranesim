@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\libs",
+    "\\libs\\js",
+    "\\libs\\three",
+    "\\libs\\three\\controls",
+    "\\src"
   ],
-  "SelectedNode": "\\docs",
+  "SelectedNode": "\\libs\\three\\controls",
   "PreviewInSolutionExplorer": false
 }
