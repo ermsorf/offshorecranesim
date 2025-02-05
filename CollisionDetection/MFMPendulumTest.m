@@ -2,13 +2,25 @@
 
 % Length vector
 
-% Acceleration Vector
+L = [0;0,;-5]
 
 % Velocity vector
 
-% Load J matrix
+V = [0;0;0]
 
-% Mass load
+% Side length load
+
+sll = 2
+
+% Mass load (kg)
+
+ml = 10
+
+% Load J matrix (cube for now)
+
+Jl = [ (1/2) * ml * (2*sll^2), 0, 0;
+       0, (1/2) * ml * (2*sll^2) , 0;
+       0,0, (1/2) * ml * (2*sll^2)]
 
 % Wire J matrix (Might not be nessesary) 
 
@@ -19,4 +31,6 @@
 % Rotation matrix 2
 
 % Time step
+
+function 
 
