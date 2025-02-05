@@ -16,6 +16,7 @@ import {
 	SRGBColorSpace
 } from '../three.module.js';
 
+
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;
 // mtllib file_reference

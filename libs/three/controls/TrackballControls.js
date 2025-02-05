@@ -37,7 +37,8 @@ class TrackballControls extends Controls {
 
 		this.screen = { left: 0, top: 0, width: 0, height: 0 };
 
-		this.rotateSpeed = 10.0;
+
+		this.rotateSpeed = 1.0;
 		this.zoomSpeed = 1.2;
 		this.panSpeed = 0.3;
 
@@ -845,5 +846,6 @@ function onTouchEnd( event ) {
 	this.dispatchEvent( _endEvent );
 
 }
+
 
 export { TrackballControls };

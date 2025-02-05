@@ -1552,5 +1552,4 @@ function interceptControlUp( event ) {
 	}
 
 }
-
 export { OrbitControls };
