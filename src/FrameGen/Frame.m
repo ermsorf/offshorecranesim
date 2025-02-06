@@ -69,9 +69,9 @@ classdef Frame < handle
             skewmat(1,3) =  vector(2); skewmat(3,1) = -vector(2);
             skewmat(1,2) = -vector(3); skewmat(2,1) =  vector(3);
         end
-        function V = unskew(matrix)
+        function V = unskew(~, matrix)
             % Unskew SO3 matrix to vector
-            V = [matrix(3,2), matrix(1,3), matrix(2,1)];
+            V = [matrix(3,2); matrix(1,3); matrix(2,1)];
         end
         % Make E's
         function Ertemp = makeEr(obj)
@@ -107,37 +107,24 @@ classdef Frame < handle
 
         end
 
-
-
-        function Ev = makeEv(dispv)
-            % Create an SE3 transformation matrix for a given translation vector
-            % Inputs:
-            % dispv - 1x3 vector specifying the translation along [x, y, z]
-            % Output:
-            % T - 4x4 SE3 transformation matrix
-        
-            % Validate input
-            if ~isvector(dispv) || numel(dispv) ~= 3
-                error('dispv must be a 1x3 vector [x, y, z].');
-            end
-        
-            % Initialize identity SE3 matrix
+        function Ev = makeEv(obj)
+            % Create an SE3 transformation matrix using object properties
+            % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
-            
-            % Assign translation components
-            Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
+            Ev(1:3, 4) = obj.joint2cm(:); % Ensure column vector format
         end
-
+        
         function E = makeE(obj, framelist)
             % Creates absolute transformation matrix E
             E = eye(4);  % Initialize as identity matrix
             for i = 1:obj.framenumber
-                % Multiply current transformation matrix with frame-specific transformations
-                    E = E * makeEv(framelist(i).cm2joint) * makeEr(framelist(i)) * makeEv(framelist(i).joint2cm);
-                    framelist(i).Ematrix = E;
+                frame = framelist(i);
+                E = E * frame.makeEv() * frame.makeEr() * frame.makeEv();
+                frame.Ematrix = E;
             end
             obj.Ematrix = simplify(E);  % Simplify the resulting matrix
         end
+
 
         function Edot = makeEdot(obj, framelist)
             % Computes the time derivative of the transformation matrix E
@@ -195,17 +182,17 @@ classdef Frame < handle
                 if ~isempty(framelist(i).Edotmatrix)
                     Edot = framelist(i).Edotmatrix;
                 else
-                    Edot = makeEdot(framelist(i), framelist);
+                    Edot = framelist(i).makeEdot(framelist);
                     framelist(i).Edotmatrix = Edot;
                 end % if Edot
                 if ~isempty(framelist(i).Omatrix)
                     O = obj.Omatrix;
                 else
-                    O = makeO(framelist(i), framelist);
+                    O = framelist(i).makeO(framelist);
                     framelist(i).Omatrix = O;
                 end % if O
                 posvec = Edot(1:3,4);
-                Ovec = unskew(O(1:3,1:3)); %%%%%%%%%%ADD UNSKEW TO CLASS
+                Ovec = obj.unskew(O(1:3,1:3)); 
                 for q = 1:height(Q) %% For every q in q list
                     for direction = 1:3 %% For every direction
                         %% Positions
