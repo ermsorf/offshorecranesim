@@ -1,6 +1,6 @@
-import { OBJLoader } from '../libs/three/loaders/OBJLoader.js';
-import { MTLLoader } from '../libs/three/loaders/MTLLoader.js';
-import * as THREE from '../libs/three/three.module.js';
+import { OBJLoader } from './OBJLoader.js';
+import { MTLLoader } from './MTLLoader.js';
+import * as THREE from '../three.module.js';
 
 
 

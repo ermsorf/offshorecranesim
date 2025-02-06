@@ -1,7 +1,7 @@
 import * as THREE from '../libs/three/three.module.js';
 import { OrbitControls } from '../libs/three/controls/OrbitControls.js';
 import GUI from '../libs/three/lil-gui.module.min.js'; 
-import { loadModel, sceneObjects } from './modelLoader.js';
+import { loadModel, sceneObjects } from '../libs/three/loaders/modelLoader.js';
 
 
 // Setting up the scene
@@ -87,7 +87,7 @@ function updateLinePositions() {
 // -------------------------------
 
 // Load Base Object (Part1) - No Parent
-loadModel('Part1', '../models/crane_assembly.obj', '../models/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
+loadModel('Part1', '../assets/models/crane_assembly.obj', '../assets/models/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
     position: { x: [0, 0], y: [0, 0], z: [0, 0] },
     rotation: { x: [0, 0], y: [-Math.PI / 2, Math.PI / 2], z: [0, 0] }
 });
