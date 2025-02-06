@@ -19,10 +19,8 @@ B = makeB(frames(2),frames);
 Bdot = makeBdot(frames(2),frames);
 D = makeD(frames(2),frames);
 M = makeM(frames(2),frames);
-Mstar = B' * M * B;             Mstar = simplify(Mstar);
-Nstar = B' * (M*Bdot + D*M*B);  Nstar = simplify(Nstar);
-
-eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion = simplify(eqs_of_motion)
+Mstar = B' * M * B;
+Nstar = B' * (M*Bdot + D*M*B);
 
 
 
