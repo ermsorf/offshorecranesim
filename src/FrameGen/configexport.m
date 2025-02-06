@@ -18,7 +18,7 @@ function configexport(system)
 
     % Save as JSON
     jsonStr = jsonencode(system);
-    fid = fopen('config.json', 'w');
+    fid = fopen('systemconfig.json', 'w');
     fprintf(fid, '%s', jsonStr);
     fclose(fid);
 
