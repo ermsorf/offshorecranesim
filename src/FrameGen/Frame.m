@@ -10,6 +10,8 @@ classdef Frame < handle
 
         Qcoordinates % Format: [theta, thetadot, thetaddot;...] for each coordinate
         
+        initconditions
+
         Ematrix
         Edotmatrix
         Omatrix
@@ -21,6 +23,8 @@ classdef Frame < handle
         Mmatrix
 
         Dmatrix
+        Fvec
+        Tvec
 
     end
 
@@ -157,6 +161,14 @@ classdef Frame < handle
                 Q_combined = [Q_combined; framelist(i).Qcoordinates];
             end
         end
+        function initCond = getInitCond(obj, framelist)
+            % Combines time-dependent Q coordinates from multiple frames
+            initCond = sym([]);
+            for i = 1:(obj.framenumber)
+                initCond = [initCond; framelist(i).initconditions];
+            end
+        end
+
 
         function O = makeO(obj, framelist)
             %UNTITLED2 Summary of this function goes here
@@ -277,6 +289,15 @@ classdef Frame < handle
                 Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(i).Jmatrix;
             end
         end % function makeM
+
+        function F = makeF(obj, framelist)
+            F = sym(zeros(obj.framenumber*6,1));
+            for i = 1:obj.framenumber
+                F(6*i-5:6*i-3,1) = framelist(i).Fvec';
+                F(6*i-2:6*i,1) = framelist(i).Tvec';
+            end
+            
+        end
         
     end % methods
 end % classdef

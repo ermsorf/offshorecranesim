@@ -33,7 +33,7 @@ export function loadModel(name, objPath, mtlPath, position, scene, gui, parentNa
 
             // Default limits if not provided
             const posLimits = transformLimits.position || { x: [-5, 5], y: [-5, 5], z: [-5, 5] };
-            const rotLimits = transformLimits.rotation || { x: [-Math.PI, Math.PI], y: [-Math.PI, Math.PI], z: [-Math.PI, Math.PI] };
+            const rotLimits = transformLimits.rotation || { x: [-Math.PI*2, Math.PI*2], y: [-Math.PI*2, Math.PI*2], z: [-Math.PI*2, Math.PI*2] };
 
             // Add position folder only if at least one axis is movable
             if (posLimits.x[0] !== posLimits.x[1] || posLimits.y[0] !== posLimits.y[1] || posLimits.z[0] !== posLimits.z[1]) {
