@@ -25,4 +25,3 @@ This project focuses on:
 
 - A functional simulation of the crane and wire using rigid body dynamics.
 - Documentation and visualizations to support collaboration with other teams.
-

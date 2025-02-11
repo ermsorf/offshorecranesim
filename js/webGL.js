@@ -21,8 +21,9 @@ const camera = new THREE.PerspectiveCamera(
     0.1, 
     1000000
 );
-camera.position.set(0, 10, 10);
-camera.lookAt(0, 0, 0);
+camera.up.set(0,1,0);
+camera.position.set(0, 20, 20);
+camera.lookAt(0, 0, 30);
 
 // Set up the renderer
 const renderer = new THREE.WebGLRenderer();
@@ -93,7 +94,7 @@ loadModel('Part1', '../assets/models/crane_assembly.obj', '../assets/materials/c
 });
 
 // Load Part 1 (Child of Part1)
-loadModel('Part2', '../assets/models/crane_assembly.obj', '../assets/materials/crane_assembly.mtl', { x: 1, y: 0, z: 0 }, scene, gui, 'Part1', {
+loadModel('Part2', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 1, y: 0, z: 0 }, scene, gui, 'Part1', {
     position: { x: [-2, 2], y: [-1, 1], z: [-2, 2] },
     rotation: { x: [0, 0], y: [0, 0], z: [0, 0] }
 });
@@ -129,7 +130,7 @@ function sortGuiFoldersByName(gui) {
     // Get the GUI's DOM element (this is where lil-gui places its folders)
     const guiContainer = gui.domElement;
     
-    // Query all folder elements; the class name may vary depending on your lil-gui version.
+    // Query all folder elements;
     const folders = Array.from(guiContainer.querySelectorAll('.lil-gui-folder'));
     
     // Sort the folders by the folder title text.

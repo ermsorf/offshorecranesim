@@ -1,4 +1,4 @@
-function configexport(system, filename)
+function exportSymbolicSystem(system, filename)
     fields = fieldnames(system);
     for i = 1:numel(fields)
         field = fields{i};
