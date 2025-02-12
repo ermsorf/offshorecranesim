@@ -24,11 +24,11 @@ g = 9.81;              % gravitational acceleration [m/s^2]
 L = 30.0;               % pendulum length [m]
 % Initial conditions: [theta; theta_dot; psi; psi_dot]
 % For example, an initial polar angle of 30° (pi/6 radians) and an initial azimuthal speed.
-Y0 = [pi/6; 0; 0; 2];
+Y0 = [1; 0; 0; 0.5];
 
 % Define the time span with a fixed time step.
-dt = 0.02;             % output every 0.02 seconds
-tspan = 0:dt:5;        % from 0 to 5 seconds
+dt = 0.1;             % output every 0.02 seconds
+tspan = 0:dt:10;        % from 0 to 5 seconds
 
 % Solve the ODE using ode45.
 [t, Y] = ode45(@(t,Y) pendulumODE(t, Y, g, L), tspan, Y0);
