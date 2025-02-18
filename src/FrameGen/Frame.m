@@ -111,11 +111,11 @@ classdef Frame < handle
 
         end
 
-        function Ev = makeEv(obj)
+        function Ev = makeEv(obj, dispv)
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
-            Ev(1:3, 4) = obj.joint2cm(:); % Ensure column vector format
+            Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
         end
         
         function E = makeE(obj, framelist)
@@ -123,7 +123,7 @@ classdef Frame < handle
             E = eye(4);  % Initialize as identity matrix
             for i = 1:obj.framenumber
                 frame = framelist(i);
-                E = E * frame.makeEv() * frame.makeEr() * frame.makeEv();
+                E = E * frame.makeEv(frame.cm2joint) * frame.makeEr() * frame.makeEv(frame.joint2cm);
                 frame.Ematrix = E;
             end
             obj.Ematrix = simplify(E);  % Simplify the resulting matrix
