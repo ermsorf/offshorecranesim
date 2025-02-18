@@ -1,26 +1,49 @@
-function configexport(system)
-    % Convert all matrices in system struct to structured format
-    matrixNames = fieldnames(system);
-    
-    for i = 1:numel(matrixNames)
-        name = matrixNames{i};
-        if ~strcmp(name, 'variables')  % Skip the variable list
-            exprMatrix = system.(name);
-            system.(name) = arrayfun(@(expr) struct(...
-                'expr', char(expr), 'vars', symvar(expr)), exprMatrix, 'UniformOutput', false);
+function configexport(system, filename)
+    fields = fieldnames(system);
+    for i = 1:numel(fields)
+        field = fields{i};
+        matrix = system.(field);
+        [nRows, nCols] = size(matrix);
+        nestedArray = cell(1, nRows);
+
+        if strcmp(field, "rotations")
+            % Special handling for rotation matrices
+            for row = 1:nRows
+                axisValue = str2double(char(matrix(row, 1))); % Extract axis (should be 1, 2, or 3)
+                varName = string(symvar(matrix(row, 2))); % Extract variable name from second column
+                if isempty(varName)
+                    varName = "";
+                end
+                nestedArray{row} = struct('axis', axisValue, 'vars', varName);
+            end
+        else
+            % Default behavior for other matrices
+            for row = 1:nRows
+                rowArray = cell(1, nCols);
+                for col = 1:nCols
+                    exprStr = formatExpression(char(matrix(row, col)));
+                    varsList = string(symvar(matrix(row, col)));
+                    if isempty(varsList)
+                        varsList = [];
+                    end
+                    rowArray{col} = struct('expr', exprStr, 'vars', varsList);
+                end
+                nestedArray{row} = rowArray;
+            end
         end
+
+        system.(field) = nestedArray;
     end
 
-    % Convert variables to strings
-    if isfield(system, 'variables')
-        system.variables = arrayfun(@char, system.variables, 'UniformOutput', false);
-    end
-
-    % Save as JSON
-    jsonStr = jsonencode(system);
-    fid = fopen('systemconfig.json', 'w');
-    fprintf(fid, '%s', jsonStr);
+    jsonStr = jsonencode(system, 'PrettyPrint', true);
+    fid = fopen(filename, 'w');
+    fwrite(fid, jsonStr);
     fclose(fid);
+end
 
-    fprintf('System configuration exported to config.json\n');
+function formattedExpr = formatExpression(expr)
+    expr = strrep(expr, '^', '**');
+    expr = strrep(expr, 'sin', 'Math.sin');
+    expr = strrep(expr, 'cos', 'Math.cos');
+    formattedExpr = expr;
 end
