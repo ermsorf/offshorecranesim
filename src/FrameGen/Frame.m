@@ -117,7 +117,7 @@ classdef Frame < handle
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
-            Ev(1:3, 4) = dispv; % Ensure column vector format
+            Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
         end
         
         function E = makeE(obj, framelist)
