@@ -1,68 +1,60 @@
-fetch('../src/FrameGen/testconfig.json')
-  .then(response => response.json())
-  .then(system => {
+export async function loadSystemConfig(filePath) {
+    const response = await fetch(filePath);
+    const system = await response.json();
     console.log("Loaded system config:", system);
 
-    let state = {};
-    // Populate state object
-    for (let i = 0; i < system.Qcoordinates.length; i++) {
-      for (let j = 0; j < system.Qcoordinates[i].length; j++) {
-        let key = system.Qcoordinates[i][j].expr; // Get variable name
-        let value = evaluateExpression(system.initconditions[i][j]); // Evaluate initial condition
-        state[key] = value; // Store in state
-      }
-    }
+    // Initialize Q with initial conditions
+    let Q = system.Qcoordinates.map((row, i) => [
+        evaluateExpression(system.initconditions[i][0], Q, i, 0), // q
+        evaluateExpression(system.initconditions[i][1], Q, i, 1), // qdot
+        evaluateExpression(system.initconditions[i][2], Q, i, 2)  // qddot
+    ]);
 
-    console.log("Initial Conditions:",state);
+    console.log("Initial Q:", Q);
+    return { Q, system };
+}
 
-    function evaluateExpression(entry) {
-      if (!entry || typeof entry.expr !== "string") {
+export function evaluateExpression(entry, Q, variableMap) {
+    if (!entry || typeof entry.expr !== "string") {
         console.warn("Invalid entry:", entry);
         return NaN;
-      }
+    }
 
-      let expr = entry.expr;
-      let vars = Array.isArray(entry.vars) ? entry.vars : (typeof entry.vars === "string" && entry.vars.trim() !== "") ? [entry.vars] : [];
+    const { expr, vars } = entry;
+    const variables = Array.isArray(vars) ? vars : vars?.trim() ? [vars] : [];
 
-      if (vars.length === 0) {
+    if (variables.length === 0) {
         try {
-          return new Function(`return ${expr};`)();
+            return new Function(`return ${expr};`)();
         } catch (e) {
-          console.error("Eval failed for constant expression:", expr, "Error:", e);
-          return NaN;
+            console.error("Eval failed for constant expression:", expr, "Error:", e);
+            return NaN;
         }
-      }
+    }
 
-      let missingVars = vars.filter(v => !(v in state));
-      if (missingVars.length > 0) {
-        console.error("Missing variables in state:", missingVars);
+    const missingVars = variables.filter(v => !(v in variableMap));
+    if (missingVars.length > 0) {
+        console.error("Missing variables in Q:", missingVars);
         return NaN;
-      }
+    }
 
-      try {
-        return new Function(...vars, `return ${expr};`)(...vars.map(v => state[v]));
-      } catch (e) {
+    try {
+        // Retrieve values from Q using the variable map
+        const values = variables.map(v => {
+            let { i, j } = variableMap[v];
+            return Q[i][j];
+        });
+
+        return new Function(...variables, `return ${expr};`)(...values);
+    } catch (e) {
         console.error("Eval failed for:", expr, "Error:", e);
         return NaN;
-      }
     }
+}
 
-    function evaluateMatrix(matrix) {
-      if (!Array.isArray(matrix)) return evaluateExpression(matrix);
-      if (!Array.isArray(matrix[0])) return matrix.map(entry => evaluateExpression(entry));
-
-      return matrix.map(row => row.map(entry => evaluateExpression(entry)));
-    }
-
-    console.time("Matrix Evaluation");
-    let evaluatedMatrices = {};
-    Object.keys(system).forEach(key => {
-      if (key !== "Qcoordinates" && key !== "initconditions") {
-        evaluatedMatrices[key] = evaluateMatrix(system[key]);
-      }
-    });
-    console.timeEnd("Matrix Evaluation");
-
-    console.log("Evaluated Matrices:", evaluatedMatrices);
-  })
-  .catch(error => console.error("Error loading config:", error));
+export function evaluateMatrix(matrix, Q, variableMap) {
+    if (!Array.isArray(matrix)) return evaluateExpression(matrix, Q, variableMap);
+    return matrix.map(row =>
+        Array.isArray(row) ? row.map(entry => evaluateExpression(entry, Q, variableMap)) : evaluateExpression(row, Q, variableMap)
+    );
+}
