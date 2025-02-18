@@ -4,20 +4,34 @@ function configexport(system, filename)
         field = fields{i};
         matrix = system.(field);
         [nRows, nCols] = size(matrix);
-        % Build a 1D cell array where each element is a row (a 1D cell array)
         nestedArray = cell(1, nRows);
-        for row = 1:nRows
-            rowArray = cell(1, nCols);
-            for col = 1:nCols
-                exprStr = formatExpression(char(matrix(row, col)));
-                varsList = string(symvar(matrix(row, col)));
-                if isempty(varsList)
-                    varsList = [];
+
+        if strcmp(field, "rotations")
+            % Special handling for rotation matrices
+            for row = 1:nRows
+                axisValue = str2double(char(matrix(row, 1))); % Extract axis (should be 1, 2, or 3)
+                varName = string(symvar(matrix(row, 2))); % Extract variable name from second column
+                if isempty(varName)
+                    varName = "";
                 end
-                rowArray{col} = struct('expr', exprStr, 'vars', varsList);
+                nestedArray{row} = struct('axis', axisValue, 'vars', varName);
             end
-            nestedArray{row} = rowArray;
+        else
+            % Default behavior for other matrices
+            for row = 1:nRows
+                rowArray = cell(1, nCols);
+                for col = 1:nCols
+                    exprStr = formatExpression(char(matrix(row, col)));
+                    varsList = string(symvar(matrix(row, col)));
+                    if isempty(varsList)
+                        varsList = [];
+                    end
+                    rowArray{col} = struct('expr', exprStr, 'vars', varsList);
+                end
+                nestedArray{row} = rowArray;
+            end
         end
+
         system.(field) = nestedArray;
     end
 
@@ -28,7 +42,6 @@ function configexport(system, filename)
 end
 
 function formattedExpr = formatExpression(expr)
-    % Replace MATLAB-style with JavaScript-style expressions
     expr = strrep(expr, '^', '**');
     expr = strrep(expr, 'sin', 'Math.sin');
     expr = strrep(expr, 'cos', 'Math.cos');
