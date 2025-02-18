@@ -1,93 +1,95 @@
-import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './loadSystemConfig.js';
-import { rk4Step, rk4StepX } from './RK4.js';
-import { initializeGraphics, updateGraphics } from './testGL.js';
+import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configImport.js';
+import { rk4Step, runRK4Step } from './RK4.js';
+import { initializeGraphics } from './testGL.js';
 
 let systemConfig;
-let state = {};
-let cartesianState = {};
+let qState = {};
+let xState = {};
+let running = false;
+let step = 0;
+const maxSteps = 10;
+const dt = 0.1; // Time step in seconds
+let lastTime = performance.now();
 
 async function initialize() {
-    systemConfig = await loadSystemConfig();
-    state = systemConfig.state;
-    cartesianState = Array.from({ length: systemConfig.system.B.length/6 }, () => Array(6).fill(0)); 
-    initializeGraphics();
-    console.log("System Configuration Loaded",systemConfig);
+    systemConfig = await loadSystemConfig('../src/FrameGen/testconfig.json'); // systemConfig[state, system], system = [Q, M, ...]
+    qState = await systemConfig.Q;
+    xState = evaluateMatrix(systemConfig.system.T, qState)
+    console.log("X state:", xState)
+    console.log("System Configuration Loaded", systemConfig);
+    console.log(evaluateMatrix(systemConfig.system.Qcoordinates, qState))
 }
 
-async function runRK4Step() {
-    if (!systemConfig) {
-        console.error("System configuration not loaded.");
-        return;
-    }
 
-    const { evaluateMatrix, evaluatedMatrices, system } = systemConfig;
-    const dt = 0.25;
 
-    // Extract required matrices
-    const { Qcoordinates: Q, Mstar, Nstar, Bt, F } = evaluatedMatrices;
-    const Fstar = math.multiply(Bt, F);
-
-    // RK4 step for generalized coordinates
-    const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
-
-    // Update state
-    system.Qcoordinates.forEach((qRow, i) => {
-        state[qRow[0].vars] = newState[i][0];
-        state[qRow[1].vars] = newState[i][1];
-        state[qRow[2].vars] = (newState[i][1] - Q[i][1]) / dt;
-    });
-
-    // Re-evaluate matrices
-    const updatedMatrices = Object.fromEntries(
-        Object.entries(system)
-          .filter(([key]) => key !== "Qcoordinates" && key !== "initconditions")
-          .map(([key, value]) => [key, evaluateMatrix(value, state)])
-      );
-
-    // RK4 step for Cartesian coordinates
-    const B_new = updatedMatrices["B"];
-    const qd_new = newState.map(q => [q[1]]);
-    const X_new = rk4StepX(cartesianState, B_new, qd_new, dt);
-
-    // Update Cartesian state
-    X_new.forEach((row, i) => {
-        cartesianState[i] = row;
-    });
+function runNextStep() {
+    if (!running) return;
+    let currentTime = performance.now();
+    let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
     
-    console.log(`Step completed. Updated Generalized & Cartesian State.`, cartesianState);
-}
-
-async function runSimulation() {
-    await initialize();
-    console.time("Total RK4 Execution");
-
-    let step = 0;
-    const maxSteps = 200;
-    const dt = 0.25; // Time step in seconds
-    let lastTime = performance.now();
-
-    async function runNextStep() {
-        let currentTime = performance.now();
-        let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
-        
-        if (elapsed >= dt) {
-            console.time(`RK4 Step ${step + 1}`);
-            await runRK4Step();
+    if (elapsed >= dt) {
+        console.time(`RK4 Step ${step + 1}`);
+        runRK4Step(systemConfig, qState, dt).then(() => {
             console.timeEnd(`RK4 Step ${step + 1}`);
-
-            step++;
-            lastTime = currentTime;
-        }
-
-        if (step < maxSteps) {
-            requestAnimationFrame(runNextStep);
-        } else {
-            console.timeEnd("Total RK4 Execution");
-        }
+        });
+        step++;
+        lastTime = currentTime;
     }
-    updateGraphics(cartesianState);
-    requestAnimationFrame(runNextStep);
+    
+    if (step < maxSteps) {
+        requestAnimationFrame(runNextStep);
+    } else {
+        console.timeEnd("Total RK4 Execution");
+        running = false;
+    }
 }
 
-runSimulation();
+function startSimulation() {
+    if (!running) {
+        running = true;
+        step = 0;
+        lastTime = performance.now();
+        requestAnimationFrame(runNextStep);
+    }
+}
+
+function stopSimulation() {
+    running = false;
+}
+
+function resetSimulation() {
+    running = false;
+    step = 0;
+    initialize();
+}
+
+// Create UI buttons
+function createUI() {
+    const container = document.createElement('div');
+    container.style.position = 'absolute';
+    container.style.bottom = '10px';
+    container.style.left = '10px';
+    container.style.zIndex = '100';
+
+    const startButton = document.createElement('button');
+    startButton.innerText = 'Start';
+    startButton.onclick = startSimulation;
     
+    const stopButton = document.createElement('button');
+    stopButton.innerText = 'Stop';
+    stopButton.onclick = stopSimulation;
+    
+    const resetButton = document.createElement('button');
+    resetButton.innerText = 'Reset';
+    resetButton.onclick = resetSimulation;
+    
+    container.appendChild(startButton);
+    container.appendChild(stopButton);
+    container.appendChild(resetButton);
+    document.body.appendChild(container);
+}
+
+initialize().then(() => {
+    runRK4Step(systemConfig, qState, dt);
+    createUI();
+});

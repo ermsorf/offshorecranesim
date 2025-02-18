@@ -86,7 +86,7 @@ function updateLinePositions() {
 // -------------------------------
 // Load Models
 // -------------------------------
-
+/*
 // Load Base Object (Part1) - No Parent
 loadModel('Part1', '../assets/models/crane_assembly.obj', '../assets/materials/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
     position: { x: [0, 0], y: [0, 0], z: [0, 0] },
@@ -122,7 +122,7 @@ loadModel('Part6', '../assets/models/frame.obj', '../assets/materials/frame.mtl'
     position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
     rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
 });
-
+*/
 // -------------------------------
 // Sort GUI Folders by Name
 // -------------------------------
