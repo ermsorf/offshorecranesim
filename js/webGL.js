@@ -64,28 +64,23 @@ function updateLinePositions() {
 // -------------------------------
 
 // Load Base Object (Part1) - No Parent
-loadModel('Part1', '../assets/models/tower.obj', '../assets/materials/tower.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
+loadModel('Tower', '../assets/models/tower.obj', '../assets/materials/tower.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
     position: { x: [0, 0], y: [0, 0], z: [0, 0] },
     rotation: { x: [0, 0], y:[0, 0] , z: [0,0] }
 });
 
 // Load Part 2 (Child of Part1)
-loadModel('Part2', '../assets/models/boom.obj', '../assets/materials/boom.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part1', {
+loadModel('Boom', '../assets/models/boom.obj', '../assets/materials/boom.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Tower', {
     position: { x: [0, 0], y: [0, 0], z: [0, 0] },
     rotation: { x: [0, 0], y: [0, 0], z: [-Math.PI / 2, Math.PI / 2] }
 });
 
 // Load Part3 (Child of Part2)
-loadModel('Part3', '../assets/models/trolley.obj', '../assets/materials/trolley.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part2', {
+loadModel('Trolley', '../assets/models/trolley.obj', '../assets/materials/trolley.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Boom', {
     position: { x: [0, 20], y: [0, 0], z: [0, 0] },
     rotation: { x: [0, 0], y: [0, 0], z: [0, 0] }
 });
 
-// Load Part3 (Child of Part2)
-loadModel('Part3', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part2', {
-    position: { x: [0, 0], y: [0, 0], z: [0, 0] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
 
 
 
