@@ -36,34 +36,38 @@ export function rk4Step(Q, M, N, F, dt) {
   };
 }
 
-export function runRK4Step(systemConfig, qState, dt) {
-  if (!systemConfig) {
+export function runRK4Step(system, Q, variableMap, dt) {
+  if (!system) {
       console.error("System configuration not loaded.");
       return;
   }
-  const { system } = systemConfig;
-  const Q = evaluateMatrix(system.Qcoordinates, qState);
-  const Mstar = evaluateMatrix(system.Mstar, qState);
-  const Nstar = evaluateMatrix(system.Nstar, qState);
-  const Bt = evaluateMatrix(system.Bt, qState);
-  const F = evaluateMatrix(system.F, qState);
+
+  // Evaluate matrices using Q and variableMap
+  const Mstar = evaluateMatrix(system.Mstar, Q, variableMap);
+  const Nstar = evaluateMatrix(system.Nstar, Q, variableMap);
+  const Bt = evaluateMatrix(system.Bt, Q, variableMap);
+  const F = evaluateMatrix(system.F, Q, variableMap);
   const Fstar = math.multiply(Bt, F);
 
   // RK4 step
   const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
 
-  // Update qState
-  system.Qcoordinates.forEach((qRow, i) => {
-      qState[qRow[0].vars] = newState[i][0];
-      qState[qRow[1].vars] = newState[i][1];
-      qState[qRow[2].vars] = (newState[i][1] - Q[i][1]) / dt;
+  // Update Q using variableMap
+  Object.entries(variableMap).forEach(([key, { i, j }]) => {
+      if (j === 0) {
+          Q[i][0] = newState.q[i];     // Position update
+          Q[i][1] = newState.qdot[i];  // Velocity update
+          Q[i][2] = newState.qddot[i]; // Acceleration update
+      }
   });
 
+  // Update other system matrices
   const updatedMatrices = Object.fromEntries(
       Object.entries(system)
-        .filter(([key]) => key !== "Qcoordinates" && key !== "initconditions")
-        .map(([key, value]) => [key, evaluateMatrix(value, qState)])
+          .filter(([key]) => key !== "Qcoordinates" && key !== "initconditions")
+          .map(([key, value]) => [key, evaluateMatrix(value, Q, variableMap)])
   );
+
   console.log("Updated Matrices:", updatedMatrices);
-  console.log("qstate", qState);
+  console.log("Updated Q:", Q);
 }

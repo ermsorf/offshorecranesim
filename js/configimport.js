@@ -1,19 +1,30 @@
 export async function loadSystemConfig(filePath) {
     const response = await fetch(filePath);
     const system = await response.json();
-    console.log("Loaded system config:", system);
 
-    // Initialize Q with initial conditions
-    let Q = system.Qcoordinates.map((row, i) => [
-        evaluateExpression(system.initconditions[i][0], Q, i, 0), // q
-        evaluateExpression(system.initconditions[i][1], Q, i, 1), // qdot
-        evaluateExpression(system.initconditions[i][2], Q, i, 2)  // qddot
-    ]);
+    // Create variableMap to track indices of variables in Q. Like a lookup map. theta1 value stored in Q[0][0]
+    let variableMap = {};
+    system.Qcoordinates.forEach((row, i) => {
+        row.forEach((entry, j) => {
+            if (entry.vars) {
+                variableMap[entry.vars] = { i, j };
+            }
+        });
+    });
+
+    // Initialize empty Q matrix
+    let Q = system.Qcoordinates.map(row => row.map(() => 0));
+
+    // Now populate Q with evaluated values
+    for (let i = 0; i < system.Qcoordinates.length; i++) {
+        for (let j = 0; j < system.Qcoordinates[i].length; j++) {
+            Q[i][j] = evaluateExpression(system.initconditions[i][j], Q, variableMap);
+        }
+    }
 
     console.log("Initial Q:", Q);
-    return { Q, system };
+    return { system, Q, variableMap };
 }
-
 export function evaluateExpression(entry, Q, variableMap) {
     if (!entry || typeof entry.expr !== "string") {
         console.warn("Invalid entry:", entry);
