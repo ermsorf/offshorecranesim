@@ -3,7 +3,7 @@ import { rk4Step, runRK4Step } from './RK4.js';
 import { initializeGraphics } from './testGL.js';
 import { getNextPos, getRotationMatrices } from "./positionRotation.js";
 
-let system, Q, variableMap, xState;
+let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
 const maxSteps = 10;
@@ -21,11 +21,20 @@ async function initialize() {
 await initialize()
 await runRK4Step(system, Q, variableMap, dt)
 
-let xState_new = await getNextPos(xState, system,Q,variableMap,dt)
+xState_new = await getNextPos(xState, system,Q,variableMap,dt)
 console.log("xState new", xState_new)
 
-let rotations = await getRotationMatrices(system, Q, variableMap)
+rotations = await getRotationMatrices(system, Q, variableMap)
 console.log("Rotations", rotations)
+
+await runRK4Step(system, Q, variableMap, dt)
+
+xState_new = await getNextPos(xState, system,Q,variableMap,dt)
+console.log("xState new", xState_new)
+
+rotations = await getRotationMatrices(system, Q, variableMap)
+console.log("Rotations", rotations)
+
 
 
 

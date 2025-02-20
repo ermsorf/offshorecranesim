@@ -59,5 +59,17 @@ export async function getRotationMatrices(system, Q, variableMap) {
     return rotationMatrices;
 }
 
+function getRotationMatrix(axis, theta) {
+    const c = math.cos(theta);
+    const s = math.sin(theta);
+    switch (axis) {
+        case 1:
+            return [[1,0,0],[0,c,-s],[0,s,c]]
+        case 2:
+            return [[c,0,s],[0,1,0],[-s,0,c]]
+        case 3:
+            return [[c,-s,0],[s,c,0],[0,0,1]]
+    }
+}
     
 
