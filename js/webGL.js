@@ -46,30 +46,7 @@ scene.add(directionalLight);
 // This array will hold the names of the bodies we want to connect.
 let dynamicLineBodyNames = [];
 
-// -------------------------------
-// Function to draw (and update) the line between bodies
-// This function creates the line and sets the global dynamicLineBodyNames.
-function drawLineBetweenBodies(bodyNames, lineColor = 0xff0000) {
-    dynamicLineBodyNames = bodyNames; // Save for dynamic updates
-    const points = bodyNames.map(name => {
-        const obj = sceneObjects[name];
-        if (!obj) {
-            console.warn(`Object "${name}" not found.`);
-            return new THREE.Vector3();
-        }
-        return obj.position.clone();
-    });
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({ color: lineColor });
-    
-    // Remove previous line if it exists
-    if (window.myLine) {
-        scene.remove(window.myLine);
-    }
-    
-    window.myLine = new THREE.Line(geometry, material);
-    scene.add(window.myLine);
-}
+
 
 // Function to update the line geometry in real time
 function updateLinePositions() {
@@ -87,40 +64,30 @@ function updateLinePositions() {
 // -------------------------------
 
 // Load Base Object (Part1) - No Parent
-loadModel('Part1', '../assets/models/crane_assembly.obj', '../assets/materials/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
+loadModel('Part1', '../assets/models/tower.obj', '../assets/materials/tower.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
     position: { x: [0, 0], y: [0, 0], z: [0, 0] },
-    rotation: { x: [0, 0], y: [-Math.PI / 2, Math.PI / 2], z: [0, 0] }
+    rotation: { x: [0, 0], y:[0, 0] , z: [0,0] }
 });
 
-// Load Part 1 (Child of Part1)
-loadModel('Part2', '../assets/models/crane_assembly.obj', '../assets/materials/crane_assembly.mtl', { x: 1, y: 0, z: 0 }, scene, gui, 'Part1', {
-    position: { x: [-2, 2], y: [-1, 1], z: [-2, 2] },
+// Load Part 2 (Child of Part1)
+loadModel('Part2', '../assets/models/boom.obj', '../assets/materials/boom.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part1', {
+    position: { x: [0, 0], y: [0, 0], z: [0, 0] },
+    rotation: { x: [0, 0], y: [0, 0], z: [-Math.PI / 2, Math.PI / 2] }
+});
+
+// Load Part3 (Child of Part2)
+loadModel('Part3', '../assets/models/trolley.obj', '../assets/materials/trolley.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part2', {
+    position: { x: [0, 20], y: [0, 0], z: [0, 0] },
     rotation: { x: [0, 0], y: [0, 0], z: [0, 0] }
 });
 
 // Load Part3 (Child of Part2)
-loadModel('Part3', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: 0, z: 10 }, scene, gui, 'Part2', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
+loadModel('Part3', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: 0, z: 0 }, scene, gui, 'Part2', {
+    position: { x: [0, 0], y: [0, 0], z: [0, 0] },
     rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
 });
 
-// Load Part4 (Child of Part3)
-loadModel('Part4', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part3', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
 
-// Load Part5 (Child of Part4)
-loadModel('Part5', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part4', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
-
-// Load Part6 (Child of Part5)
-loadModel('Part6', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part5', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
 
 // -------------------------------
 // Sort GUI Folders by Name
@@ -153,14 +120,7 @@ setTimeout(() => {
     sortGuiFoldersByName(gui);
 }, 2000); // adjust delay as needed to ensure all folders are added
 
-// -------------------------------
-// Draw the dynamic line
-// -------------------------------
-// Draw a red line connecting Part3 -> Part4 -> Part5.
-// We call it once after a delay to ensure the models are loaded.
-setTimeout(() => {
-    drawLineBetweenBodies(['Part3', 'Part4', 'Part5']);
-}, 3000);
+
 
 // -------------------------------
 // Animation Loop
@@ -170,9 +130,7 @@ function animate() {
     
     controls.update();
 
-    // Update dynamic line positions in real time
-    updateLinePositions();
-    
+
     renderer.render(scene, camera);
 }
 
