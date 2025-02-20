@@ -1,10 +1,9 @@
 import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configImport.js';
 import { rk4Step, runRK4Step } from './RK4.js';
 import { initializeGraphics } from './testGL.js';
+import { getNextPos, getRotationMatrices } from "./positionRotation.js";
 
-let systemConfig;
-let qState = {};
-let xState = {};
+let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
 const maxSteps = 10;
@@ -12,7 +11,36 @@ const dt = 0.1; // Time step in seconds
 let lastTime = performance.now();
 
 async function initialize() {
-    systemConfig = await loadSystemConfig('../src/FrameGen/testconfig.json'); // systemConfig[state, system], system = [Q, M, ...]
+    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/doublePendulumConfig.json'));
+    console.log("System Config Loaded", system)
+
+    xState = evaluateMatrix(system.T, Q, variableMap);
+    console.log("Initial X state:", xState);
+}   
+
+await initialize()
+await runRK4Step(system, Q, variableMap, dt)
+
+xState_new = await getNextPos(xState, system,Q,variableMap,dt)
+console.log("xState new", xState_new)
+
+rotations = await getRotationMatrices(system, Q, variableMap)
+console.log("Rotations", rotations)
+
+await runRK4Step(system, Q, variableMap, dt)
+
+xState_new = await getNextPos(xState, system,Q,variableMap,dt)
+console.log("xState new", xState_new)
+
+rotations = await getRotationMatrices(system, Q, variableMap)
+console.log("Rotations", rotations)
+
+
+
+
+
+
+    /*
     qState = await systemConfig.Q;
     xState = evaluateMatrix(systemConfig.system.T, qState)
     console.log("X state:", xState)
@@ -93,3 +121,5 @@ initialize().then(() => {
     runRK4Step(systemConfig, qState, dt);
     createUI();
 });
+
+*/
