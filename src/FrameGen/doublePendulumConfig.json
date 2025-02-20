@@ -72,19 +72,15 @@
   "Mstar": [
     [
       {
-        "expr": "(L2*Math.sin(theta1 + theta2) + L1*Math.sin(theta1) + L2*Math.sin(theta1))*(10*L2*Math.sin(theta1 + theta2) + 10*L1*Math.sin(theta1) + 10*L2*Math.sin(theta1)) + 10*L2**2*Math.cos(theta1)**2 + 10*L2**2*Math.sin(theta1)**2 + (L2*Math.cos(theta1 + theta2) + L1*Math.cos(theta1) + L2*Math.cos(theta1))*(10*L2*Math.cos(theta1 + theta2) + 10*L1*Math.cos(theta1) + 10*L2*Math.cos(theta1))",
+        "expr": "250*Math.cos(theta1)**2 + 250*Math.sin(theta1)**2 + (5*Math.cos(theta1 + theta2) + 10*Math.cos(theta1))*(50*Math.cos(theta1 + theta2) + 100*Math.cos(theta1)) + (5*Math.sin(theta1 + theta2) + 10*Math.sin(theta1))*(50*Math.sin(theta1 + theta2) + 100*Math.sin(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
       },
       {
-        "expr": "L2*Math.cos(theta1 + theta2)*(10*L2*Math.cos(theta1 + theta2) + 10*L1*Math.cos(theta1) + 10*L2*Math.cos(theta1)) + L2*Math.sin(theta1 + theta2)*(10*L2*Math.sin(theta1 + theta2) + 10*L1*Math.sin(theta1) + 10*L2*Math.sin(theta1))",
+        "expr": "5*Math.cos(theta1 + theta2)*(50*Math.cos(theta1 + theta2) + 100*Math.cos(theta1)) + 5*Math.sin(theta1 + theta2)*(50*Math.sin(theta1 + theta2) + 100*Math.sin(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -92,18 +88,15 @@
     ],
     [
       {
-        "expr": "10*L2*Math.cos(theta1 + theta2)*(L2*Math.cos(theta1 + theta2) + L1*Math.cos(theta1) + L2*Math.cos(theta1)) + 10*L2*Math.sin(theta1 + theta2)*(L2*Math.sin(theta1 + theta2) + L1*Math.sin(theta1) + L2*Math.sin(theta1))",
+        "expr": "50*Math.cos(theta1 + theta2)*(5*Math.cos(theta1 + theta2) + 10*Math.cos(theta1)) + 50*Math.sin(theta1 + theta2)*(5*Math.sin(theta1 + theta2) + 10*Math.sin(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
       },
       {
-        "expr": "10*L2**2*Math.cos(theta1 + theta2)**2 + 10*L2**2*Math.sin(theta1 + theta2)**2",
+        "expr": "250*Math.cos(theta1 + theta2)**2 + 250*Math.sin(theta1 + theta2)**2",
         "vars": [
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -113,10 +106,8 @@
   "Nstar": [
     [
       {
-        "expr": "(L2*Math.sin(theta1 + theta2) + L1*Math.sin(theta1) + L2*Math.sin(theta1))*(10*L2*Math.cos(theta1 + theta2)*(thetad1 + thetad2) + 10*L1*thetad1*Math.cos(theta1) + 10*L2*thetad1*Math.cos(theta1)) - (10*L1*thetad1*Math.sin(theta1) + 10*L2*thetad1*Math.sin(theta1) + 10*L2*Math.sin(theta1 + theta2)*(thetad1 + thetad2))*(L2*Math.cos(theta1 + theta2) + L1*Math.cos(theta1) + L2*Math.cos(theta1))",
+        "expr": "(50*Math.cos(theta1 + theta2)*(thetad1 + thetad2) + 100*thetad1*Math.cos(theta1))*(5*Math.sin(theta1 + theta2) + 10*Math.sin(theta1)) - (50*Math.sin(theta1 + theta2)*(thetad1 + thetad2) + 100*thetad1*Math.sin(theta1))*(5*Math.cos(theta1 + theta2) + 10*Math.cos(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -124,10 +115,8 @@
         ]
       },
       {
-        "expr": "10*L2*Math.cos(theta1 + theta2)*(thetad1 + thetad2)*(L2*Math.sin(theta1 + theta2) + L1*Math.sin(theta1) + L2*Math.sin(theta1)) - 10*L2*Math.sin(theta1 + theta2)*(thetad1 + thetad2)*(L2*Math.cos(theta1 + theta2) + L1*Math.cos(theta1) + L2*Math.cos(theta1))",
+        "expr": "50*Math.cos(theta1 + theta2)*(thetad1 + thetad2)*(5*Math.sin(theta1 + theta2) + 10*Math.sin(theta1)) - 50*Math.sin(theta1 + theta2)*(thetad1 + thetad2)*(5*Math.cos(theta1 + theta2) + 10*Math.cos(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -137,10 +126,8 @@
     ],
     [
       {
-        "expr": "L2*Math.sin(theta1 + theta2)*(10*L2*Math.cos(theta1 + theta2)*(thetad1 + thetad2) + 10*L1*thetad1*Math.cos(theta1) + 10*L2*thetad1*Math.cos(theta1)) - L2*Math.cos(theta1 + theta2)*(10*L1*thetad1*Math.sin(theta1) + 10*L2*thetad1*Math.sin(theta1) + 10*L2*Math.sin(theta1 + theta2)*(thetad1 + thetad2))",
+        "expr": "5*Math.sin(theta1 + theta2)*(50*Math.cos(theta1 + theta2)*(thetad1 + thetad2) + 100*thetad1*Math.cos(theta1)) - 5*Math.cos(theta1 + theta2)*(50*Math.sin(theta1 + theta2)*(thetad1 + thetad2) + 100*thetad1*Math.sin(theta1))",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -156,31 +143,22 @@
   "T": [
     [
       {
-        "expr": "L1 + L2*Math.cos(theta1)",
-        "vars": [
-          "L1",
-          "L2",
-          "theta1"
-        ]
+        "expr": "5*Math.cos(theta1)",
+        "vars": "theta1"
       },
       {
         "expr": "0",
         "vars": []
       },
       {
-        "expr": "-L2*Math.sin(theta1)",
-        "vars": [
-          "L2",
-          "theta1"
-        ]
+        "expr": "-5*Math.sin(theta1)",
+        "vars": "theta1"
       }
     ],
     [
       {
-        "expr": "L1 + L2*Math.cos(theta1 + theta2) + L1*Math.cos(theta1) + L2*Math.cos(theta1)",
+        "expr": "5*Math.cos(theta1 + theta2) + 10*Math.cos(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -190,10 +168,8 @@
         "vars": []
       },
       {
-        "expr": "- L2*Math.sin(theta1 + theta2) - L1*Math.sin(theta1) - L2*Math.sin(theta1)",
+        "expr": "- 5*Math.sin(theta1 + theta2) - 10*Math.sin(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -203,11 +179,8 @@
   "B": [
     [
       {
-        "expr": "-L2*Math.sin(theta1)",
-        "vars": [
-          "L2",
-          "theta1"
-        ]
+        "expr": "-5*Math.sin(theta1)",
+        "vars": "theta1"
       },
       {
         "expr": "0",
@@ -226,11 +199,8 @@
     ],
     [
       {
-        "expr": "-L2*Math.cos(theta1)",
-        "vars": [
-          "L2",
-          "theta1"
-        ]
+        "expr": "-5*Math.cos(theta1)",
+        "vars": "theta1"
       },
       {
         "expr": "0",
@@ -269,18 +239,15 @@
     ],
     [
       {
-        "expr": "- L2*Math.sin(theta1 + theta2) - L1*Math.sin(theta1) - L2*Math.sin(theta1)",
+        "expr": "- 5*Math.sin(theta1 + theta2) - 10*Math.sin(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
       },
       {
-        "expr": "-L2*Math.sin(theta1 + theta2)",
+        "expr": "-5*Math.sin(theta1 + theta2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -298,18 +265,15 @@
     ],
     [
       {
-        "expr": "- L2*Math.cos(theta1 + theta2) - L1*Math.cos(theta1) - L2*Math.cos(theta1)",
+        "expr": "- 5*Math.cos(theta1 + theta2) - 10*Math.cos(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
       },
       {
-        "expr": "-L2*Math.cos(theta1 + theta2)",
+        "expr": "-5*Math.cos(theta1 + theta2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -349,22 +313,16 @@
   "Bt": [
     [
       {
-        "expr": "-L2*Math.sin(theta1)",
-        "vars": [
-          "L2",
-          "theta1"
-        ]
+        "expr": "-5*Math.sin(theta1)",
+        "vars": "theta1"
       },
       {
         "expr": "0",
         "vars": []
       },
       {
-        "expr": "-L2*Math.cos(theta1)",
-        "vars": [
-          "L2",
-          "theta1"
-        ]
+        "expr": "-5*Math.cos(theta1)",
+        "vars": "theta1"
       },
       {
         "expr": "0",
@@ -379,10 +337,8 @@
         "vars": []
       },
       {
-        "expr": "- L2*Math.sin(theta1 + theta2) - L1*Math.sin(theta1) - L2*Math.sin(theta1)",
+        "expr": "- 5*Math.sin(theta1 + theta2) - 10*Math.sin(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -392,10 +348,8 @@
         "vars": []
       },
       {
-        "expr": "- L2*Math.cos(theta1 + theta2) - L1*Math.cos(theta1) - L2*Math.cos(theta1)",
+        "expr": "- 5*Math.cos(theta1 + theta2) - 10*Math.cos(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -439,9 +393,8 @@
         "vars": []
       },
       {
-        "expr": "-L2*Math.sin(theta1 + theta2)",
+        "expr": "-5*Math.sin(theta1 + theta2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -451,9 +404,8 @@
         "vars": []
       },
       {
-        "expr": "-L2*Math.cos(theta1 + theta2)",
+        "expr": "-5*Math.cos(theta1 + theta2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2"
         ]
@@ -475,9 +427,8 @@
   "Bdot": [
     [
       {
-        "expr": "-L2*thetad1*Math.cos(theta1)",
+        "expr": "-5*thetad1*Math.cos(theta1)",
         "vars": [
-          "L2",
           "theta1",
           "thetad1"
         ]
@@ -499,9 +450,8 @@
     ],
     [
       {
-        "expr": "L2*thetad1*Math.sin(theta1)",
+        "expr": "5*thetad1*Math.sin(theta1)",
         "vars": [
-          "L2",
           "theta1",
           "thetad1"
         ]
@@ -543,10 +493,8 @@
     ],
     [
       {
-        "expr": "- L2*Math.cos(theta1 + theta2)*(thetad1 + thetad2) - L1*thetad1*Math.cos(theta1) - L2*thetad1*Math.cos(theta1)",
+        "expr": "- 5*Math.cos(theta1 + theta2)*(thetad1 + thetad2) - 10*thetad1*Math.cos(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -554,9 +502,8 @@
         ]
       },
       {
-        "expr": "-L2*Math.cos(theta1 + theta2)*(thetad1 + thetad2)",
+        "expr": "-5*Math.cos(theta1 + theta2)*(thetad1 + thetad2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -576,10 +523,8 @@
     ],
     [
       {
-        "expr": "L1*thetad1*Math.sin(theta1) + L2*thetad1*Math.sin(theta1) + L2*Math.sin(theta1 + theta2)*(thetad1 + thetad2)",
+        "expr": "5*Math.sin(theta1 + theta2)*(thetad1 + thetad2) + 10*thetad1*Math.sin(theta1)",
         "vars": [
-          "L1",
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
@@ -587,9 +532,8 @@
         ]
       },
       {
-        "expr": "L2*Math.sin(theta1 + theta2)*(thetad1 + thetad2)",
+        "expr": "5*Math.sin(theta1 + theta2)*(thetad1 + thetad2)",
         "vars": [
-          "L2",
           "theta1",
           "theta2",
           "thetad1",
