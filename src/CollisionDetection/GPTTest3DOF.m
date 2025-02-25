@@ -15,10 +15,10 @@ I1 = m*L^2;     % Moment of inertia about axes perpendicular to rod (assumed)
 I3 = m*L^2;     % Moment of inertia about rod axis (assumed)
 
 % Time span & initial conditions
-dt = 0.1; T = 5;
+dt = 0.1; T = 25;
 tspan = 0:dt:T;
 % Initial state: [phi; theta; psi; phidot; thetadot; psidot]
-X0 = [0; 0; 0; 1; 0; 3.14*2;]
+X0 = [1; 1; 0; 0; 0; 0;]
 
 %% SYMBOLIC DERIVATION OF EQUATIONS OF MOTION
 syms phi(t) theta(t) psi(t)
@@ -32,7 +32,7 @@ T_sym = (psidot_t + thetadot_t*cos(phi))*((2500*psidot_t)/3 + (2500*thetadot_t*c
 ;
 
 % Potential Energy:
-U_sym = 58860 - 58860*cos(phi)
+U_sym = 58860 - 58860*cos(theta)
 
 
 % Lagrangian:
