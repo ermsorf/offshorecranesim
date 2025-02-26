@@ -1,78 +1,58 @@
 import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configImport.js';
-import { rk4Step, runRK4Step } from './RK4.js';
-import { initializeGraphics } from './testGL.js';
+import { runRK4Step } from './RK4.js';
 import { getNextPos, getRotationMatrices } from "./positionRotation.js";
+import { initThreeJS, updatePendulum } from './webGL_doublePendulum.js';
+
 
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
-const maxSteps = 10;
-const dt = 0.1; // Time step in seconds
+const maxSteps = 2000;
+const dt = 0.05; // Time step in seconds
 let lastTime = performance.now();
 
 async function initialize() {
     ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/doublePendulumConfig.json'));
-    console.log("System Config Loaded", system)
-
-    xState = evaluateMatrix(system.T, Q, variableMap);
+    console.log("System Config Loaded", system);
+    xState = await evaluateMatrix(system.T, Q, variableMap);
     console.log("Initial X state:", xState);
 }   
+initThreeJS();
 
-await initialize()
-await runRK4Step(system, Q, variableMap, dt)
-
-xState_new = await getNextPos(xState, system,Q,variableMap,dt)
-console.log("xState new", xState_new)
-
-rotations = await getRotationMatrices(system, Q, variableMap)
-console.log("Rotations", rotations)
-
-await runRK4Step(system, Q, variableMap, dt)
-
-xState_new = await getNextPos(xState, system,Q,variableMap,dt)
-console.log("xState new", xState_new)
-
-rotations = await getRotationMatrices(system, Q, variableMap)
-console.log("Rotations", rotations)
-
-
-
-
-
-
-    /*
-    qState = await systemConfig.Q;
-    xState = evaluateMatrix(systemConfig.system.T, qState)
-    console.log("X state:", xState)
-    console.log("System Configuration Loaded", systemConfig);
-    console.log(evaluateMatrix(systemConfig.system.Qcoordinates, qState))
-}
-
-
-
-function runNextStep() {
+async function runNextStep() {
     if (!running) return;
+
     let currentTime = performance.now();
     let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
-    
-    if (elapsed >= dt) {
+
+    while (elapsed >= dt) {  // Run multiple steps if needed
         console.time(`RK4 Step ${step + 1}`);
-        runRK4Step(systemConfig, qState, dt).then(() => {
-            console.timeEnd(`RK4 Step ${step + 1}`);
-        });
+
+        await runRK4Step(system, Q, variableMap, dt);
+        console.timeEnd(`RK4 Step ${step + 1}`);
+
+        const positions = await getNextPos(xState, system, Q, variableMap, dt);
+
+        const rotations = await getRotationMatrices(system, Q, variableMap);
+
+        updatePendulum(positions, rotations);
+
         step++;
-        lastTime = currentTime;
+        lastTime += dt * 1000; // Move forward in fixed steps
+
+        if (step >= maxSteps) {
+            running = false;
+            return;
+        }
+
+        elapsed = (currentTime - lastTime) / 1000; // Recalculate elapsed time
     }
-    
-    if (step < maxSteps) {
-        requestAnimationFrame(runNextStep);
-    } else {
-        console.timeEnd("Total RK4 Execution");
-        running = false;
-    }
+
+    requestAnimationFrame(runNextStep);
 }
 
-function startSimulation() {
+
+function startSimulation() {    
     if (!running) {
         running = true;
         step = 0;
@@ -85,10 +65,10 @@ function stopSimulation() {
     running = false;
 }
 
-function resetSimulation() {
+async function resetSimulation() {
     running = false;
     step = 0;
-    initialize();
+    await initialize();
 }
 
 // Create UI buttons
@@ -118,8 +98,7 @@ function createUI() {
 }
 
 initialize().then(() => {
-    runRK4Step(systemConfig, qState, dt);
+    runRK4Step(system, Q, variableMap, dt);
     createUI();
 });
 
-*/
