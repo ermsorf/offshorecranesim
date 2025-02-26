@@ -77,15 +77,32 @@ export function loadModel(name, objPath, mtlPath, position, scene, gui, parentNa
               translationFolder.add(object.position, 'z', posLimits.z[0], posLimits.z[1], 0.1).name('Z');
           }
 
-          // Add rotation controls if at least one axis is movable.
-          if (rotLimits.x[0] !== rotLimits.x[1] || rotLimits.y[0] !== rotLimits.y[1] || rotLimits.z[0] !== rotLimits.z[1]) {
+          // Add rotation controls.
+          if (rotLimits.x[0] === rotLimits.x[1] &&
+              rotLimits.y[0] === rotLimits.y[1] &&
+              rotLimits.z[0] === rotLimits.z[1]) {
+            // All axes are locked; set the rotation values directly.
+            object.rotation.set(rotLimits.x[0], rotLimits.y[0], rotLimits.z[0]);
+          } else {
             const rotationFolder = folder.addFolder('Rotation');
-            if (rotLimits.x[0] !== rotLimits.x[1])
+
+            if (rotLimits.x[0] === rotLimits.x[1]) {
+              object.rotation.x = rotLimits.x[0];
+            } else {
               rotationFolder.add(object.rotation, 'x', rotLimits.x[0], rotLimits.x[1], 0.01).name('Rotation X');
-            if (rotLimits.y[0] !== rotLimits.y[1])
+            }
+
+            if (rotLimits.y[0] === rotLimits.y[1]) {
+              object.rotation.y = rotLimits.y[0];
+            } else {
               rotationFolder.add(object.rotation, 'y', rotLimits.y[0], rotLimits.y[1], 0.01).name('Rotation Y');
-            if (rotLimits.z[0] !== rotLimits.z[1])
+            }
+
+            if (rotLimits.z[0] === rotLimits.z[1]) {
+              object.rotation.z = rotLimits.z[0];
+            } else {
               rotationFolder.add(object.rotation, 'z', rotLimits.z[0], rotLimits.z[1], 0.01).name('Rotation Z');
+            }
           }
 
           // Resolve the Promise with the loaded object.
