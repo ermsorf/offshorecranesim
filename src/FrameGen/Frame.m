@@ -78,7 +78,7 @@ classdef Frame < handle
             V = [matrix(3,2); matrix(1,3); matrix(2,1)];
         end
         % Make E's
-        function Ertemp = makeEr(obj)
+        function Er = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;

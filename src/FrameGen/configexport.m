@@ -43,7 +43,14 @@ end
 
 function formattedExpr = formatExpression(expr)
     expr = strrep(expr, '^', '**');
-    expr = strrep(expr, 'sin', 'Math.sin');
-    expr = strrep(expr, 'cos', 'Math.cos');
+    
+    % Use regex to replace whole function names only
+    expr = regexprep(expr, '\<asin\>', 'Math.asin');
+    expr = regexprep(expr, '\<acos\>', 'Math.acos');
+    expr = regexprep(expr, '\<atan\>', 'Math.atan');
+    expr = regexprep(expr, '\<sin\>', 'Math.sin');
+    expr = regexprep(expr, '\<cos\>', 'Math.cos');
+    expr = regexprep(expr, '\<tan\>', 'Math.tan');
+
     formattedExpr = expr;
 end
