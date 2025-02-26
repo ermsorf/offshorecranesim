@@ -50,7 +50,7 @@ R32 = R32(1:3,1:3);
 %%  COMPONENTS FROM B MATRIX
 %   Need to express Xddot in terms of the generalized coordinates. 
 %   accessing B-matrix and extracting terms. 
-Bdot = frames(2).makeBdot(frames)
+Bdot = frames(2).makeBdot(frames);
 %B = B(2,[1 2])
 
 %%  GENERALIZED COORDINATES
