@@ -17,8 +17,11 @@ newmtl MTL4
 Kd 1.000 0.941 0.000
 
 newmtl MTL5 
-Kd 0.867 0.867 0.051
+Kd 0.000 0.000 0.000
 
 newmtl MTL6 
+Kd 0.867 0.867 0.051
+
+newmtl MTL7 
 Kd 0.004 0.243 0.945
 
