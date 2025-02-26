@@ -41,6 +41,14 @@ export function loadModel(name, objPath, mtlPath, position, scene, gui, parentNa
           // Set the initial position of the object.
           object.position.set(position.x, position.y, position.z);
 
+          // Traverse the object and enable flat shading for a more faceted look.
+          object.traverse((child) => {
+            if (child.isMesh) {
+              child.material.flatShading = true;
+              child.material.needsUpdate = true;
+            }
+          });
+
           // If a parent is specified, wait for its Promise to resolve and attach the object.
           if (parentName) {
             if (sceneObjectPromises[parentName]) {
