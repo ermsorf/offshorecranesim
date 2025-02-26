@@ -2,7 +2,6 @@ export async function loadSystemConfig(filePath) {
     const response = await fetch(filePath);
     const system = await response.json();
 
-    // Create variableMap to track indices of variables in Q. Like a lookup map. theta1 value stored in Q[0][0]
     let variableMap = {};
     system.Qcoordinates.forEach((row, i) => {
         row.forEach((entry, j) => {
@@ -12,19 +11,20 @@ export async function loadSystemConfig(filePath) {
         });
     });
 
-    // Initialize empty Q matrix
+    // Step 1: Initialize empty Q matrix
     let Q = system.Qcoordinates.map(row => row.map(() => 0));
 
-    // Now populate Q with evaluated values
+    // Step 2: Populate Q using already initialized variableMap
     for (let i = 0; i < system.Qcoordinates.length; i++) {
         for (let j = 0; j < system.Qcoordinates[i].length; j++) {
-            Q[i][j] = evaluateExpression(system.initconditions[i][j], Q, variableMap);
+            Q[i][j] = await evaluateExpression(system.initconditions[i][j], Q, variableMap);
         }
     }
 
     console.log("Initial Q:", Q);
     return { system, Q, variableMap };
 }
+
 export function evaluateExpression(entry, Q, variableMap) {
     if (!entry || typeof entry.expr !== "string") {
         console.warn("Invalid entry:", entry);
@@ -50,7 +50,6 @@ export function evaluateExpression(entry, Q, variableMap) {
     }
 
     try {
-        // Retrieve values from Q using the variable map
         const values = variables.map(v => {
             let { i, j } = variableMap[v];
             return Q[i][j];
@@ -63,9 +62,9 @@ export function evaluateExpression(entry, Q, variableMap) {
     }
 }
 
-export function evaluateMatrix(matrix, Q, variableMap) {
+export async function evaluateMatrix(matrix, Q, variableMap) {
     if (!Array.isArray(matrix)) return evaluateExpression(matrix, Q, variableMap);
-    return matrix.map(row =>
-        Array.isArray(row) ? row.map(entry => evaluateExpression(entry, Q, variableMap)) : evaluateExpression(row, Q, variableMap)
-    );
+    return Promise.all(matrix.map(row =>
+        Array.isArray(row) ? Promise.all(row.map(entry => evaluateExpression(entry, Q, variableMap))) : evaluateExpression(row, Q, variableMap)
+    ));
 }

@@ -1,4 +1,4 @@
-import { evaluateMatrix, evaluateExpression } from "./configImport.js";
+import { evaluateMatrix } from "./configImport.js";
 
 export function rk4Step(Q, M, N, F, dt) {
   const n = Q.length;
@@ -36,38 +36,37 @@ export function rk4Step(Q, M, N, F, dt) {
   };
 }
 
-export function runRK4Step(system, Q, variableMap, dt) {
+export async function runRK4Step(system, Q, variableMap, dt) {
   if (!system) {
       console.error("System configuration not loaded.");
       return;
   }
 
-  // Evaluate matrices using Q and variableMap
-  const Mstar = evaluateMatrix(system.Mstar, Q, variableMap);
-  const Nstar = evaluateMatrix(system.Nstar, Q, variableMap);
-  const Bt = evaluateMatrix(system.Bt, Q, variableMap);
-  const F = evaluateMatrix(system.F, Q, variableMap);
-  const Fstar = math.multiply(Bt, F);
+  try {
+      const [Mstar, Nstar, Bt, F] = await Promise.all([
+          evaluateMatrix(system.Mstar, Q, variableMap),
+          evaluateMatrix(system.Nstar, Q, variableMap),
+          evaluateMatrix(system.Bt, Q, variableMap),
+          evaluateMatrix(system.F, Q, variableMap)
+      ]);
 
-  // RK4 step
-  const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
-
-  // Update Q using variableMap
-  Object.entries(variableMap).forEach(([key, { i, j }]) => {
-      if (j === 0) {
-          Q[i][0] = newState.q[i];     // Position update
-          Q[i][1] = newState.qdot[i];  // Velocity update
-          Q[i][2] = newState.qddot[i]; // Acceleration update
+      if (!Mstar || !Nstar || !Bt || !F) {
+          console.error("Matrix evaluation failed. Aborting RK4 step.");
+          return;
       }
-  });
 
-  // Update other system matrices
-  const updatedMatrices = Object.fromEntries(
-      Object.entries(system)
-          .filter(([key]) => key !== "Qcoordinates" && key !== "initconditions")
-          .map(([key, value]) => [key, evaluateMatrix(value, Q, variableMap)])
-  );
+      const Fstar = math.multiply(Bt, F);
+      const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
+      console.log("newState:", newState)
 
-  console.log("Updated Matrices:", updatedMatrices);
-  console.log("Updated Q:", Q);
+      // Atomic Q update
+      const newQ = Q.map((row, i) => [
+          newState.q[i], 
+          newState.qdot[i], 
+          newState.qddot[i]
+      ]);
+      Q.splice(0, Q.length, ...newQ);
+  } catch (error) {
+      console.error("Error in runRK4Step:", error);
+  }
 }

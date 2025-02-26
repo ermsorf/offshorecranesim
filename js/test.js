@@ -1,9 +1,10 @@
 import { loadSystemConfig, evaluateMatrix } from './configImport.js';
 import { runRK4Step } from './RK4.js';
+import { getNextPos, getRotationMatrices } from './positionRotation.js';
 
 // Simulation parameters
-const dt = 0.01; // Match MATLAB dt
-const steps = 500;
+const dt = 0.02; // Match MATLAB dt
+const steps = 1000;
 let system, Q, variableMap;
 let results = [];
 

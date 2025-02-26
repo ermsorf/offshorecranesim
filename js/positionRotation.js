@@ -11,7 +11,7 @@ export async function getNextPos(xState, system, Q, variableMap, dt) {
     let Xddot = math.multiply(Bdot, qdd).toArray();
 
     //console.log("Xdot full (6N×1)", Xdot);
-    //console.log("Xddot full (6N×1)", Xddot);
+    //console.log("Xddot full (6N×1)", Xddot); 
 
     // Extract only the x1, x2, x3 components from every 6 rows (skip rotations)
     let Xdot_filtered = [];
@@ -25,13 +25,14 @@ export async function getNextPos(xState, system, Q, variableMap, dt) {
     //console.log("Xddot filtered (only x values)", Xddot_filtered);
 
     function updatePosition(xState, Xdot, Xddot, dt) {
+        if (isNaN(dt)) throw new Error("dt is NaN!");       
         return xState.map((row, i) => 
             row.map((x, j) => x + Xdot[i][j] * dt + 0.5 * Xddot[i][j] * dt * dt)
         );
     }
 
     let xState_new = updatePosition(xState, Xdot_filtered, Xddot_filtered, dt);
-    //console.log("Updated xState", xState_new);
+    // console.log("Updated xState", xState_new);
 
     return xState_new;
 }
@@ -55,21 +56,22 @@ export async function getRotationMatrices(system, Q, variableMap) {
         }
         rotationMatrices.push(cumulativeMatrix); // Store result
     });
-
+    console.log("Rotation Matrices", rotationMatrices)
     return rotationMatrices;
 }
 
-function getRotationMatrix(axis, theta) {
+function getRotationMatrix(axis, theta) { //Column major order for THREEJS
     const c = math.cos(theta);
     const s = math.sin(theta);
     switch (axis) {
-        case 1:
-            return [[1,0,0],[0,c,-s],[0,s,c]]
-        case 2:
-            return [[c,0,s],[0,1,0],[-s,0,c]]
-        case 3:
-            return [[c,-s,0],[s,c,0],[0,0,1]]
+        case 1: // Rotation around X-axis
+            return [[1, 0, 0], [0, c, s], [0, -s, c]]; 
+        case 2: // Rotation around Y-axis
+            return [[c, 0, -s], [0, 1, 0], [s, 0, c]]; 
+        case 3: // Rotation around Z-axis
+            return [[c, s, 0], [-s, c, 0], [0, 0, 1]]; 
     }
 }
+
     
 

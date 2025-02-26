@@ -1,8 +1,7 @@
 import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configImport.js';
 import { runRK4Step } from './RK4.js';
 import { getNextPos, getRotationMatrices } from "./positionRotation.js";
-import { initThreeJS, updatePendulum } from './webGL_doublePendulum.js';
-
+import { initgraphics } from './webGL_Crane.js';
 
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
@@ -12,12 +11,11 @@ const dt = 0.05; // Time step in seconds
 let lastTime = performance.now();
 
 async function initialize() {
-    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/doublePendulumConfig.json'));
+    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneConfig.json'));
     console.log("System Config Loaded", system);
     xState = await evaluateMatrix(system.T, Q, variableMap);
     console.log("Initial X state:", xState);
 }   
-initThreeJS();
 
 async function runNextStep() {
     if (!running) return;
@@ -34,8 +32,6 @@ async function runNextStep() {
         const positions = await getNextPos(xState, system, Q, variableMap, dt);
 
         const rotations = await getRotationMatrices(system, Q, variableMap);
-
-        updatePendulum(positions, rotations);
 
         step++;
         lastTime += dt * 1000; // Move forward in fixed steps

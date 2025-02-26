@@ -1,7 +1,7 @@
 function rk4_pendulum()
     % Time step and number of steps
-    dt = 0.01; % Ensure it matches JS
-    steps = 500;
+    dt = 0.02; % Ensure it matches JS
+    steps = 1000;
     
     % Initial conditions [theta1, theta2, thetad1, thetad2]
     state = [0; 0; 0; 0];
