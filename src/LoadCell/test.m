@@ -22,7 +22,7 @@ frames(10) = Frame('framenumber',10, 'rotationaxis', 3, 'rotationvar',theta10, '
 
 
 
-ReactionForces(frames)
+%ReactionForces(frames)
 %DoublePendulum(frames)
 
  

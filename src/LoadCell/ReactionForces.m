@@ -66,13 +66,33 @@ g = 9.81;
 % THE ROTATION MATRICES
 R1 = frames(1).makeEr();
 R1 = R1(1:3,1:3)
+
 R21 = frames(2).makeEr();
 R21 = R21(1:3,1:3)
+
 R32 = frames(3).makeEr();
 R32 = R32(1:3,1:3)
+
 R43 = frames(4).makeEr();
 R43 = R43(1:3,1:3)
 
+R54 = frames(5).makeEr();
+R54 = R54(1:3,1:3)
+
+R65 = frames(6).makeEr();
+R65 = R65(1:3,1:3)
+
+R76 = frames(7).makeEr();
+R76 = R76(1:3,1:3)
+
+R87 = frames(8).makeEr();
+R87 = R87(1:3,1:3)
+
+R98 = frames(9).makeEr();
+R98 = R98(1:3,1:3)
+
+R109 = frames(10).makeEr();
+R109 = R109(1:3,1:3)
 
 %%  COMPONENTS FROM B MATRIX
 %   Need to express Xddot in terms of the generalized coordinates. 
@@ -124,6 +144,8 @@ eq2 = Equation(2);
 eq3 = Equation(3);
 
 [Reaction1,Reaction2, Reaction3] = solve([eq1,eq2,eq3],[Re11,Re21,Re31]);
+
+
 
 
 %%  Plot

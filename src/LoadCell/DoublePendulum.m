@@ -31,11 +31,11 @@ m2 = frames(2).mass;
 g = 9.81;
 
 % THE ROTATION MATRICES
-R1 = frames(1).makeEr();
+R1 = frames(1).makeE();
 R1 = R1(1:3,1:3);
-R21 = frames(2).makeEr();
+R21 = frames(2).makeE();
 R21 = R21(1:3,1:3);
-R32 = frames(3).makeEr();
+R32 = frames(3).makeE();
 R32 = R32(1:3,1:3);
 
 %%  COMPONENTS FROM B MATRIX
