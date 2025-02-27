@@ -27,11 +27,11 @@ const camera = new THREE.PerspectiveCamera(
 
 camera.position.set(0, 50, 50);
 // Set the camera's up vector to Z-up
-camera.up.set(0, 1,0);
+camera.up.set(0, 1, 0);
 camera.lookAt(0, 0, 0);
 
-// Set up the renderer
-const renderer = new THREE.WebGLRenderer();
+// Set up the renderer with anti aliasing enabled
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
 graphicsDiv.appendChild(renderer.domElement);
 
@@ -46,7 +46,6 @@ scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
 directionalLight.position.set(50, 50, 50).normalize();
 scene.add(directionalLight);
-
 
 // -------------------------------
 // Load Models
@@ -64,10 +63,10 @@ loadModel(
       position: { },
       rotation: { x: [-Math.PI/2, -Math.PI/2]}
     }
-  );
+);
   
-  // Load Part 2 (Child of Tower) - Boom
-  loadModel(
+// Load Part 2 (Child of Tower) - Boom
+loadModel(
     'Boom',
     '../assets/models/boom.obj',
     '../assets/materials/boom.mtl',
@@ -78,10 +77,10 @@ loadModel(
       position: {  },
       rotation: { z: [-Math.PI/2, Math.PI/2] }
     }
-  );
+);
   
-  // Load Part3 (Child of Boom) - Trolley
-  loadModel(
+// Load Part3 (Child of Boom) - Trolley
+loadModel(
     'Trolley',
     '../assets/models/trolley.obj',
     '../assets/materials/trolley.mtl',
@@ -89,25 +88,14 @@ loadModel(
     scene,
     'Boom', // Parent is Boom
     {
-      position: { x: [0, 20] },
+      position: { x: [0, 30] },
       rotation: {  }
     }
-  );
-  
+);
 
-  
-
-
-/**
- * updateTransformsWithTrig - Updates each active transform (from sceneTransformList)
- * using a trigonometric function based on time.
- *
- * For translations, it uses Math.sin(time) * amplitude.
- * For rotations, it uses Math.cos(time) * amplitude (in radians).
- *
- * @param {number} time - The current time (for example, from performance.now()).
- */
-
+// -------------------------------
+// Transform and Update Functions
+// -------------------------------
 function updateTransformsWithTrig(time) {
     const newValues = {};
     sceneTransformList.forEach(key => {
@@ -117,34 +105,24 @@ function updateTransformsWithTrig(time) {
         const transformType = match[2];
         let newVal = 0;
         if (transformType === 'Translation') {
-          // For translation, use sine (amplitude = 10 units, adjust as needed)
-          newVal = Math.sin(time * 0.001) * 10;
+          newVal = Math.sin(time * 0.0001) * 10 + 10;
         } else if (transformType === 'Rotation') {
-          // For rotation, use cosine (amplitude = PI/4 radians, i.e., 45°)
-          newVal = Math.cos(time * 0.001) * (Math.PI / 4);
+          newVal = Math.cos(time * 0.0001) * (Math.PI / 4);
         }
         newValues[key] = newVal;
       }
     });
     updateTransformListValues(newValues);
-  }
-  
+}
 
-/**
- * updateTransformListValues - Updates the scene objects based on a mapping of transform keys to new values.
- * Expected key format: "<ModelName><Translation|Rotation><Axis>", e.g. "TrolleyTranslationX" or "BoomRotationZ".
- * This function parses the key and updates the corresponding property on the model.
- */
 function updateTransformListValues(newValues) {
     for (const key in newValues) {
       const newVal = newValues[key];
-      // Match keys like "TrolleyTranslationX" or "BoomRotationZ"
       const match = key.match(/^([A-Za-z0-9]+)(Translation|Rotation)([XYZ])$/);
       if (match) {
         const objectName = match[1];
         const transformType = match[2];
         const axis = match[3].toLowerCase();
-        // Ensure that sceneObjects is available; import it if needed
         const obj = sceneObjects[objectName];
         if (!obj) {
           console.warn(`Object "${objectName}" not found in sceneObjects.`);
@@ -159,10 +137,7 @@ function updateTransformListValues(newValues) {
         console.warn(`Key "${key}" does not match the expected format.`);
       }
     }
-  }
-  
-
-
+}
 
 // -------------------------------
 // Sort GUI Folders by Name
@@ -194,7 +169,7 @@ const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
 // Load the water normals texture (adjust path as needed)
 const waterNormals = new THREE.TextureLoader().load('../libs/three/WaterTexture.jpg', function (texture) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-    texture.flipY = false; // keep the normals in the expected orientation
+    texture.flipY = false;
     console.log('Water normals loaded:', texture);
 });
 
@@ -204,22 +179,16 @@ const water = new Water(waterGeometry, {
     textureHeight: 512,
     waterNormals: waterNormals,
     alpha: 1.0,
-    // Keep the sun direction as if Y were up for the shader calculations
-    sunDirection: new THREE.Vector3(0, 1, 0),
+    sunDirection: new THREE.Vector3(1, 0, 0),
     sunColor: 0xffffff,
     waterColor: 0x00B4D8,
     distortionScale: 3.7,
     fog: scene.fog !== undefined
 });
 
-// The shader expects the water to lie in the XZ plane,
-// so rotate it by -90° around X:
 water.rotation.x = -Math.PI / 2;
 
-// Create a container for the water mesh that will rotate it into the Z‑up system.
-// Since our scene uses Z‑up (horizontal = XY plane), we need to rotate the water back.
 const waterContainer = new THREE.Object3D();
-// Rotate the container by +90° around X so that the water surface lies in the XY plane.
 waterContainer.rotation.x = 0;
 waterContainer.add(water);
 scene.add(waterContainer);
@@ -232,16 +201,12 @@ function animate() {
     const time = performance.now();
     updateTransformsWithTrig(time);
     controls.update();
-    // Update water's time uniform to animate the water surface
     water.material.uniforms['time'].value += 1.0 / 60.0;
-
     renderer.render(scene, camera);
 }
 
-
 animate();
 
-// Adjust canvas size on window resize
 window.addEventListener("resize", () => {
     renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
     camera.aspect = graphicsDiv.clientWidth / graphicsDiv.clientHeight;
@@ -250,4 +215,4 @@ window.addEventListener("resize", () => {
 
 setTimeout(() => {
     console.log("Scene Transform List:", sceneTransformList);
-  }, 3000);
+}, 3000);

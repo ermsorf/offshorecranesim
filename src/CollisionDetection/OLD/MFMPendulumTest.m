@@ -32,5 +32,5 @@ Jl = [ (1/2) * ml * (2*sll^2), 0, 0;
 
 % Time step
 
-function 
+ 
 
