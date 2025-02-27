@@ -1,12 +1,15 @@
 import * as THREE from '../libs/three/three.module.js';
 import { OrbitControls } from '../libs/three/controls/OrbitControls.js';
 import { loadModel, sceneObjects } from '../libs/three/loaders/modelLoader.js';
+import { sceneTransformList } from '../libs/three/loaders/modelLoader.js';
 import GUI from '../libs/js/lil-gui.module.min.js'; 
-
+import { Water } from '../libs/three/Water.js';
 
 // Setting up the scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('white');
+// Set the scene's up vector to Z-up
+scene.up.set(0, 1, 0);
 
 // GUI
 const gui = new GUI();
@@ -16,17 +19,19 @@ const graphicsDiv = document.getElementById("graphics");
 
 // Set up the camera
 const camera = new THREE.PerspectiveCamera(
-    75, 
+    90, 
     graphicsDiv.clientWidth / graphicsDiv.clientHeight, 
     0.1, 
     1000000
 );
-camera.up.set(0,1,0);
-camera.position.set(0, 20, 20);
-camera.lookAt(0, 0, 30);
 
-// Set up the renderer
-const renderer = new THREE.WebGLRenderer();
+camera.position.set(0, 50, 50);
+// Set the camera's up vector to Z-up
+camera.up.set(0, 1, 0);
+camera.lookAt(0, 0, 0);
+
+// Set up the renderer with anti aliasing enabled
+const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
 graphicsDiv.appendChild(renderer.domElement);
 
@@ -43,104 +48,109 @@ directionalLight.position.set(50, 50, 50).normalize();
 scene.add(directionalLight);
 
 // -------------------------------
-// Global variable for dynamic line connection
-// This array will hold the names of the bodies we want to connect.
-let dynamicLineBodyNames = [];
-
-// -------------------------------
-// Function to draw (and update) the line between bodies
-// This function creates the line and sets the global dynamicLineBodyNames.
-function drawLineBetweenBodies(bodyNames, lineColor = 0xff0000) {
-    dynamicLineBodyNames = bodyNames; // Save for dynamic updates
-    const points = bodyNames.map(name => {
-        const obj = sceneObjects[name];
-        if (!obj) {
-            console.warn(`Object "${name}" not found.`);
-            return new THREE.Vector3();
-        }
-        return obj.position.clone();
-    });
-    const geometry = new THREE.BufferGeometry().setFromPoints(points);
-    const material = new THREE.LineBasicMaterial({ color: lineColor });
-    
-    // Remove previous line if it exists
-    if (window.myLine) {
-        scene.remove(window.myLine);
-    }
-    
-    window.myLine = new THREE.Line(geometry, material);
-    scene.add(window.myLine);
-}
-
-// Function to update the line geometry in real time
-function updateLinePositions() {
-    if (window.myLine && dynamicLineBodyNames.length > 0) {
-        const newPoints = dynamicLineBodyNames.map(name => {
-            const obj = sceneObjects[name];
-            return obj ? obj.position.clone() : new THREE.Vector3();
-        });
-        window.myLine.geometry.setFromPoints(newPoints);
-    }
-}
-
-// -------------------------------
 // Load Models
 // -------------------------------
-/*
-// Load Base Object (Part1) - No Parent
-loadModel('Part1', '../assets/models/crane_assembly.obj', '../assets/materials/crane_assembly.mtl', { x: 0, y: 0, z: 0 }, scene, gui, null, {
-    position: { x: [0, 0], y: [0, 0], z: [0, 0] },
-    rotation: { x: [0, 0], y: [-Math.PI / 2, Math.PI / 2], z: [0, 0] }
-});
 
-// Load Part 1 (Child of Part1)
-loadModel('Part2', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 1, y: 0, z: 0 }, scene, gui, 'Part1', {
-    position: { x: [-2, 2], y: [-1, 1], z: [-2, 2] },
-    rotation: { x: [0, 0], y: [0, 0], z: [0, 0] }
-});
+// Load Base Object (Tower) - No Parent
+loadModel(
+    'Tower',
+    '../assets/models/tower.obj',
+    '../assets/materials/tower.mtl',
+    { x: 0, y: 15, z: 0 },
+    scene,
+    null, // No parent
+    {
+      position: { },
+      rotation: { x: [-Math.PI/2, -Math.PI/2]}
+    }
+);
+  
+// Load Part 2 (Child of Tower) - Boom
+loadModel(
+    'Boom',
+    '../assets/models/boom.obj',
+    '../assets/materials/boom.mtl',
+    { x: 0, y: 0, z: 0 },
+    scene,
+    'Tower', // Parent is Tower
+    {
+      position: {  },
+      rotation: { z: [-Math.PI/2, Math.PI/2] }
+    }
+);
+  
+// Load Part3 (Child of Boom) - Trolley
+loadModel(
+    'Trolley',
+    '../assets/models/trolley.obj',
+    '../assets/materials/trolley.mtl',
+    { x: 0, y: 0, z: 0 },
+    scene,
+    'Boom', // Parent is Boom
+    {
+      position: { x: [0, 30] },
+      rotation: {  }
+    }
+);
 
-// Load Part3 (Child of Part2)
-loadModel('Part3', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: 0, z: 10 }, scene, gui, 'Part2', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
-
-// Load Part4 (Child of Part3)
-loadModel('Part4', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part3', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
-
-// Load Part5 (Child of Part4)
-loadModel('Part5', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part4', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
-
-// Load Part6 (Child of Part5)
-loadModel('Part6', '../assets/models/frame.obj', '../assets/materials/frame.mtl', { x: 0, y: -5, z: 0 }, scene, gui, 'Part5', {
-    position: { x: [-20, -10], y: [-10, 10], z: [-20, 20] },
-    rotation: { x: [-Math.PI / 2, Math.PI / 2], y: [-Math.PI / 2, Math.PI / 2], z: [-Math.PI / 2, Math.PI / 2] }
-});
-*/
 // -------------------------------
+// Transform and Update Functions
+// -------------------------------
+function updateTransformsWithTrig(time) {
+    const newValues = {};
+    sceneTransformList.forEach(key => {
+      // Expected key format: <ObjectName><Translation|Rotation><Axis>
+      const match = key.match(/^([A-Za-z0-9]+)(Translation|Rotation)([XYZ])$/);
+      if (match) {
+        const transformType = match[2];
+        let newVal = 0;
+        if (transformType === 'Translation') {
+          newVal = Math.sin(time * 0.0001) * 10 + 10;
+        } else if (transformType === 'Rotation') {
+          newVal = Math.cos(time * 0.0001) * (Math.PI / 4);
+        }
+        newValues[key] = newVal;
+      }
+    });
+    updateTransformListValues(newValues);
+}
+
+function updateTransformListValues(newValues) {
+    for (const key in newValues) {
+      const newVal = newValues[key];
+      const match = key.match(/^([A-Za-z0-9]+)(Translation|Rotation)([XYZ])$/);
+      if (match) {
+        const objectName = match[1];
+        const transformType = match[2];
+        const axis = match[3].toLowerCase();
+        const obj = sceneObjects[objectName];
+        if (!obj) {
+          console.warn(`Object "${objectName}" not found in sceneObjects.`);
+          continue;
+        }
+        if (transformType === "Translation") {
+          obj.position[axis] = newVal;
+        } else if (transformType === "Rotation") {
+          obj.rotation[axis] = newVal;
+        }
+      } else {
+        console.warn(`Key "${key}" does not match the expected format.`);
+      }
+    }
+}
+
+
 // Sort GUI Folders by Name
 // -------------------------------
 function sortGuiFoldersByName(gui) {
-    // Get the GUI's DOM element (this is where lil-gui places its folders)
     const guiContainer = gui.domElement;
-    
-    // Query all folder elements;
+
     const folders = Array.from(guiContainer.querySelectorAll('.lil-gui-folder'));
-    
-    // Sort the folders by the folder title text.
     folders.sort((a, b) => {
         const titleA = a.querySelector('.title')?.textContent.trim() || '';
         const titleB = b.querySelector('.title')?.textContent.trim() || '';
         return titleA.localeCompare(titleB, undefined, { numeric: true });
     });
-    
-    // Remove the folders from the container and re-append them in sorted order.
     folders.forEach(folder => {
         guiContainer.appendChild(folder);
     });
@@ -152,36 +162,58 @@ setTimeout(() => {
 
 setTimeout(() => {
     sortGuiFoldersByName(gui);
-}, 2000); // adjust delay as needed to ensure all folders are added
+}, 2000);
 
-// -------------------------------
-// Draw the dynamic line
-// -------------------------------
-// Draw a red line connecting Part3 -> Part4 -> Part5.
-// We call it once after a delay to ensure the models are loaded.
-setTimeout(() => {
-    drawLineBetweenBodies(['Part3', 'Part4', 'Part5']);
-}, 3000);
+// Create the water geometry (which by default is in the XY plane)
+const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+
+// Load the water normals texture (adjust path as needed)
+const waterNormals = new THREE.TextureLoader().load('../libs/three/WaterTexture.jpg', function (texture) {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    texture.flipY = false;
+    console.log('Water normals loaded:', texture);
+});
+
+// Create the Water object as usual
+const water = new Water(waterGeometry, {
+    textureWidth: 512,
+    textureHeight: 512,
+    waterNormals: waterNormals,
+    alpha: 1.0,
+    sunDirection: new THREE.Vector3(1, 0, 0),
+    sunColor: 0xffffff,
+    waterColor: 0x00B4D8,
+    distortionScale: 3.7,
+    fog: scene.fog !== undefined
+});
+
+water.rotation.x = -Math.PI / 2;
+
+const waterContainer = new THREE.Object3D();
+waterContainer.rotation.x = 0;
+waterContainer.add(water);
+scene.add(waterContainer);
 
 // -------------------------------
 // Animation Loop
 // -------------------------------
 function animate() {
     requestAnimationFrame(animate);
-    
+    const time = performance.now();
+    updateTransformsWithTrig(time);
     controls.update();
-
-    // Update dynamic line positions in real time
-    updateLinePositions();
-    
+    water.material.uniforms['time'].value += 1.0 / 60.0;
     renderer.render(scene, camera);
 }
 
 animate();
 
-// Adjust canvas size on window resize
 window.addEventListener("resize", () => {
     renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
     camera.aspect = graphicsDiv.clientWidth / graphicsDiv.clientHeight;
     camera.updateProjectionMatrix();
 });
+
+setTimeout(() => {
+    console.log("Scene Transform List:", sceneTransformList);
+}, 3000);
