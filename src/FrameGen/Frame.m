@@ -10,8 +10,6 @@ classdef Frame < handle
 
         Qcoordinates % Format: [theta, thetadot, thetaddot;...] for each coordinate
         
-        initconditions
-
         Ematrix
         Edotmatrix
         Omatrix
@@ -23,8 +21,6 @@ classdef Frame < handle
         Mmatrix
 
         Dmatrix
-        Fvec
-        Tvec
 
     end
 
@@ -78,7 +74,7 @@ classdef Frame < handle
             V = [matrix(3,2); matrix(1,3); matrix(2,1)];
         end
         % Make E's
-        function Er = makeEr(obj)
+        function Ertemp = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;
@@ -86,8 +82,8 @@ classdef Frame < handle
 
             for i = 1:length(axis)
                 % Validate input
-                if ~ismember(axis(i), [0, 1, 2, 3])
-                    error('Axis must be 0 (No rotation), 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
+                if ~ismember(axis(i), [1, 2, 3])
+                    error('Axis must be 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
                 end
                 % Initialize identity SE3 matrix
                 Ertemp = sym(eye(4));
@@ -96,8 +92,6 @@ classdef Frame < handle
                 s = sin(theta(i));
 
                 switch axis(i) % Rotation matrix depending on the chosen axis
-                    case 0
-
                     case 1 
                         Ertemp(2,2) = c;  Ertemp(2,3) = -s;
                         Ertemp(3,2) = s;  Ertemp(3,3) = c;
@@ -113,11 +107,11 @@ classdef Frame < handle
 
         end
 
-        function Ev = makeEv(obj, dispv)
+        function Ev = makeEv(obj)
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
-            Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
+            Ev(1:3, 4) = obj.joint2cm(:); % Ensure column vector format
         end
         
         function E = makeE(obj, framelist)
@@ -125,7 +119,7 @@ classdef Frame < handle
             E = eye(4);  % Initialize as identity matrix
             for i = 1:obj.framenumber
                 frame = framelist(i);
-                E = E * frame.makeEv(framelist(i).cm2joint) * frame.makeEr() * frame.makeEv(framelist(i).joint2cm);
+                E = E * frame.makeEv() * frame.makeEr() * frame.makeEv();
                 frame.Ematrix = E;
             end
             obj.Ematrix = simplify(E);  % Simplify the resulting matrix
@@ -163,14 +157,6 @@ classdef Frame < handle
                 Q_combined = [Q_combined; framelist(i).Qcoordinates];
             end
         end
-        function initCond = getInitCond(obj, framelist)
-            % Combines time-dependent Q coordinates from multiple frames
-            initCond = sym([]);
-            for i = 1:(obj.framenumber)
-                initCond = [initCond; framelist(i).initconditions];
-            end
-        end
-
 
         function O = makeO(obj, framelist)
             %UNTITLED2 Summary of this function goes here
@@ -291,36 +277,6 @@ classdef Frame < handle
                 Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(i).Jmatrix;
             end
         end % function makeM
-
-        function F = makeF(obj, framelist)
-            F = sym(zeros(obj.framenumber*6,1));
-            for i = 1:obj.framenumber
-                F(6*i-5:6*i-3,1) = framelist(i).Fvec';
-                F(6*i-2:6*i,1) = framelist(i).Tvec';
-            end
-            
-        end
-
-        function T = getTransformMat(obj, framelist)
-            % Constructs T matrix 
-            T = sym(zeros(obj.framenumber, 3));
-            for i = 1:obj.framenumber
-                if ~isempty(framelist(i).Ematrix)
-                    Ematrix = framelist(i).Ematrix;
-                else
-                    Ematrix = framelist(i).makeE(framelist);
-                    framelist(i).Ematrix = Ematrix;
-                end % if Ematrix
-                posvec = Ematrix(1:3,4);
-                T(i,1:3) = posvec;
-            end % for i
-        end %function posExpr
-
-        function rotations = exportRotations(obj, framelist)
-            rotations = sym(zeros(obj.framenumber,2));
-            for i = 1:obj.framenumber
-                rotations(i,:) = [framelist(i).rotationaxis, framelist(i).rotationvar];
-            end
-        end
+        
     end % methods
 end % classdef

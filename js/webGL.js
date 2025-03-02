@@ -139,12 +139,11 @@ function updateTransformListValues(newValues) {
     }
 }
 
-
+// -------------------------------
 // Sort GUI Folders by Name
 // -------------------------------
 function sortGuiFoldersByName(gui) {
     const guiContainer = gui.domElement;
-
     const folders = Array.from(guiContainer.querySelectorAll('.lil-gui-folder'));
     folders.sort((a, b) => {
         const titleA = a.querySelector('.title')?.textContent.trim() || '';
