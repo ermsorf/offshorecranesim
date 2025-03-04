@@ -1,6 +1,6 @@
 import { evaluateMatrix } from "./configImport.js";
 
-export function rk4Step(Q, M, N, F, dt) {
+export function rk4Step(Q, M, N, F, dt, damping = 0.996) {
   const n = Q.length;
   const M_inv = math.inv(M); // M⁻¹
 
@@ -31,7 +31,7 @@ export function rk4Step(Q, M, N, F, dt) {
   // Return q, qdot, and qddot
   return {
     q: q_new,
-    qdot: qdot_new,
+    qdot: qdot_new.map(val => val * damping),
     qddot: qddot_new.map(v => v[0])
   };
 }
@@ -42,13 +42,18 @@ export async function runRK4Step(system, Q, variableMap, dt) {
       return;
   }
 
+  const startTotal = performance.now();
+
   try {
+      const startEval = performance.now();
       const [Mstar, Nstar, Bt, F] = await Promise.all([
           evaluateMatrix(system.Mstar, Q, variableMap),
           evaluateMatrix(system.Nstar, Q, variableMap),
           evaluateMatrix(system.Bt, Q, variableMap),
           evaluateMatrix(system.F, Q, variableMap)
       ]);
+      const endEval = performance.now();
+      console.log(`Matrix evaluation: ${(endEval - startEval).toFixed(3)} ms`);
 
       if (!Mstar || !Nstar || !Bt || !F) {
           console.error("Matrix evaluation failed. Aborting RK4 step.");
@@ -56,9 +61,14 @@ export async function runRK4Step(system, Q, variableMap, dt) {
       }
 
       const Fstar = math.multiply(Bt, F);
-      const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
-      console.log("newState:", newState)
 
+      const startRK4 = performance.now();
+      const newState = rk4Step(Q, Mstar, Nstar, Fstar, dt);
+      const endRK4 = performance.now();
+      console.log(`RK4 Step: ${(endRK4 - startRK4).toFixed(3)} ms`);
+
+      console.log("newState:", newState);
+      
       // Atomic Q update
       const newQ = Q.map((row, i) => [
           newState.q[i], 
@@ -66,7 +76,12 @@ export async function runRK4Step(system, Q, variableMap, dt) {
           newState.qddot[i]
       ]);
       Q.splice(0, Q.length, ...newQ);
+
   } catch (error) {
       console.error("Error in runRK4Step:", error);
   }
+
+  const endTotal = performance.now();
+  console.log(`Simulation Step: ${(endTotal - startTotal).toFixed(3)} ms`);
 }
+

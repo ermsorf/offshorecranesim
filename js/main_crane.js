@@ -24,10 +24,10 @@ async function runNextStep() {
     let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
 
     while (elapsed >= dt) {  // Run multiple steps if needed
-        console.time(`RK4 Step ${step + 1}`);
+        console.time(`Step ${step + 1}`);
 
         await runRK4Step(system, Q, variableMap, dt);
-        console.timeEnd(`RK4 Step ${step + 1}`);
+        console.timeEnd(`Step ${step + 1}`);
 
         const positions = await getNextPos(xState, system, Q, variableMap, dt);
 

@@ -42,7 +42,7 @@ export async function getNextPos(xState, system, Q, variableMap, dt) {
 
 export async function getRotationMatrices(system, Q, variableMap) {
     let rotations = system.rotations
-    let cumulativeMatrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]; // Identity matrix
+    let cumulativeMatrix = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]; // Identity matrix
     const rotationMatrices = []; // Stores cumulative rotations
 
     rotations.forEach(({ axis, vars }) => {
@@ -56,21 +56,39 @@ export async function getRotationMatrices(system, Q, variableMap) {
         }
         rotationMatrices.push(cumulativeMatrix); // Store result
     });
-    console.log("Rotation Matrices", rotationMatrices)
+    // console.log("Rotation Matrices", rotationMatrices)
     return rotationMatrices;
 }
 
-function getRotationMatrix(axis, theta) { //Column major order for THREEJS
-    const c = math.cos(theta);
-    const s = math.sin(theta);
+function getRotationMatrix(axis, theta) { // Column-major order for THREEJS
+    const c = Math.cos(theta);
+    const s = Math.sin(theta);
+    let R;
+
     switch (axis) {
         case 1: // Rotation around X-axis
-            return [[1, 0, 0], [0, c, s], [0, -s, c]]; 
+            R = [[1, 0, 0, 0],
+                 [0, c, s, 0],
+                 [0, -s, c, 0],
+                 [0, 0, 0, 1]];
+            break;
         case 2: // Rotation around Y-axis
-            return [[c, 0, -s], [0, 1, 0], [s, 0, c]]; 
+            R = [[c, 0, -s, 0],
+                 [0, 1, 0, 0],
+                 [s, 0, c, 0],
+                 [0, 0, 0, 1]];
+            break;
         case 3: // Rotation around Z-axis
-            return [[c, s, 0], [-s, c, 0], [0, 0, 1]]; 
+            R = [[c, s, 0, 0],
+                 [-s, c, 0, 0],
+                 [0, 0, 1, 0],
+                 [0, 0, 0, 1]];
+            break;
+        default:
+            throw new Error("Invalid axis. Use 1 (X), 2 (Y), or 3 (Z).");
     }
+
+    return R;
 }
 
     

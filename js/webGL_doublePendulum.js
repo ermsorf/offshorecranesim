@@ -25,29 +25,51 @@ export function initThreeJS() {
     const light = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(light);
 
-    // Create pendulum rods and masses
+    // Create pendulum rods
     createPendulum();
 
     window.addEventListener('resize', onWindowResize, false);
     animate();
 }
 
-function createPendulum() {
+function createPendulum(count = 1) {
     const rodMaterial = new THREE.MeshBasicMaterial({ color: 0x0077ff });
-    const massMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-
-    for (let i = 0; i < 2; i++) {
-        let rod = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 2), rodMaterial);
-        rod.position.y = -1;
-        scene.add(rod);
-
-        let mass = new THREE.Mesh(new THREE.SphereGeometry(0.2), massMaterial);
-        mass.position.y = -2;
-        scene.add(mass);
-
-        pendulumObjects.push({ rod, mass });
+    // Create the cylinder geometry, then shift it so its top is at y = 0.
+    const rodGeometry = new THREE.CylinderGeometry(0.05, 0.05, 2);
+    rodGeometry.translate(0, -1, 0);
+  
+    // First pendulum
+    const pivot1 = new THREE.Group();
+    pivot1.position.set(0, 0, 0);
+    scene.add(pivot1);
+  
+    const rod1 = new THREE.Mesh(rodGeometry, rodMaterial);
+    rod1.rotation.z = Math.PI / 2;
+    pivot1.add(rod1);
+  
+    pivot1.userData.initialRotation = new THREE.Matrix4().copy(pivot1.matrixWorld);
+    pendulumObjects.push(pivot1);
+  
+    if (count === 2) {
+      // Second pendulum: attach its pivot at the end of rod1.
+      const pivot2 = new THREE.Group();
+      // Since rod1 extends 2 units from the pivot (after rotation), position pivot2 at (2, 0, 0).
+      pivot2.position.set(2, 0, 0);
+      pivot1.add(pivot2);
+  
+      // Use a clone of the original geometry for the second rod.
+      const rod2 = new THREE.Mesh(rodGeometry.clone(), rodMaterial);
+      rod2.rotation.z = Math.PI / 2;
+      pivot2.add(rod2);
+  
+      pivot2.userData.initialRotation = new THREE.Matrix4().copy(pivot2.matrixWorld);
+      pendulumObjects.push(pivot2);
     }
-}
+  }
+  
+
+
+
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -59,15 +81,18 @@ function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 }
+
+
 export function updatePendulum(positions, rotations) {
     for (let i = 0; i < pendulumObjects.length; i++) {
         if (positions[i]) {
-            let [px, py, pz] = positions[i]; // Extract x, y, z values
-            objects[i].position.set(px, py, pz);
+            let [px, py, pz] = positions[i];
+            pendulumObjects[i].position.set(px, py, pz);
         }
+
         if (rotations[i]) {
-            let matrix = new THREE.Matrix4().fromArray(rotations[i]);
-            objects[i].setRotationFromMatrix(matrix);
+            let rotationMatrix = new THREE.Matrix4().fromArray(rotations[i].flat());
+            pendulumObjects[i].setRotationFromMatrix(rotationMatrix);
         }
     }
-}   
+}

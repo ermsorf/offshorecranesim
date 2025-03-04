@@ -12,8 +12,11 @@ classdef Frame < handle
         
         initconditions
 
+        relativeEmatrix
         Ematrix
+        relativeEdotmatrix
         Edotmatrix
+        relativeOmatrix
         Omatrix
         Bmatrix
         Bdotmatrix
@@ -78,7 +81,7 @@ classdef Frame < handle
             V = [matrix(3,2); matrix(1,3); matrix(2,1)];
         end
         % Make E's
-        function Er = makeEr(obj)
+        function Ertemp = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;
@@ -119,16 +122,43 @@ classdef Frame < handle
             Ev = sym(eye(4));
             Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
         end
-        
+
+        function relativeE = makeRelativeE(obj)
+            relativeE = obj.makeEv(obj.cm2joint) * obj.makeEr() * obj.makeEv(obj.joint2cm);
+            obj.relativeEmatrix = relativeE;
+        end
+
         function E = makeE(obj, framelist)
             % Creates absolute transformation matrix E
             E = eye(4);  % Initialize as identity matrix
             for i = 1:obj.framenumber
                 frame = framelist(i);
-                E = E * frame.makeEv(framelist(i).cm2joint) * frame.makeEr() * frame.makeEv(framelist(i).joint2cm);
+                E = E * frame.makeRelativeE();
                 frame.Ematrix = E;
             end
-            obj.Ematrix = simplify(E);  % Simplify the resulting matrix
+            obj.Ematrix = E; 
+        end
+
+        function relativeEdot = makeRelativeEdot(obj)
+            % Computes the time derivative of the transformation matrix E
+            if ~isempty(obj.relativeEmatrix)
+                E = obj.relativeEmatrix;
+            else
+                E = makeRelativeE(obj);
+            end
+            Q = obj.Qcoordinates;  % Get Q values
+            Qsize = size(Q);
+            syms t real
+            % Vectorized substitution: replace each theta with t*thetadot
+            prediff = subs(E, Q(:,1), t * Q(:,2));
+            
+            % Differentiate with respect to t
+            postdiff = diff(prediff, t);
+            
+            % Reverse substitution: replace t*thetadot back with theta
+            relativeEdot = subs(postdiff, t * Q(:,2), Q(:,1));
+            
+            obj.relativeEdotmatrix = relativeEdot;
         end
 
 
@@ -139,21 +169,24 @@ classdef Frame < handle
             else
                 E = makeE(obj, framelist);
             end
+            if ~isempty(obj.Omatrix)
+                O = obj.Omatrix;
+            else
+                O = obj.makeO(framelist);
+            end
             Q = getQs(obj, framelist);  % Get Q values
             Qsize = size(Q);
             syms t real
-            prediff = E;
-            for i = 1:Qsize(1)  % Replace Q with differentiable variables
-                prediff = subs(prediff, Q(i,1), t * Q(i,2));
-            end
-        
-            postdiff = diff(prediff, t);  % Differentiate with respect to t
-            Edot = postdiff;
+            % Vectorized substitution: replace each theta with t*thetadot
+            prediff = subs(E, Q(:,1), t * Q(:,2));
             
-            for i = 1:Qsize(1)  % Replace t*Q(2,i) with Q(1,i)
-                Edot = subs(Edot, t*Q(i,2), Q(i,1));
-            end
-            obj.Edotmatrix = simplify(Edot);  % Simplify result
+            % Differentiate with respect to t
+            postdiff = diff(prediff, t);
+            
+            % Reverse substitution: replace t*thetadot back with theta
+            Edot = subs(postdiff, t * Q(:,2), Q(:,1));
+            
+            obj.Edotmatrix = Edot;
         end
 
         function Q_combined = getQs(obj, framelist)
@@ -170,95 +203,107 @@ classdef Frame < handle
                 initCond = [initCond; framelist(i).initconditions];
             end
         end
+        
 
-
-        function O = makeO(obj, framelist)
+        function relativeO = makeRelativeO(obj)
             %UNTITLED2 Summary of this function goes here
-            if ~isempty(obj.Ematrix)
-                E = obj.Ematrix;
+            if ~isempty(obj.relativeEmatrix)
+                E = obj.relativeEmatrix;
             else
-                E = makeE(obj, framelist);
+                E = makeRelativeE(obj);
             end
-            if ~isempty(obj.Edotmatrix)
+            if ~isempty(obj.relativeEdotmatrix)
                 Edot = obj.Edotmatrix;
             else
-                Edot = makeEdot(obj, framelist);
+                Edot = makeRelativeEdot(obj);
             end
-            O = inv(E) * Edot;
-            obj.Omatrix = simplify(O);
+            relativeO = inv(E) * Edot;
+            obj.relativeOmatrix = relativeO;
         end % function makeO
 
-        function B = makeB(obj, framelist)
-            % Constructs B matrix 
-            Q = getQs(obj, framelist);    % Initialize B matrix
-            B = sym(zeros(obj.framenumber*6, height(Q)));
-            for i = 1:obj.framenumber
-                if ~isempty(framelist(i).Edotmatrix)
-                    Edot = framelist(i).Edotmatrix;
-                else
-                    Edot = framelist(i).makeEdot(framelist);
-                    framelist(i).Edotmatrix = Edot;
-                end % if Edot
-                if ~isempty(framelist(i).Omatrix)
-                    O = obj.Omatrix;
-                else
-                    O = framelist(i).makeO(framelist);
-                    framelist(i).Omatrix = O;
-                end % if O
-                posvec = Edot(1:3,4);
-                Ovec = obj.unskew(O(1:3,1:3)); 
-                for q = 1:height(Q) %% For every q in q list
-                    for direction = 1:3 %% For every direction
-                        %% Positions
-                        [cp, tp] = coeffs(posvec(direction), Q(q,2)); % Get coefficients and terms
-                        if isempty(cp) || isempty(tp) % Handle empty symbolic vectors
-                            B((6*i-6+direction), q) = sym(0);
-                        else
-                            idx = find(tp == Q(q,2), 1); % Find the coefficient of Q(q)^1
-                            if ~isempty(idx)
-                                B((6*i-6+direction), q) = cp(idx);
-                            else
-                                B((6*i-6+direction), q) = sym(0); % Store 0 if Q(q) is absent
-                            end
-                        end % if coeffs
-                        %% Omegas
-                        [cr, tr] = coeffs(Ovec(direction), Q(q,2)); % Get coefficients and terms
-                        if isempty(cr) || isempty(tr) % Handle empty symbolic vectors
-                            B((6*i-3+direction), q) = sym(0);
-                        else
-                            idx = find(tr == Q(q,2), 1); % Find the coefficient of Q(q)^1
-                            if ~isempty(idx)
-                                B((6*i-3+direction), q) = cr(idx);
-                            else
-                                B((6*i-3+direction), q) = sym(0); % Store 0 if Q(q) is absent
-                            end
-                        end % if coeffs
-                    end % for direction
-                end % for q         
-            end % for i
-            B = simplify(B);
-            obj.Bmatrix = B;
-        end %function B
+        function O = makeO(obj, framelist)
+            O = makeRelativeO(framelist(1));
+            framelist(1).Omatrix = O;
+            for i = 2:obj.framenumber
+                frame = framelist(i);
+                relE = makeRelativeE(frame);
+                O = inv(relE) * O * relE * makeRelativeO(frame);
+                frame.Omatrix = O;
+            end
 
-        function Bdot = makeBdot(obj,framelist)
-            % Get Bdot
-                B = makeB(obj,framelist);
-            Q = getQs(obj, framelist);  % Get Q values
-            syms t real
-            prediff = B;
-            for i = 1:height(Q)  % Replace Q with differentiable variables
-                prediff = subs(prediff, Q(i,2), t*Q(i,3));
-                prediff = subs(prediff, Q(i,1), t*Q(i,2));
+        end
+
+        function B = makeB(obj, framelist)
+            Q = getQs(obj, framelist);
+            numQs = height(Q);
+            Qvars = Q(:,2); % Extract Q variable symbols for faster indexing
+            B = sym(zeros(obj.framenumber * 6, numQs));
+        
+            for i = 1:obj.framenumber
+                % Retrieve or compute Edot
+                if isempty(framelist(i).Edotmatrix)
+                    framelist(i).Edotmatrix = framelist(i).makeEdot(framelist);
+                end
+                Edot = framelist(i).Edotmatrix;
+        
+                % Retrieve or compute O matrix
+                if isempty(framelist(i).Omatrix)
+                    framelist(i).Omatrix = framelist(i).makeO(framelist);
+                end
+                O = framelist(i).Omatrix;
+        
+                posvec = collect(Edot(1:3, 4), Qvars); % Collect terms
+                Ovec   = collect(obj.unskew(O(1:3,1:3)), Qvars);
+        
+                % Extract coefficients for all directions at once
+                [cp_pos, tp_pos] = arrayfun(@(dir) coeffs(posvec(dir), Qvars), 1:3, 'UniformOutput', false);
+                [cp_omega, tp_omega] = arrayfun(@(dir) coeffs(Ovec(dir), Qvars), 1:3, 'UniformOutput', false);
+        
+                % Calculate row indices for this frame
+                rowPos = 6*(i-1) + (1:3);
+                rowOmega = rowPos + 3;
+        
+                % Populate B matrix efficiently
+                for q = 1:numQs
+                    qvar = Qvars(q);
+                    for direction = 1:3
+                        % For positions
+                        idx = find(tp_pos{direction} == qvar, 1);
+                        B(rowPos(direction), q) = ifelse(~isempty(idx), cp_pos{direction}(idx), sym(0));
+                        
+                        % For omegas
+                        idx = find(tp_omega{direction} == qvar, 1);
+                        B(rowOmega(direction), q) = ifelse(~isempty(idx), cp_omega{direction}(idx), sym(0));
+                    end
+                end
             end
-            postdiff = diff(prediff, t);  % Differentiate with respect to t
-            Bdot = postdiff;
-            for i = 1:height(Q)  % Replace t*Q(2,i) with Q(1,i)
-                Bdot = subs(Bdot, t*Q(i,3), Q(i,2));
-                Bdot = subs(Bdot, t*Q(i,2), Q(i,1));
-            end
-            Bdot = simplify(Bdot);  % Simplify result
-            obj.Bdotmatrix
-        end % function makeBdot
+        
+            obj.Bmatrix = B;
+        end
+
+
+        function Bdot = makeBdot(obj, framelist)
+        % Compute B and retrieve Q values
+        B = obj.makeB(framelist);
+        Q = obj.getQs(framelist);  % Assumes Q(:,1)=theta, Q(:,2)=thetadot, Q(:,3)=thetaddot
+        syms t real
+    
+        % Vectorized substitution: replace Q(:,2) -> t*Q(:,3) and Q(:,1) -> t*Q(:,2)
+        oldVars = [Q(:,2); Q(:,1)];
+        newVals = [t * Q(:,3); t * Q(:,2)];
+        prediff = subs(B, oldVars, newVals);
+    
+        % Differentiate with respect to t
+        postdiff = diff(prediff, t);
+    
+        % Reverse substitution: replace t*Q(:,3) -> Q(:,2) and t*Q(:,2) -> Q(:,1)
+        revOld = [t * Q(:,3); t * Q(:,2)];
+        revNew = [Q(:,2); Q(:,1)];
+        Bdot = subs(postdiff, revOld, revNew);
+
+        % Optionally, assign to the object's property if desired:
+        % obj.Bdotmatrix = Bdot;
+    end
         
         function D = makeD(obj, framelist)
             % Construct D matrix
@@ -322,5 +367,17 @@ classdef Frame < handle
                 rotations(i,:) = [framelist(i).rotationaxis, framelist(i).rotationvar];
             end
         end
+
+        function simplifiedMat = simplifyWithSymPy(obj, symMat)
+            % Convert MATLAB symbolic matrix to a Python sympy matrix
+            pyMat = py.sympy.Matrix(symMat(:).'); % Flatten, convert, then reshape later
+        
+            % Apply SymPy simplify function element-wise
+            simplifiedPyMat = pyMat.applyfunc(py.sympy.simplify);
+        
+            % Convert back to MATLAB symbolic matrix
+            simplifiedMat = reshape(sym(simplifiedPyMat), size(symMat));
+        end
+
     end % methods
 end % classdef
