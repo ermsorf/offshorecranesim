@@ -10,7 +10,7 @@ psidd = sym('psidd',[1, 2],'real');
 % Crane Vars
 syms cr crd crdd trolley trolleyd trolleydd real
 
-wiresegments = 5;
+wiresegments = 2;
 
 % Wire rotation - 3
 theta = sym('theta',[1, wiresegments],'real');
@@ -48,7 +48,7 @@ for i = 1:wiresegments
     frames(2 + 3*i-1).setProperties('rotationaxis', 1, 'rotationvar', phi(i), 'Qcoordinates', [phi(i),phid(i),phidd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
     frames(2 + 3*i-1).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
     frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
-    frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [lambda(i),lambdad(i),lambdadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,-lambda(i)])
+    frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [], 'cm2joint', [0,0,0], 'joint2cm',[0,0,-10])
     frames(2 + 3*i).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
     frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
 end
@@ -57,7 +57,7 @@ frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Q
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
-
+%{
 
 
 noofframes = 2 + wiresegments*3
@@ -80,7 +80,7 @@ T = frames(noofframes).getTransformMat(frames)
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
 % simplify(eqs_of_motion)
 
-%}
+
 %%
 system = struct( ...
     'Qcoordinates', Q,...
@@ -94,10 +94,10 @@ system = struct( ...
     'Bdot', Bdot,...
     'F', F); 
 
-overwriteconfig = input('Overwrite Config? y/n: ', 's');
+overwriteconfig = input('Overwrite Config? y/n', 's');
 
 if overwriteconfig == 'y'
-    configexport(system, 'Crane5link.json')
+    configexport(system, 'CraneDemo.json')
 end
 
-
+%}
