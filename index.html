@@ -12,7 +12,8 @@
         }
 
         #graphics {
-            width: 100%;
+
+            width: 0%;
             height: 100%;
         }
 
@@ -40,8 +41,8 @@
             border-radius: 5px;
             z-index: 20;
         }
-
-        #content {
+        <!--
+            #content {
             width: 0%;
             height: 100%;
             background: #f0f0f0;
@@ -49,6 +50,9 @@
             align-items: center;
             justify-content: center;
         }
+            -->
+
+        
     </style>
 </head>
 <body>
@@ -76,7 +80,7 @@
 
     <div id="content"></div> 
 
-    <script type="module" src="js/webGL.js"></script> 
-    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.0.1/math.min.js"></script>
+    <script type="module" src="/js/main_crane.js"></script>
 </body>
 </html>

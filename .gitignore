@@ -645,3 +645,9 @@ FodyWeavers.xsd
 .vs/offshorecranesim/v17/DocumentLayout.json
 .vs/offshorecranesim/v17/DocumentLayout.backup.json
 .vs/offshorecranesim/v17/.wsuo
+
+
+
+# Creo
+*.asm.*
+*.prt.*

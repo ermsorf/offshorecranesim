@@ -90,6 +90,7 @@ export function loadModel(name, objPath, mtlPath, position, scene, parentName = 
             object.rotation.z = rotLimits.z[0];
           }
 
+
           // Build the transform list entry for this model.
           // For translation, check each axis if a valid array is provided and if the limits differ.
           if (posLimits.x && Array.isArray(posLimits.x) && posLimits.x.length === 2 && posLimits.x[0] !== posLimits.x[1]) {

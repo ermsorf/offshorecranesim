@@ -9,12 +9,13 @@
 %   such that we get the equations for the reaction forces. 
 %   We are interested in the reaction force on the cart that moves along
 %   the boom, therefore we only solve the equations for Body 2. 
- 
-function ReactionForces(framelist) 
+
+
+function ReactionForces(frames) 
 
 syms t thetad phid Re11 Re21 Re31 Xddot12 Xddot22 Xddot32 m2 m3 g real
 
-%%  The variables:
+%%  THE VARIABLES:
 %   t         - time
 %   thetad    - theta dot
 %   phid      - phi dot 
@@ -27,47 +28,91 @@ syms t thetad phid Re11 Re21 Re31 Xddot12 Xddot22 Xddot32 m2 m3 g real
 %   m2        - mass of the cart
 %   m3        - mass of cargo
 
-%   masses in [kg]: Remember to update when more frames are added to
-%   Frame.m
+%   MASSES IN [kg]:
+m2 = frames(1).mass;
+m3 = frames(2).mass;
 
-%m2 = framelist(1).mass;
-%m3 = framelist(2).mass;
-
-m2=10;
-m3=20;
-
-%   Gravity [m/s^2]
+%   GRAVITY [m/s^2]
 g = 9.81;
 
-%   applied load:
-%F = -m3*g
+%   APPLIED LOAD:
+%   F = -m3*g
 
-% The Rotation matrices 
-R1 = framelist(1).makeEr();
+% THE ROTATION MATRICES
+R1 = frames(1).makeEr();
 R1 = R1(1:3,1:3);
-R21 = framelist(2).makeEr();
+R21 = frames(2).makeEr();
 R21 = R21(1:3,1:3);
-R32 = framelist(3).makeEr();
+R32 = frames(3).makeEr();
 R32 = R32(1:3,1:3);
 
 
-%   Body 2
-%   Equation from FBD (Free Body Diagram)
-Equation = [0  ;   0;  -m2*g]  +   R1*R21*[Re11  ;  Re21;  Re31 - m3*g]  == R1*R21*m2  *  [Xddot12;    Xddot22;    Xddot32];
+%%  COMPONENTS FROM B MATRIX
+%   Need to express Xddot in terms of the generalized coordinates. 
+%   accessing B-matrix and extracting terms. 
+Bdot = frames(2).makeBdot(frames)
+%B = B(2,[1 2])
 
-% simplifies equation
+%%  GENERALIZED COORDINATES
+%   The generalized coordinates from 1 and 2 frame
+%   Thetaddot: 
+    Qdd1 = frames(1).Qcoordinates(3);
+    Qdd2 = frames(2).Qcoordinates(3);
+    
+%   Column for the generalized coordinates:
+    QddMatrix = [Qdd1 ; Qdd2];
+
+%%  DEFINING Xddots
+%   Extracting the x dots from array.
+
+Xddots2 = Bdot*QddMatrix;
+
+Xddot12 =   Xddots2(1);
+Xddot22 =   Xddots2(2);
+Xddot32 =   Xddots2(3);
+
+
+%%  BODY 2
+%   Equation from FBD (Free Body Diagram) for the crane
+    Equation = [0  ;   0;  -m2*g]  +   R1*R21*[Re11  ;  Re21;  Re31 - m3*g]  == R1*R21*m2  *  [Xddot12;    Xddot22;    Xddot32];
+
+
+
+%   simplifies equation
 simplify(Equation);
 
-%extracting the equations by index from "Equations"
+%%  SYSTEM OF EQUATIONS
+%   extracting the equations by index from "Equations"
 eq1 = Equation(1);
 eq2 = Equation(2);
 eq3 = Equation(3);
 
-[Reaction1,Reaction2, Reaction3] = solve([eq1,eq2,eq3],[Re11,Re21,Re31])
+[Reaction1,Reaction2, Reaction3] = solve([eq1,eq2,eq3],[Re11,Re21,Re31]);
 
 
-%% To do 
-%   Use masses from framelist
-%
-%  Extract q doubel dots into the equation.
+%%  Plot
+% % Convert symbolic solutions to functions for numerical evaluation
+% Reaction1_fun = matlabFunction(Reaction1, 'Vars', {t, thetad, phid});
+% Reaction2_fun = matlabFunction(Reaction2, 'Vars', {t, thetad, phid});
+% Reaction3_fun = matlabFunction(Reaction3, 'Vars', {t, thetad, phid});
+% 
+% % Define time range and parameter values for plotting
+% time = linspace(0, 10, 100); % Time range [0, 10] with 100 points
+% thetad_val = 1; % Example theta dot value
+% phid_val = 2; % Example phi dot value
+% 
+% Reaction1_vals = Reaction1_fun(time, thetad_val, phid_val);
+% Reaction2_vals = Reaction2_fun(time, thetad_val, phid_val);
+% Reaction3_vals = Reaction3_fun(time, thetad_val, phid_val);
+% 
+% % Plot the reaction force vector components
+% figure;
+% plot3(Reaction1_vals, Reaction2_vals, Reaction3_vals, 'b', 'LineWidth', 1.5);
+% grid on;
+% xlabel('Re1');
+% ylabel('Re2');
+% zlabel('Re3');
+% title('Reaction Force Vector');
+% legend('Reaction Forces');
+% end
 

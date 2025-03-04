@@ -66,7 +66,7 @@ loadModel(
       rotation: { x: [-Math.PI/2, -Math.PI/2]}
     }
 );
-  
+
 // Load Base Object (Platform) - No Parent
 loadModel(
   'Tower',
@@ -80,6 +80,7 @@ loadModel(
     rotation: { x: [-Math.PI/2, -Math.PI/2]}
   }
 );
+
 
 
 // Load Part 2 (Child of Tower) - Boom
