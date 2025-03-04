@@ -26,8 +26,6 @@ classdef Frame < handle
         Mmatrix
 
         Dmatrix
-        Fvec
-        Tvec
 
     end
 
@@ -82,6 +80,7 @@ classdef Frame < handle
         end
         % Make E's
         function Ertemp = makeEr(obj)
+        function Ertemp = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
             axis = obj.rotationaxis;
             theta = obj.rotationvar;
@@ -89,8 +88,8 @@ classdef Frame < handle
 
             for i = 1:length(axis)
                 % Validate input
-                if ~ismember(axis(i), [0, 1, 2, 3])
-                    error('Axis must be 0 (No rotation), 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
+                if ~ismember(axis(i), [1, 2, 3])
+                    error('Axis must be 1 (x-axis), 2 (y-axis), or 3 (z-axis).');
                 end
                 % Initialize identity SE3 matrix
                 Ertemp = sym(eye(4));
@@ -99,8 +98,6 @@ classdef Frame < handle
                 s = sin(theta(i));
 
                 switch axis(i) % Rotation matrix depending on the chosen axis
-                    case 0
-
                     case 1 
                         Ertemp(2,2) = c;  Ertemp(2,3) = -s;
                         Ertemp(3,2) = s;  Ertemp(3,3) = c;
@@ -116,18 +113,18 @@ classdef Frame < handle
 
         end
 
-        function Ev = makeEv(obj, dispv)
+        function Ev = makeEv(obj,disp)
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
-            Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
+            Ev(1:3, 4) = dispv(:); % Ensure column vector format
         end
 
         function relativeE = makeRelativeE(obj)
             relativeE = obj.makeEv(obj.cm2joint) * obj.makeEr() * obj.makeEv(obj.joint2cm);
             obj.relativeEmatrix = relativeE;
         end
-
+        
         function E = makeE(obj, framelist)
             % Creates absolute transformation matrix E
             E = eye(4);  % Initialize as identity matrix

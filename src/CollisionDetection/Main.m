@@ -1,0 +1,1 @@
+result = GJKAlgorithm(3, 4);

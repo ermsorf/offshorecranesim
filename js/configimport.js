@@ -1,25 +1,31 @@
-export async function loadSystemConfig(filePath) {
-    const response = await fetch(filePath);
-    const system = await response.json();
+// Load the system config JSON file
+fetch('../src/FrameGen/systemconfig.json')
+  .then(response => response.json())
+  .then(system => {
+      const h = 0.01; // Time step
+      let state = { x: 1.5, y: 2.0, z: Math.PI / 4 }; // Initial conditions
 
-    let variableMap = {};
-    system.Qcoordinates.forEach((row, i) => {
-        row.forEach((entry, j) => {
-            if (entry.vars) {
-                variableMap[entry.vars] = { i, j };
-            }
-        });
-    });
+      function evaluateExpression(expr, vars) {
+          let result = expr;
+          vars.forEach(varName => {
+              result = result.replace(new RegExp(`\\b${varName}\\b`, 'g'), state[varName]);
+          });
+          return eval(result);
+      }
 
-    // Step 1: Initialize empty Q matrix
-    let Q = system.Qcoordinates.map(row => row.map(() => 0));
+      function evaluateMatrix(matrix) {
+          return matrix.map(row =>
+              row.map(entry => evaluateExpression(entry.expr, entry.vars))
+          );
+      }
 
-    // Step 2: Populate Q using already initialized variableMap
-    for (let i = 0; i < system.Qcoordinates.length; i++) {
-        for (let j = 0; j < system.Qcoordinates[i].length; j++) {
-            Q[i][j] = await evaluateExpression(system.initconditions[i][j], Q, variableMap);
-        }
-    }
+      // Process all matrices dynamically
+      let evaluatedMatrices = {};
+      Object.keys(system).forEach(key => {
+          if (key !== "variables") {
+              evaluatedMatrices[key] = evaluateMatrix(system[key]);
+          }
+      });
 
     console.log("Initial Q:", Q);
     return { system, Q, variableMap };
@@ -81,4 +87,5 @@ export async function evaluateMatrix(matrix, Q, variableMap) {
         Array.isArray(row) ? Promise.all(row.map(entry => evaluateExpression(entry, Q, variableMap))) : evaluateExpression(row, Q, variableMap)
     ));
 }
+
 
