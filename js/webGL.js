@@ -51,12 +51,14 @@ scene.add(directionalLight);
 // Load Models
 // -------------------------------
 
+
+
 // Load Base Object (Tower) - No Parent
 loadModel(
     'Tower',
     '../assets/models/tower.obj',
     '../assets/materials/tower.mtl',
-    { x: 0, y: 15, z: 0 },
+    { x: 0, y: 40, z: 0 },
     scene,
     null, // No parent
     {
@@ -64,7 +66,23 @@ loadModel(
       rotation: { x: [-Math.PI/2, -Math.PI/2]}
     }
 );
-  
+
+// Load Base Object (Platform) - No Parent
+loadModel(
+  'Tower',
+  '../assets/models/Platform.obj',
+  '../assets/materials/Platform.mtl',
+  { x: 0, y: 40, z: 0 },
+  scene,
+  null, // No parent
+  {
+    position: { },
+    rotation: { x: [-Math.PI/2, -Math.PI/2]}
+  }
+);
+
+
+
 // Load Part 2 (Child of Tower) - Boom
 loadModel(
     'Boom',
