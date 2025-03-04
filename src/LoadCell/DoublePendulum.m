@@ -77,9 +77,9 @@ Xddot32 =   Xddots(9);
 Equation1 = [ReI1;  ReI2;   ReI3]   +  [0;  -m1*g;  0] + [Re11; Re21; Re31] ==  m1*[Xddot11; Xddot21; Xddot31];
 Equation1 = simplify(Equation1);         %Simplifies the equation
 
-eq1 = Equation1(1)
-eq2 = Equation1(2)
-eq3 = Equation1(3)
+eq1 = Equation1(1);
+eq2 = Equation1(2);
+eq3 = Equation1(3);
 
 
 
@@ -89,9 +89,9 @@ eq3 = Equation1(3)
 Equation2 = [0; -m2*g;  0] + R1*[-Re11; -Re21;  -Re31]    ==  m2*[Xddot12;    Xddot22;    Xddot32];
 Equation2 = simplify(Equation2);        %Simplifies the equation
 
-eq4 = Equation2(1)
-eq5 = Equation2(2)
-eq6 = Equation2(3)
+eq4 = Equation2(1);
+eq5 = Equation2(2);
+eq6 = Equation2(3);
 
 
 %% Solving system of equations 
