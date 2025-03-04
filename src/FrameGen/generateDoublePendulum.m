@@ -24,7 +24,7 @@ Q = frames(noofframes).getQs(frames);
 B = frames(noofframes).makeB(frames)
 
 Bdot = frames(noofframes).makeBdot(frames)
-D = frames(noofframes).makeD(frames)
+D = simplify(frames(noofframes).makeD(frames))
 M = frames(noofframes).makeM(frames)
 F = frames(noofframes).makeF(frames)
 initCond = frames(noofframes).getInitCond(frames)
