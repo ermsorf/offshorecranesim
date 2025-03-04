@@ -58,7 +58,7 @@ loadModel(
     'Tower',
     '../assets/models/tower.obj',
     '../assets/materials/tower.mtl',
-    { x: 0, y: 30, z: 0 },
+    { x: 0, y: 40, z: 0 },
     scene,
     null, // No parent
     {
@@ -72,7 +72,7 @@ loadModel(
   'Tower',
   '../assets/models/Platform.obj',
   '../assets/materials/Platform.mtl',
-  { x: 0, y: 30, z: 0 },
+  { x: 0, y: 40, z: 0 },
   scene,
   null, // No parent
   {
