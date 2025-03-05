@@ -68,7 +68,7 @@ B = frames(noofframes).makeB(frames)
 
 
 Bdot = frames(noofframes).makeBdot(frames)
-D = frames(noofframes).makeD(frames); D = simplify(D)
+D = frames(noofframes).makeD(frames); 
 M = frames(noofframes).makeM(frames); 
 F = frames(noofframes).makeF(frames)
 initCond = frames(noofframes).getInitCond(frames)

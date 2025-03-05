@@ -369,10 +369,9 @@ classdef Frame < handle
                 else
                     W = makeW(obj,framelist);
                 end
-                w = O(1:3,1:3);
                 index1 = i*6-2  ;
                 index2 = i*6 ;
-                D(index1:index2,index1:index2) = w;
+                D(index1:index2,index1:index2) = W;
             end
         end % function makeD
 
