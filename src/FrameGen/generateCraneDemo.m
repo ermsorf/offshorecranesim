@@ -10,7 +10,7 @@ psidd = sym('psidd',[1, 2],'real');
 % Crane Vars
 syms cr crd crdd trolley trolleyd trolleydd real
 
-wiresegments = 2;
+wiresegments = 3;
 
 % Wire rotation - 3
 theta = sym('theta',[1, wiresegments],'real');
@@ -57,7 +57,7 @@ frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Q
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
-%{
+
 
 
 noofframes = 2 + wiresegments*3
@@ -76,6 +76,7 @@ Mstar = B' * M * B;
 Nstar = B' * (M*Bdot + D*M*B);
 rotations = frames(noofframes).exportRotations(frames)
 T = frames(noofframes).getTransformMat(frames)
+%{
 % Fstar = B' * F;
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
 % simplify(eqs_of_motion)
