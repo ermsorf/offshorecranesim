@@ -1,4 +1,4 @@
-import { evaluateMatrix } from "./configImport.js";
+import { evaluateMatrix } from "./configimport.js";
 
 export function rk4Step(Q, M, N, F, dt, damping = 0.996) {
   const n = Q.length;

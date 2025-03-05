@@ -1,7 +1,7 @@
-import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configImport.js';
+import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configimport.js';
 import { runRK4Step } from './RK4.js';
 import { getNextPos, getRotationMatrices } from "./positionRotation.js";
-import { initgraphics } from './webGL_Crane.js';
+//import { initgraphics } from './webGL_crane.js';
 
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
@@ -11,7 +11,7 @@ const dt = 0.05; // Time step in seconds
 let lastTime = performance.now();
 
 async function initialize() {
-    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneConfig.json'));
+    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneDemo.json'));
     console.log("System Config Loaded", system);
     xState = await evaluateMatrix(system.T, Q, variableMap);
     console.log("Initial X state:", xState);
