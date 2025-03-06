@@ -1,4 +1,4 @@
-import { evaluateMatrix } from './configImport.js'
+import { evaluateMatrix } from './configimport.js'
 
 export async function getNextPos(xState, system, Q, variableMap, dt) {
     const qd = math.matrix(Q.map(row => [parseFloat(row[1])]));  // 6N × 1 column vector
