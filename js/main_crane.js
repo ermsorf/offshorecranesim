@@ -1,8 +1,11 @@
 import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configimport.js';
 import { runRK4Step } from './RK4.js';
-import { getNextPos, getRotationMatrices } from "./positionRotation.js";
-//import { initgraphics } from './webGL_crane.js';
+// import { getNextPos, getRotationMatrices } from "./positionRotation.js";
+import { initializeScene, updateTransformListValues } from './webGL_crane.js';
+import * as THREE from '../libs/three/three.module.js';
+import GUI from '../libs/js/lil-gui.module.min.js';
 
+const graphicsDiv = document.getElementById("graphics");
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
@@ -10,11 +13,15 @@ const maxSteps = 2000;
 const dt = 0.05; // Time step in seconds
 let lastTime = performance.now();
 
+
+let renderer, scene, camera, controls, water;
+let transformValues = {};
+
 async function initialize() {
     ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneDemo.json'));
     console.log("System Config Loaded", system);
     xState = await evaluateMatrix(system.T, Q, variableMap);
-    console.log("Initial X state:", xState);
+    ({ renderer, scene, camera, controls, water } = initializeScene(graphicsDiv));
 }   
 
 async function runNextStep() {
@@ -24,14 +31,12 @@ async function runNextStep() {
     let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
 
     while (elapsed >= dt) {  // Run multiple steps if needed
-        console.time(`Step ${step + 1}`);
-
         await runRK4Step(system, Q, variableMap, dt);
-        console.timeEnd(`Step ${step + 1}`);
 
-        const positions = await getNextPos(xState, system, Q, variableMap, dt);
+        console.log("getVar('cr')", getVar('cr'));
+        //console.log("Q", Q)
 
-        const rotations = await getRotationMatrices(system, Q, variableMap);
+        transformValues = {"BoomRotationZ": getVar("cr"), "TrolleyTranslationX": getVar("trolley")};
 
         step++;
         lastTime += dt * 1000; // Move forward in fixed steps
@@ -46,7 +51,6 @@ async function runNextStep() {
 
     requestAnimationFrame(runNextStep);
 }
-
 
 function startSimulation() {    
     if (!running) {
@@ -96,5 +100,21 @@ function createUI() {
 initialize().then(() => {
     runRK4Step(system, Q, variableMap, dt);
     createUI();
+    animate();
 });
 
+function animate() {
+    requestAnimationFrame(animate);
+    const time = performance.now();
+    //updateTransformsWithTrig(time);
+    updateTransformListValues(transformValues);
+    controls.update();
+    water.material.uniforms['time'].value += 1.0 / 60.0;
+    renderer.render(scene, camera);
+}
+
+
+function getVar(name) {
+    const { i, j } = variableMap[name];
+    return Q[i][j];
+}
