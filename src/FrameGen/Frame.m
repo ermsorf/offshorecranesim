@@ -361,7 +361,9 @@ classdef Frame < handle
             % Combines time-dependent Q coordinates from multiple frames
             initCond = [];
             for i = 1:(obj.framenumber)
-                initCond = [initCond; framelist(i).initconditions];
+                if ~isempty(framelist(i).initconditions) || ~isempty(framelist(i).Qcoordinates)
+                    initCond = [initCond; framelist(i).initconditions];
+                end
             end
         end
 

@@ -10,7 +10,7 @@ let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
 const maxSteps = 20000;
-const dt = 0.02; // Time step in seconds
+const dt = 0.01; // Time step in seconds
 let lastTime = performance.now();
 
 
@@ -18,21 +18,12 @@ let renderer, scene, camera, controls, water;
 let transformValues = {};
 let controlForces = {
     BoomRotationZ: 0,
-    TrolleyTranslationX: 0,
-    Theta1RotationZ: 0,
-    Phi1RotationX: 0,
-    Lambda1TranslationZ: 0,
-    Theta2RotationZ: 0,
-    Phi2RotationX: 0,
-    Lambda2TranslationZ: 0,
-    Theta3RotationZ: 0,
-    Phi3RotationX: 0,
-    Lambda3TranslationZ: 0
+    TrolleyTranslationX: 0
 };
 
 async function initialize() {
     // await console.log("Q before loadSystemConfig", Q);
-    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneDemo.json'));
+    ({ system, Q, variableMap } = await loadSystemConfig('../src/FrameGen/CraneDemo3Wires.json'));
     await console.log("System Config Loaded", system);
     //await console.log("Q after loadSystemConfig", Q);
 
@@ -66,7 +57,9 @@ function runNextStep() {
     
     while (elapsed >= dt) {  // Run multiple steps if needed
         // console.log("Q before runRK4Step", Q);
+        console.time("runRK4Step");
         runRK4Step(system, Q, variableMap, dt, controlForces);
+        console.timeEnd("runRK4Step");
         // console.log("Q after runRK4Step", Q)
         // console.log("getVar('cr')", getVar('cr'));
         // console.log("getVar('trolley')", getVar('trolley'));
@@ -74,13 +67,13 @@ function runNextStep() {
                             "TrolleyTranslationX": getVar("trolley"),
                             "Theta1RotationZ": getVar("theta1"),
                             "Phi1RotationX": getVar("phi1"),
-                            "Lambda1TranslationZ": getVar("lambda1"),
+                            //"Lambda1TranslationZ": getVar("lambda1"),
                             "Theta2RotationZ": getVar("theta2"),
                             "Phi2RotationX": getVar("phi2"),
-                            "Lambda2TranslationZ": getVar("lambda2"),
+                            //"Lambda2TranslationZ": getVar("lambda2"),
                             "Theta3RotationZ": getVar("theta3"),
-                            "Phi3RotationX": getVar("phi3"),
-                            "Lambda3TranslationZ": getVar("lambda3")
+                            "Phi3RotationX": getVar("phi3")
+                            //"Lambda3TranslationZ": getVar("lambda3")
                         };
 
 
@@ -123,6 +116,7 @@ async function singleStep() {
         let elapsed = (currentTime - lastTime) / 1000; // Convert to seconds
 
         if (elapsed >= dt) {
+            
             await runRK4Step(system, Q, variableMap, dt);
             //console.log("Single Step Q:", Q);
             //console.log("getVar('cr')", getVar('cr'));

@@ -46,6 +46,7 @@ export function rk4Step(Q, M, N, F, dt, damping = 0.99) {
   return {
     q: q_new,
     qdot: qdot_new.map(val => val * damping),
+   //  qdot_new: qdot_new.map((val, index) => val * (index < 2 ? 0.9995 : 1)),
     qddot: qddot_new.map(v => v[0])
   };
 }
@@ -68,7 +69,7 @@ export async function runRK4Step(system, Q, variableMap, dt, controlForces) {
       ]);
       //const endEval = performance.now();
       //console.log(`Matrix evaluation: ${(endEval - startEval).toFixed(3)} ms`);
-
+      await console.log("Q",Q)
       if (!Mstar || !Nstar || !Bt || !F) {
           console.error("Matrix evaluation failed. Aborting RK4 step.");
           return;

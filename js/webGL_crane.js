@@ -71,7 +71,7 @@ export function loadModels(scene) {
         rotation: {}
     });
     // Wire 1
-    loadModel('Theta1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Trolley', {
+    loadModel('Theta1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 9, y: 0, z: 18 }, scene, 'Trolley', {
         position: {},
         rotation: { z: [-Math.PI/2, Math.PI/2] }
     });
@@ -79,8 +79,8 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi1', {
-        position: { z: [0, 10]},
+    loadModel('Lambda1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi1', {
+        position: { z: [-10]},
         rotation: {}
     });
     // Wire 2
@@ -92,8 +92,8 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi2', {
-        position: { z: [0, 10]},
+    loadModel('Lambda2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi2', {
+        position: { z: [-10]},
         rotation: {}
     // Wire 3
     });
@@ -105,8 +105,8 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi3', {
-        position: { z: [0, 10]},
+    loadModel('Lambda3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi3', {
+        position: { z: [-10]},
         rotation: {}
     });
 }

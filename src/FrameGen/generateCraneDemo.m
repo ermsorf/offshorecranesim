@@ -1,3 +1,4 @@
+%{
 clear
 clc
 
@@ -26,7 +27,7 @@ phidd = sym('phidd',[1, wiresegments],'real');
 lambda = sym('lambda',[1, wiresegments],'real');
 lambdad = sym('lambdad',[1, wiresegments],'real');
 lambdadd = sym('lambdadd',[1, wiresegments],'real');
-
+%}
 
 for i = 1:(wiresegments*3 + 3)
     frames(i) = Frame('framenumber',i);
@@ -44,19 +45,18 @@ frames(2).setProperties('Fvec', [0,0,-9.81*16800], 'Tvec', [0,0,0], 'initconditi
 for i = 1:wiresegments  
     frames(2 + 3*i-2).setProperties('rotationaxis', 3, 'rotationvar', theta(i), 'Qcoordinates', [theta(i),thetad(i),thetadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
     frames(2 + 3*i-2).setProperties('mass', 5, 'Jmatrix', [41,0,0;0,41,0; 0,0, 0.025])
-    frames(2 + 3*i-2).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
+    frames(2 + 3*i-2).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
     frames(2 + 3*i-1).setProperties('rotationaxis', 1, 'rotationvar', phi(i), 'Qcoordinates', [phi(i),phid(i),phidd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
     frames(2 + 3*i-1).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
-    frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
+    frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
     frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [], 'cm2joint', [0,0,0], 'joint2cm',[0,0,-10])
     frames(2 + 3*i).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
-    frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
+    frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [])
 end
 
 frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [],'cm2joint',[0,0,0],'joint2cm',[0,0, -1.5])
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
-
 
 
 
@@ -71,7 +71,7 @@ Bdot = frames(noofframes).makeBdot(frames)
 D = frames(noofframes).makeD(frames); 
 M = frames(noofframes).makeM(frames); 
 F = frames(noofframes).makeF(frames)
-initCond = frames(noofframes).getInitCond(frames)
+
 Mstar = B' * M * B; %% Mstar = simplify(Mstar);
 Nstar = B' * (M*Bdot + D*M*B); %% Nstar = simplify(Nstar);
 rotations = frames(noofframes).exportRotations(frames)
@@ -82,7 +82,7 @@ T = frames(noofframes).getTransformMat(frames)
 % simplify(eqs_of_motion)
 
 
-
+initCond = frames(noofframes).getInitCond(frames)
 system = struct( ...
     'Qcoordinates', Q,...
     'initconditions', initCond,... 
@@ -95,12 +95,11 @@ system = struct( ...
     'Bdot', Bdot,...
     'F', F); 
 
-configname = "CraneDemo.json",
+configname = "CraneDemo3Wires.json",
 overwriteconfig = input('Overwrite Config: ' + configname + '| y/n: ', 's');
 
 if overwriteconfig == 'y'
-    configexport(system, 'CraneDemo.json')
+    configexport(system, configname)
 end
 
 
-getVar("thetadd1")

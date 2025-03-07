@@ -24,6 +24,7 @@ export async function loadSystemConfig(filePath) {
     let Q = system.initconditions.map(row => [...row]);
 
 
+
     await console.log("Initial Q:", Q);
     return { system, Q, variableMap };
 }
