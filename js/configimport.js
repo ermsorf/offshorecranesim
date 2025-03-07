@@ -3,7 +3,7 @@ export async function loadSystemConfig(filePath) {
     const system = await response.json();
 
     let variableMap = {};
-    system.Qcoordinates.forEach((row, i) => {
+    await system.Qcoordinates.forEach((row, i) => {
         row.forEach((entry, j) => {
             if (entry.vars) {
                 variableMap[entry.vars] = { i, j };
@@ -11,28 +11,32 @@ export async function loadSystemConfig(filePath) {
         });
     });
 
-    // Step 1: Initialize empty Q matrix
-    let Q = system.Qcoordinates.map(row => row.map(() => 0));
+    // // Step 1: Initialize empty Q matrix
+    // let Q = system.Qcoordinates.map(row => row.map(() => 0));
 
-    // Step 2: Populate Q using already initialized variableMap
-    for (let i = 0; i < system.Qcoordinates.length; i++) {
-        for (let j = 0; j < system.Qcoordinates[i].length; j++) {
-            Q[i][j] = await evaluateExpression(system.initconditions[i][j], Q, variableMap);
-        }
-    }
+    // // Step 2: Populate Q using already initialized variableMap
+    // for (let i = 0; i < system.Qcoordinates.length; i++) {
+    //     for (let j = 0; j < system.Qcoordinates[i].length; j++) {
+    //         //console.log("system.initconditions[i][j]", system.initconditions[i][j])
+    //         Q[i][j] = await evaluateExpression(system.initconditions[i][j], Q, variableMap);
+    //     }
+    // }
+    let Q = system.initconditions.map(row => [...row]);
 
-    console.log("Initial Q:", Q);
+
+    await console.log("Initial Q:", Q);
     return { system, Q, variableMap };
 }
 
 const compiledExpressions = new Map(); // Cache compiled expressions
 
 export function evaluateExpression(entry, Q, variableMap) {
+    // const QFrozen = JSON.parse(JSON.stringify(Q)); // Deep clone
+    // console.log("Qfrozen",QFrozen)
     if (!entry || typeof entry.expr !== "string") {
         console.warn("Invalid entry:", entry);
         return NaN;
     }
-
     const { expr, vars } = entry;
     const variables = Array.isArray(vars) ? vars : vars?.trim() ? [vars] : [];
 
@@ -48,7 +52,6 @@ export function evaluateExpression(entry, Q, variableMap) {
         }
         return compiledExpressions.get(expr);
     }
-
     const missingVars = variables.filter(v => !(v in variableMap));
     if (missingVars.length > 0) {
         console.error("Missing variables in Q:", missingVars);
@@ -69,6 +72,7 @@ export function evaluateExpression(entry, Q, variableMap) {
         });
 
         return fn(...values);
+    
     } catch (e) {
         console.error("Eval failed for:", expr, "Error:", e);
         return NaN;

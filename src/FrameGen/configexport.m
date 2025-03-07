@@ -16,6 +16,15 @@ function configexport(system, filename)
                 end
                 nestedArray{row} = struct('axis', axisValue, 'vars', varName);
             end
+        elseif strcmp(field, "initconditions")
+            % Directly export numeric values for initconditions
+            for row = 1:nRows
+                rowArray = zeros(1, nCols);
+                for col = 1:nCols
+                    rowArray(col) = double(matrix(row, col));
+                end
+                nestedArray{row} = rowArray;
+            end
         else
             % Default behavior for other matrices
             for row = 1:nRows
