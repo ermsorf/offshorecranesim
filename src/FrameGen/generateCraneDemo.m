@@ -10,7 +10,7 @@ psidd = sym('psidd',[1, 2],'real');
 % Crane Vars
 syms cr crd crdd trolley trolleyd trolleydd real 
 
-wiresegments = 0;
+wiresegments = 3;
 
 % Wire rotation - 3
 theta = sym('theta',[1, wiresegments],'real');
@@ -103,3 +103,4 @@ if overwriteconfig == 'y'
 end
 
 
+getVar("thetadd1")
