@@ -8,7 +8,7 @@ psid = sym('psid',[1, 2],'real');
 psidd = sym('psidd',[1, 2],'real');
 %}
 % Crane Vars
-syms cr crd crdd trolley trolleyd trolleydd T1z real 
+syms cr crd crdd trolley trolleyd trolleydd real 
 
 wiresegments = 0;
 
@@ -72,11 +72,11 @@ D = frames(noofframes).makeD(frames);
 M = frames(noofframes).makeM(frames); 
 F = frames(noofframes).makeF(frames)
 initCond = frames(noofframes).getInitCond(frames)
-Mstar = B' * M * B; Mstar = simplify(Mstar);
-Nstar = B' * (M*Bdot + D*M*B); Nstar = simplify(Nstar);
+Mstar = B' * M * B; %% Mstar = simplify(Mstar);
+Nstar = B' * (M*Bdot + D*M*B); %% Nstar = simplify(Nstar);
 rotations = frames(noofframes).exportRotations(frames)
 T = frames(noofframes).getTransformMat(frames)
-%{
+
 % Fstar = B' * F;
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
 % simplify(eqs_of_motion)
