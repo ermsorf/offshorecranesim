@@ -221,20 +221,26 @@ classdef Frame < handle
 
         function W = makeW(obj, framelist)
             W = sym(zeros(3,3));
-            for i = 1:obj.framenumber   
+            for i = 1:obj.framenumber
                 frame = framelist(i);
-                Wrel = frame.makeRelativeW();
-                Er = frame.makeEr();
-                R = Er(1:3,1:3);
-                W_unsimp = R' * W * R + Wrel;
-                i
-                if i < 10;
-                    W = obj.sympySimplify(transpose(R) * W * R + Wrel)
+                if frame.rotationaxis == 0
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
+                    W = framelist(i-1).Wmatrix
                 else
-                    W_vec = obj.unskew(W_unsimp);
-                    W_simp_vec = obj.sympySimplify(W_vec);
-                    W = obj.skew(W_simp_vec)
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
+                    Wrel = frame.makeRelativeW();
+                    Er = frame.makeEr();
+                    R = Er(1:3,1:3);
+                    W_unsimp = R' * W * R + Wrel;
+                    if i < 10;
+                        W = obj.sympySimplify(transpose(R) * W * R + Wrel)
+                    else
+                        W_vec = obj.unskew(W_unsimp);
+                        W_simp_vec = obj.sympySimplify(W_vec);
+                        W = obj.skew(W_simp_vec)
+                    end
                 end
+
                 frame.Wmatrix = W;
             end
 
@@ -353,7 +359,7 @@ classdef Frame < handle
 
         function initCond = getInitCond(obj, framelist)
             % Combines time-dependent Q coordinates from multiple frames
-            initCond = sym([]);
+            initCond = [];
             for i = 1:(obj.framenumber)
                 initCond = [initCond; framelist(i).initconditions];
             end
@@ -369,10 +375,9 @@ classdef Frame < handle
                 else
                     W = makeW(obj,framelist);
                 end
-                w = O(1:3,1:3);
                 index1 = i*6-2  ;
                 index2 = i*6 ;
-                D(index1:index2,index1:index2) = w;
+                D(index1:index2,index1:index2) = W;
             end
         end % function makeD
 
