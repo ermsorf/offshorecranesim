@@ -8,9 +8,9 @@ psid = sym('psid',[1, 2],'real');
 psidd = sym('psidd',[1, 2],'real');
 %}
 % Crane Vars
-syms cr crd crdd trolley trolleyd trolleydd real
+syms cr crd crdd trolley trolleyd trolleydd T1z real 
 
-wiresegments = 3;
+wiresegments = 0;
 
 % Wire rotation - 3
 theta = sym('theta',[1, wiresegments],'real');
@@ -35,7 +35,7 @@ end
 
 frames(1).setProperties('rotationaxis', 3, 'rotationvar', cr, 'Qcoordinates', [cr crd crdd],'cm2joint',[0,0,0],'joint2cm',[4.68, 0.61, 4.93])
 frames(1).setProperties('mass', 147000, 'Jmatrix', [1.6701e6,  3.6194e5, -1.6755e6; 3.6194e5,  1.2872e7,  1.9375e3; -1.6755e6,  1.9375e3,  1.2143e7])
-frames(1).setProperties('Fvec', [0,0,-9.81*147000], 'Tvec', [0,0,10000], 'initconditions', [0,0,0])
+frames(1).setProperties('Fvec', [0,0,-9.81*147000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
 frames(2).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [trolley, trolleyd, trolleydd], 'cm2joint', [0,0,7.00],'joint2cm', [trolley, 0,0])
 frames(2).setProperties('mass', 16800,'Jmatrix', [1.4080e4, -3.0649e3,  2.7903e2; -3.0649e3,  3.2480e4,  7.1065e0; 2.7903e2,  7.1065e0,  2.7601e4])
@@ -72,8 +72,8 @@ D = frames(noofframes).makeD(frames);
 M = frames(noofframes).makeM(frames); 
 F = frames(noofframes).makeF(frames)
 initCond = frames(noofframes).getInitCond(frames)
-Mstar = B' * M * B; 
-Nstar = B' * (M*Bdot + D*M*B);
+Mstar = B' * M * B; Mstar = simplify(Mstar);
+Nstar = B' * (M*Bdot + D*M*B); Nstar = simplify(Nstar);
 rotations = frames(noofframes).exportRotations(frames)
 T = frames(noofframes).getTransformMat(frames)
 %{
@@ -82,7 +82,7 @@ T = frames(noofframes).getTransformMat(frames)
 % simplify(eqs_of_motion)
 
 
-%%
+
 system = struct( ...
     'Qcoordinates', Q,...
     'initconditions', initCond,... 
@@ -95,10 +95,11 @@ system = struct( ...
     'Bdot', Bdot,...
     'F', F); 
 
-overwriteconfig = input('Overwrite Config? y/n', 's');
+configname = "CraneDemo.json",
+overwriteconfig = input('Overwrite Config: ' + configname + '| y/n: ', 's');
 
 if overwriteconfig == 'y'
     configexport(system, 'CraneDemo.json')
 end
 
-%}
+
