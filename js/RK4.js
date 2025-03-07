@@ -1,6 +1,6 @@
 import { evaluateMatrix } from "./configimport.js";
 
-export function rk4Step(Q, M, N, F, dt, damping = 0.995) {
+export function rk4Step(Q, M, N, F, dt, damping = 0.99) {
 
   const n = Q.length;
   const M_inv = math.inv(M); // M⁻¹

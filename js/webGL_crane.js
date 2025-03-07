@@ -70,7 +70,49 @@ export function loadModels(scene) {
         position: { x: [0, 30] },
         rotation: {}
     });
+    // Wire 1
+    loadModel('Theta1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Trolley', {
+        position: {},
+        rotation: { z: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Phi1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Theta1', {
+        position: {},
+        rotation: { x: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Lambda1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi1', {
+        position: { z: [0, 10]},
+        rotation: {}
+    });
+    // Wire 2
+    loadModel('Theta2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Lambda1', {
+        position: {},
+        rotation: { z: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Phi2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Theta2', {
+        position: {},
+        rotation: { x: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Lambda2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi2', {
+        position: { z: [0, 10]},
+        rotation: {}
+    // Wire 3
+    });
+    loadModel('Theta3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Lambda2', {
+        position: {},
+        rotation: { z: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Phi3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Theta3', {
+        position: {},
+        rotation: { x: [-Math.PI/2, Math.PI/2] }
+    });
+    loadModel('Lambda3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Phi3', {
+        position: { z: [0, 10]},
+        rotation: {}
+    });
 }
+
+
+
 
 
 
