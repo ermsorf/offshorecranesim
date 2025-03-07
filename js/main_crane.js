@@ -18,9 +18,17 @@ let renderer, scene, camera, controls, water;
 let transformValues = {};
 let controlForces = {
     BoomRotationZ: 0,
-    TrolleyTranslationX: 0
+    TrolleyTranslationX: 0,
+    Theta1RotationZ: 0,
+    Phi1RotationX: 0,
+    Lambda1TranslationZ: 0,
+    Theta2RotationZ: 0,
+    Phi2RotationX: 0,
+    Lambda2TranslationZ: 0,
+    Theta3RotationZ: 0,
+    Phi3RotationX: 0,
+    Lambda3TranslationZ: 0
 };
-
 
 async function initialize() {
     // await console.log("Q before loadSystemConfig", Q);
@@ -62,7 +70,18 @@ function runNextStep() {
         // console.log("Q after runRK4Step", Q)
         // console.log("getVar('cr')", getVar('cr'));
         // console.log("getVar('trolley')", getVar('trolley'));
-        transformValues = {"BoomRotationZ": getVar("cr"), "TrolleyTranslationX": getVar("trolley")};
+        transformValues = { "BoomRotationZ": getVar("cr"),
+                            "TrolleyTranslationX": getVar("trolley"),
+                            "Theta1RotationZ": getVar("theta1"),
+                            "Phi1RotationX": getVar("phi1"),
+                            "Lambda1TranslationZ": getVar("lambda1"),
+                            "Theta2RotationZ": getVar("theta2"),
+                            "Phi2RotationX": getVar("phi2"),
+                            "Lambda2TranslationZ": getVar("lambda2"),
+                            "Theta3RotationZ": getVar("theta3"),
+                            "Phi3RotationX": getVar("phi3"),
+                            "Lambda3TranslationZ": getVar("lambda3")
+                        };
 
 
         step++;
