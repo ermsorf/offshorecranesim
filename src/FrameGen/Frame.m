@@ -18,6 +18,8 @@ classdef Frame < handle
         Edotmatrix
         relativeOmatrix
         Omatrix
+        Wmatrix
+
         Bmatrix
         Bdotmatrix
 
@@ -103,7 +105,7 @@ classdef Frame < handle
             end
         end
 
-        function Ev = makeEv(obj, dispv)
+        function Ev = makeEv(~, dispv)
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
@@ -198,6 +200,52 @@ classdef Frame < handle
         end % function makeO
         %}
 
+        function relativeW = makeRelativeW(obj)
+            relativeW = sym(zeros(3,3));
+            axis = obj.rotationaxis;
+            if axis == 0 || obj.rotationvar == 0 || isempty(obj.Qcoordinates)
+                return
+            end
+            thetad = obj.Qcoordinates(2);
+            switch axis
+                case 0
+                    return;
+                case 1
+                    relativeW(3,2) = thetad; relativeW(2,3) = -thetad;
+                case 2
+                    relativeW(3,1) = -thetad; relativeW(1,3) = thetad;
+                case 3
+                    relativeW(2,1) = thetad; relativeW(1,2) = -thetad;
+            end
+        end
+
+        function W = makeW(obj, framelist)
+            W = sym(zeros(3,3));
+            for i = 1:obj.framenumber
+                frame = framelist(i);
+                if frame.rotationaxis == 0
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
+                    W = framelist(i-1).Wmatrix
+                else
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
+                    Wrel = frame.makeRelativeW();
+                    Er = frame.makeEr();
+                    R = Er(1:3,1:3);
+                    W_unsimp = R' * W * R + Wrel;
+                    if i < 10;
+                        W = obj.sympySimplify(transpose(R) * W * R + Wrel)
+                    else
+                        W_vec = obj.unskew(W_unsimp);
+                        W_simp_vec = obj.sympySimplify(W_vec);
+                        W = obj.skew(W_simp_vec)
+                    end
+                end
+
+                frame.Wmatrix = W;
+            end
+
+        end
+
 
         function O = makeO(obj, framelist)
             % Compute overall transformation matrix E and its time derivative Edot
@@ -219,6 +267,7 @@ classdef Frame < handle
             numQs = height(Q);
             Qvars = Q(:,2); % Extract Q variable symbols for faster indexing
             B = sym(zeros(obj.framenumber * 6, numQs));
+            obj.makeW(framelist);
 
             for i = 1:obj.framenumber
                 % Retrieve or compute Edot
@@ -227,14 +276,10 @@ classdef Frame < handle
                 end
                 Edot = framelist(i).Edotmatrix;
 
-                % Retrieve or compute O matrix
-                if isempty(framelist(i).Omatrix)
-                    framelist(i).Omatrix = framelist(i).makeO(framelist);
-                end
-                O = framelist(i).Omatrix;
+                W = framelist(i).Wmatrix;
 
                 posvec = collect(Edot(1:3, 4), Qvars); % Collect terms
-                Ovec   = collect(obj.unskew(O(1:3,1:3)), Qvars);
+                Ovec   = collect(obj.unskew(W(1:3,1:3)), Qvars);
 
                 % Extract coefficients for all directions at once
                 [cp_pos, tp_pos] = arrayfun(@(dir) coeffs(posvec(dir), Qvars), 1:3, 'UniformOutput', false);
@@ -314,7 +359,7 @@ classdef Frame < handle
 
         function initCond = getInitCond(obj, framelist)
             % Combines time-dependent Q coordinates from multiple frames
-            initCond = sym([]);
+            initCond = [];
             for i = 1:(obj.framenumber)
                 initCond = [initCond; framelist(i).initconditions];
             end
@@ -325,15 +370,14 @@ classdef Frame < handle
             D = sym(zeros(obj.framenumber*6,obj.framenumber*6));
 
             for i = 1:obj.framenumber
-                if ~isempty(framelist(i).Omatrix)
-                    O = framelist(i).Omatrix;
+                if ~isempty(framelist(i).Wmatrix)
+                    W = framelist(i).Wmatrix;
                 else
-                    O = makeO(obj,framelist);
+                    W = makeW(obj,framelist);
                 end
-                w = O(1:3,1:3);
                 index1 = i*6-2  ;
                 index2 = i*6 ;
-                D(index1:index2,index1:index2) = w;
+                D(index1:index2,index1:index2) = W;
             end
         end % function makeD
 

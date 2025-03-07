@@ -1,52 +1,50 @@
 import * as THREE from '../libs/three/three.module.js';
 import { OrbitControls } from '../libs/three/controls/OrbitControls.js';
-import { loadModel } from '../libs/three/loaders/modelLoader.js';
+import { loadModel, sceneObjects, sceneTransformList } from '../libs/three/loaders/modelLoader.js';
+import GUI from '../libs/js/lil-gui.module.min.js';
+import { Water } from '../libs/three/Water.js';
 
 
-let scene, camera, renderer, objects = [];
+export function initializeScene(graphicsDiv) {
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color('white');
+    scene.up.set(0, 1, 0);
 
-export function initgraphics() {
-    scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xeeeeee); // Black background
-    const plane = new THREE.Mesh(new THREE.PlaneGeometry(10,10,1,1), new THREE.MeshStandardMaterial({color: 0xff}))
-    plane.position.set(0,0, -5)
-    scene.add(plane)
-    
 
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.up.set(0,0,1)
-    camera.position.set(0, 2, 5);
-    
-    renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    const camera = new THREE.PerspectiveCamera(90, graphicsDiv.clientWidth / graphicsDiv.clientHeight, 0.1, 1000000);
+    camera.position.set(0, 50, 50);
+    camera.up.set(0, 1, 0);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
+    graphicsDiv.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
+    controls.update();
 
-    const light = new THREE.AmbientLight(0xffffff, 0.8);
-    scene.add(light);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
 
-    
-    
-    
-    loadModel(crane, '../assets/models/')
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(50, 50, 50).normalize();
+    scene.add(directionalLight);
 
-    window.addEventListener('resize', onWindowResize, false);
-    animate();
-}
+    loadModels(scene);
+    const water = createWater(scene);
 
 
+    window.addEventListener("resize", () => {
+        renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
+        camera.aspect = graphicsDiv.clientWidth / graphicsDiv.clientHeight;
+        camera.updateProjectionMatrix();
+    });
 
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
+    setTimeout(() => {
+        console.log("Scene Transform List:", sceneTransformList);
+    }, 3000);
 
-function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
+    return { renderer, scene, camera, controls, water };
 }
 
 
@@ -72,7 +70,6 @@ export function loadModels(scene) {
         position: { x: [0, 30] },
         rotation: {}
     });
-
 }
 
 
@@ -136,11 +133,5 @@ export function updateTransformListValues(newValues) {
             console.warn(`Key "${key}" does not match the expected format.`);
         }
     }
-}   
-
-
-
-
-
-
+}
 

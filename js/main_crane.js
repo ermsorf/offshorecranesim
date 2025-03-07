@@ -1,8 +1,11 @@
 import { loadSystemConfig, evaluateMatrix, evaluateExpression } from './configimport.js';
 import { runRK4Step } from './RK4.js';
-import { getNextPos, getRotationMatrices } from "./positionRotation.js";
-//import { initgraphics } from './webGL_crane.js';
+// import { getNextPos, getRotationMatrices } from "./positionRotation.js";
+import { initializeScene, updateTransformListValues } from './webGL_crane.js';
+import * as THREE from '../libs/three/three.module.js';
+import GUI from '../libs/js/lil-gui.module.min.js';
 
+const graphicsDiv = document.getElementById("graphics");
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
@@ -17,6 +20,7 @@ let controlForces = {
     BoomRotationZ: 0,
     TrolleyTranslationX: 0
 };
+
 
 async function initialize() {
     // await console.log("Q before loadSystemConfig", Q);
@@ -61,7 +65,6 @@ function runNextStep() {
         transformValues = {"BoomRotationZ": getVar("cr"), "TrolleyTranslationX": getVar("trolley")};
 
 
-
         step++;
         lastTime += dt * 1000; // Move forward in fixed steps
         if (step >= maxSteps) {
@@ -74,7 +77,6 @@ function runNextStep() {
 
     requestAnimationFrame(runNextStep);
 }
-
 
 function startSimulation() {    
     if (!running) {
@@ -152,8 +154,6 @@ function createUI() {
 
     transformFolder.open();
 }
-
-
 
 function getVar(name) {
     const { i, j } = variableMap[name];
