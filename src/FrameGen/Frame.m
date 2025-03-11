@@ -174,7 +174,7 @@ classdef Frame < handle
             end
         end
 
-        function EdotVec = makeEdotVec(obj, framelist)
+        function EdotVec = makeEdotVec(obj, framelist);
             if isempty(obj.Ematrix)
                 obj.makeE(framelist);
             end
@@ -186,7 +186,11 @@ classdef Frame < handle
                     continue
                 end
                 if all(framelist(i).cm2joint == 0) & all(framelist(i).joint2cm == 0)
-                    EdotVec = framelist(i-1).EdotVec;
+                    if i == 1
+                        EdotVec = sym(zeros(3,1));
+                    else
+                        EdotVec = framelist(i-1).EdotVec;
+                    end
                 else
                     Evec = framelist(i).Ematrix(1:3,4);
                     Evec = obj.sympySimplify(Evec);
@@ -253,7 +257,12 @@ classdef Frame < handle
                 end
                 if frame.rotationaxis == 0
                     fprintf('W %i / %i : ', i, obj.framenumber);
-                    W = framelist(i-1).Wmatrix;
+                    if i == 1
+                        W = sym(zeros(3,3));
+                    else
+                        W = framelist(i-1).Wmatrix;
+                    end
+                    
                     fprintf("Done\n")
                 else
                     fprintf('W %i / %i : ', i, obj.framenumber);
@@ -261,7 +270,7 @@ classdef Frame < handle
                     Er = frame.makeEr();
                     R = Er(1:3,1:3);
                     W_unsimp = R' * W * R + Wrel;
-                    if i < 10;
+                    if i < 10
                         W = obj.sympySimplify(W_unsimp);
                     else
                         W_vec = obj.unskew(W_unsimp);
