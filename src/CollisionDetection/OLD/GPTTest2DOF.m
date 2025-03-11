@@ -22,7 +22,7 @@ tspan = t0:dt:Tf;                  % Time vector
 
 % Initial conditions: [θ; φ; θ_dot; φ_dot]
 % Here, θ and φ are in radians.
-X0 = [1; 1; -0.5; 0];
+X0 = [0.5; 0.3; -0.1; 1];
 
 %% Define the ODE Function
 % For a spherical pendulum:

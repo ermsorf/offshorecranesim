@@ -45,6 +45,8 @@ omega = [phidot_t * cos(psi) + thetadot_t * sin(phi) * sin(psi);
          thetadot_t * cos(phi) + psidot_t                          ]
 
 
+
+
 % Display the result
 disp('Inertia matrix for the square box about its center of mass:');
 disp(I);
