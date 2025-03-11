@@ -10,12 +10,12 @@ psidd = sym('psidd',[1, 2],'real');
 % Crane Vars
 syms cr crd crdd trolley trolleyd trolleydd real
 
-wiresegments = 5;
+wiresegments = 3;
 
 % Wire rotation - 3
-theta = sym('theta',[1, wiresegments],'real');
-thetad = sym('thetad',[1, wiresegments],'real');
-thetadd = sym('thetadd',[1, wiresegments],'real');
+theta = sym('theta',[1, wiresegments+1],'real');
+thetad = sym('thetad',[1, wiresegments+1],'real');
+thetadd = sym('thetadd',[1, wiresegments+1],'real');
 
 % Wire Rotation - 1
 phi = sym('phi',[1, wiresegments],'real');
@@ -53,20 +53,18 @@ for i = 1:wiresegments
     frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
 end
 
-frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [],'cm2joint',[0,0,0],'joint2cm',[0,0, -1.5])
+frames(wiresegments*3 + 3).setProperties('rotationaxis', 3, 'rotationvar', theta(wiresegments+1), 'Qcoordinates', [theta(wiresegments+1), thetad(wiresegments+1), thetadd(wiresegments+1)],'cm2joint',[0,0,0],'joint2cm',[0,0, -1.5])
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
 
 
 
-noofframes = 2 + wiresegments*3
 
+noofframes = 3 + wiresegments*3
 
 Q = frames(noofframes).getQs(frames)
 B = frames(noofframes).makeB(frames)
-
-
 Bdot = frames(noofframes).makeBdot(frames)
 D = frames(noofframes).makeD(frames);
 M = frames(noofframes).makeM(frames); 
@@ -74,30 +72,26 @@ F = frames(noofframes).makeF(frames)
 initCond = frames(noofframes).getInitCond(frames)
 Mstar = B' * M * B; 
 Nstar = B' * (M*Bdot + D*M*B);
-rotations = frames(noofframes).exportRotations(frames)
-T = frames(noofframes).getTransformMat(frames)
 % Fstar = B' * F;
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
 % simplify(eqs_of_motion)
 
-%}
+
 %%
 system = struct( ...
     'Qcoordinates', Q,...
     'initconditions', initCond,... 
-    'rotations', rotations,...
     'Mstar', Mstar, ...
     'Nstar', Nstar, ...
-    'T', T,...
     'B', B, ...
     'Bt', B',...
     'Bdot', Bdot,...
     'F', F); 
 
 overwriteconfig = input('Overwrite Config? y/n: ', 's');
-
+%%overwriteconfig == 'y'
 if overwriteconfig == 'y'
     configexport(system, 'Crane5link.json')
 end
-
+%}
 

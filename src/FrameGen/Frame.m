@@ -16,6 +16,7 @@ classdef Frame < handle
         Ematrix
         relativeEdotmatrix
         Edotmatrix
+        EdotVec
         relativeOmatrix
         Omatrix
         Wmatrix
@@ -123,18 +124,14 @@ classdef Frame < handle
             for i = 1:obj.framenumber
                 frame = framelist(i);
                 E = E * frame.makeRelativeE();
-                E = obj.sympySimplify(E);  % Simplify E using sympySimplify
+                %% E = obj.sympySimplify(E);  % Simplify E using sympySimplify
                 frame.Ematrix = E;
             end
         end
-        %{
+
         function relativeEdot = makeRelativeEdot(obj)
             % Computes the time derivative of the transformation matrix E
-            if ~isempty(obj.relativeEmatrix)
-                E = obj.relativeEmatrix;
-            else
-                E = makeRelativeE(obj);
-            end
+            E = makeRelativeE(obj);
             Q = obj.Qcoordinates;  % Get Q values
             Qsize = size(Q);
             syms t real
@@ -149,34 +146,62 @@ classdef Frame < handle
 
             obj.relativeEdotmatrix = relativeEdot;
         end
-        %}
+
 
         function Edot = makeEdot(obj, framelist)
             % Computes the time derivative of the transformation matrix E
-
-            if isempty(obj.Ematrix)
-                E = obj.makeE(framelist);
-            else
-                E = obj.Ematrix;
-            end
+            obj.makeE(framelist);
 
             Q = obj.getQs(framelist);  % Assumes Q(:,1)=theta, Q(:,2)=thetadot, Q(:,3)=thetaddot
             syms t real
+            for i = 1:obj.framenumber
+                E = framelist(i).Ematrix;
+                
 
-            % Vectorized substitution: replace Q(:,1) -> t*Q(:,2)
-            prediff = subs(E, Q(:,1), t * Q(:,2));
+                % Vectorized substitution: replace Q(:,1) -> t*Q(:,2)
+                prediff = subs(E, Q(:,1), t * Q(:,2));
 
-            % Differentiate with respect to t
-            postdiff = diff(prediff, t);
+                % Differentiate with respect to t
+                postdiff = diff(prediff, t);
 
-            % Reverse substitution: replace t*Q(:,2) -> Q(:,1)
-            Edot = subs(postdiff, t * Q(:,2), Q(:,1));
+                % Reverse substitution: replace t*Q(:,2) -> Q(:,1)
+                Edot = subs(postdiff, t * Q(:,2), Q(:,1));
 
-            % Simplify result
-            Edot = obj.sympySimplify(Edot);
+                % Simplify result
+                Edot = obj.sympySimplify(Edot);
 
-            obj.Edotmatrix = Edot;
+                framelist(i).Edotmatrix = Edot;
+            end
         end
+
+        function EdotVec = makeEdotVec(obj, framelist)
+            if isempty(obj.Ematrix)
+                obj.makeE(framelist);
+            end
+            syms t real
+            Q = obj.getQs(framelist);
+            for i = 1:obj.framenumber
+                fprintf("EdotVec %i / %i : ", i, obj.framenumber)
+                if ~isempty(framelist(i).EdotVec)
+                    continue
+                end
+                if all(framelist(i).cm2joint == 0) & all(framelist(i).joint2cm == 0)
+                    EdotVec = framelist(i-1).EdotVec;
+                else
+                    Evec = framelist(i).Ematrix(1:3,4);
+                    Evec = obj.sympySimplify(Evec);
+                    prediff = subs(Evec, Q(:,1), t * Q(:,2));
+                    postdiff = diff(prediff, t);
+                    EdotVec = subs(postdiff, t * Q(:,2), Q(:,1));
+                    if i < 16
+                        EdotVec = obj.sympySimplify(EdotVec);
+                    end
+                end
+                framelist(i).EdotVec = EdotVec;
+                fprintf("Done\n")
+            end
+        end
+
 
         % ###########################################################
 
@@ -223,24 +248,28 @@ classdef Frame < handle
             W = sym(zeros(3,3));
             for i = 1:obj.framenumber
                 frame = framelist(i);
+                if ~isempty(frame.Wmatrix)
+                    continue
+                end
                 if frame.rotationaxis == 0
-                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
-                    W = framelist(i-1).Wmatrix
+                    fprintf('W %i / %i : ', i, obj.framenumber);
+                    W = framelist(i-1).Wmatrix;
+                    fprintf("Done\n")
                 else
-                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
+                    fprintf('W %i / %i : ', i, obj.framenumber);
                     Wrel = frame.makeRelativeW();
                     Er = frame.makeEr();
                     R = Er(1:3,1:3);
                     W_unsimp = R' * W * R + Wrel;
                     if i < 10;
-                        W = obj.sympySimplify(transpose(R) * W * R + Wrel)
+                        W = obj.sympySimplify(W_unsimp);
                     else
                         W_vec = obj.unskew(W_unsimp);
                         W_simp_vec = obj.sympySimplify(W_vec);
-                        W = obj.skew(W_simp_vec)
+                        W = obj.skew(W_simp_vec);
                     end
+                    fprintf("Done\n")
                 end
-
                 frame.Wmatrix = W;
             end
 
@@ -268,17 +297,14 @@ classdef Frame < handle
             Qvars = Q(:,2); % Extract Q variable symbols for faster indexing
             B = sym(zeros(obj.framenumber * 6, numQs));
             obj.makeW(framelist);
+            obj.makeEdotVec(framelist);
 
             for i = 1:obj.framenumber
-                % Retrieve or compute Edot
-                if isempty(framelist(i).Edotmatrix)
-                    framelist(i).Edotmatrix = framelist(i).makeEdot(framelist);
-                end
-                Edot = framelist(i).Edotmatrix;
-
+                fprintf("B, frame %i / %i : ", i, obj.framenumber)
+                EdotVec = framelist(i).EdotVec;
                 W = framelist(i).Wmatrix;
 
-                posvec = collect(Edot(1:3, 4), Qvars); % Collect terms
+                posvec = collect(EdotVec(1:3,1), Qvars); % Collect terms
                 Ovec   = collect(obj.unskew(W(1:3,1:3)), Qvars);
 
                 % Extract coefficients for all directions at once
@@ -310,9 +336,9 @@ classdef Frame < handle
                         end
                     end
                 end
-
+                fprintf("Done\n")
             end
-            B = obj.sympySimplify(B);  % Simplify O using sympySimplify
+            % B = obj.sympySimplify(B);  % Simplify O using sympySimplify
             obj.Bmatrix = B;
         end
 
@@ -432,6 +458,7 @@ classdef Frame < handle
         function simplified = sympySimplify(~, mat)
             % Import sympy
             sympy = py.importlib.import_module('sympy');
+            fu = py.importlib.import_module('sympy.simplify.fu');  
             [rows, cols] = size(mat);
 
             % Convert symbolic matrix to a cell array of strings
@@ -448,10 +475,11 @@ classdef Frame < handle
             % Create a sympy Matrix and apply element‐wise simplification
             pyMat = sympy.Matrix(pyList);
             simpPyMat1 = pyMat.applyfunc(sympy.trigsimp);
-            simpPyMat2 = simpPyMat1.applyfunc(sympy.simplify);
+            %simpPyMat2 = simpPyMat1.applyfunc(sympy.simplify);
+            %simpPyMat2 = simppyMat1.applyfunc(sympy.simplify);
 
             % **Force MATLAB row-major format** before converting back
-            simpPyMat2 = simpPyMat2.T;  % **Transpose in Python before sending to MATLAB**
+            simpPyMat2 = simpPyMat1.T;  % **Transpose in Python before sending to MATLAB**
 
             % Convert the simplified Python matrix back to a cell array
             nestedList = cell(simpPyMat2.tolist());

@@ -1,4 +1,4 @@
-%{
+
 clear
 clc
 
@@ -44,10 +44,10 @@ frames(2).setProperties('Fvec', [0,0,-9.81*16800], 'Tvec', [0,0,0], 'initconditi
 
 for i = 1:wiresegments  
     frames(2 + 3*i-2).setProperties('rotationaxis', 3, 'rotationvar', theta(i), 'Qcoordinates', [theta(i),thetad(i),thetadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
-    frames(2 + 3*i-2).setProperties('mass', 5, 'Jmatrix', [41,0,0;0,41,0; 0,0, 0.025])
+    frames(2 + 3*i-2).setProperties('mass', 0, 'Jmatrix', [0,0,0;0,0,0; 0,0, 0])
     frames(2 + 3*i-2).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
     frames(2 + 3*i-1).setProperties('rotationaxis', 1, 'rotationvar', phi(i), 'Qcoordinates', [phi(i),phid(i),phidd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
-    frames(2 + 3*i-1).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
+    frames(2 + 3*i-1).setProperties('mass', 0, 'Jmatrix', [0,0,0;0,0,0; 0,0, 0])
     frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
     frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [], 'cm2joint', [0,0,0], 'joint2cm',[0,0,-10])
     frames(2 + 3*i).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
@@ -58,7 +58,7 @@ frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Q
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
-
+%{
 
 noofframes = 2 + wiresegments*3
 
@@ -74,8 +74,6 @@ F = frames(noofframes).makeF(frames)
 
 Mstar = B' * M * B; %% Mstar = simplify(Mstar);
 Nstar = B' * (M*Bdot + D*M*B); %% Nstar = simplify(Nstar);
-rotations = frames(noofframes).exportRotations(frames)
-T = frames(noofframes).getTransformMat(frames)
 
 % Fstar = B' * F;
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
@@ -86,14 +84,14 @@ initCond = frames(noofframes).getInitCond(frames)
 system = struct( ...
     'Qcoordinates', Q,...
     'initconditions', initCond,... 
-    'rotations', rotations,...
     'Mstar', Mstar, ...
     'Nstar', Nstar, ...
-    'T', T,...
     'B', B, ...
     'Bt', B',...
     'Bdot', Bdot,...
     'F', F); 
+
+%{
 
 configname = "CraneDemo3Wires.json",
 overwriteconfig = input('Overwrite Config: ' + configname + '| y/n: ', 's');
@@ -103,3 +101,6 @@ if overwriteconfig == 'y'
 end
 
 
+%}
+
+%}
