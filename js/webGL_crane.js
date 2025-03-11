@@ -109,6 +109,10 @@ export function loadModels(scene) {
         position: { z: [-10]},
         rotation: {}
     });
+    loadModel('container', '../assets/models/container.obj', '../assets/materials/container.mtl', { x: 0, y: 0, z: -3 }, scene, 'Lambda3', {
+        position: {},
+        rotation: {}
+    });
 }
 
 

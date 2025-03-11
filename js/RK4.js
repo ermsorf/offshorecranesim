@@ -1,7 +1,7 @@
 import { evaluateMatrix } from "./configimport.js";
 
-export function rk4Step(Q, M, N, F, dt, damping = 0.99) {
-
+export function rk4Step(Q, M, N, F, dt, damping = 0.996) {
+  // console.time("M^-1 * (F - Nq)");
   const n = Q.length;
   const M_inv = math.inv(M); // M⁻¹
   //console.log("det(M)", math.det(M))
@@ -14,6 +14,8 @@ export function rk4Step(Q, M, N, F, dt, damping = 0.99) {
   const qd = Q.map(row => row[1]); // Velocities
   const x = math.reshape(q.concat(qd), [2 * n, 1]);
 
+  // let test = math.multiply(M_inv, math.subtract(F, math.multiply(N, qd)))
+  // console.timeEnd("M^-1 * (F - Nq)");
   // console.log("q", q);
   // console.log("qd", qd);
   // console.log("x", x);
@@ -69,7 +71,7 @@ export async function runRK4Step(system, Q, variableMap, dt, controlForces) {
       ]);
       //const endEval = performance.now();
       //console.log(`Matrix evaluation: ${(endEval - startEval).toFixed(3)} ms`);
-      await console.log("Q",Q)
+      // await console.log("Q",Q)
       if (!Mstar || !Nstar || !Bt || !F) {
           console.error("Matrix evaluation failed. Aborting RK4 step.");
           return;

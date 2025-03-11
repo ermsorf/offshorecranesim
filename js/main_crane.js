@@ -9,8 +9,8 @@ const graphicsDiv = document.getElementById("graphics");
 let system, Q, variableMap, xState, xState_new, rotations;
 let running = false;
 let step = 0;
-const maxSteps = 20000;
-const dt = 0.01; // Time step in seconds
+const maxSteps = 20000; 
+const dt = 0.02; // Time step in seconds
 let lastTime = performance.now();
 
 
@@ -44,6 +44,9 @@ initialize().then(() => {
     // console.log("Q in initialize().then()", Q);
     runRK4Step(system, Q, variableMap, dt, controlForces);
     createUI();
+    // scene.traverse((object) => {
+    //     console.log(object.name, object);
+    // });
     animate();
 });
 
@@ -57,12 +60,13 @@ function runNextStep() {
     
     while (elapsed >= dt) {  // Run multiple steps if needed
         // console.log("Q before runRK4Step", Q);
-        console.time("runRK4Step");
+        // console.time("runRK4Step");
         runRK4Step(system, Q, variableMap, dt, controlForces);
-        console.timeEnd("runRK4Step");
+        // console.timeEnd("runRK4Step");
         // console.log("Q after runRK4Step", Q)
         // console.log("getVar('cr')", getVar('cr'));
         // console.log("getVar('trolley')", getVar('trolley'));
+
         transformValues = { "BoomRotationZ": getVar("cr"),
                             "TrolleyTranslationX": getVar("trolley"),
                             "Theta1RotationZ": getVar("theta1"),
@@ -134,41 +138,78 @@ async function singleStep() {
 
 function createUI() {
     const gui = new GUI();
-    let controllers = {}; // Store GUI controllers for updates
 
     // Simulation controls
-    const simulationFolder = gui.addFolder('Simulation Controls');
-    simulationFolder.add({ start: startSimulation }, 'start');
-    simulationFolder.add({ stop: stopSimulation }, 'stop');
-    simulationFolder.add({ reset: resetSimulation }, 'reset');
-    simulationFolder.add({ step: singleStep }, 'step');
+    const simulationFolder = gui.addFolder('RK4 Controls');
+    simulationFolder.add({ Start: startSimulation }, 'Start');
+    simulationFolder.add({ Stop: stopSimulation }, 'Stop');
+    simulationFolder.add({ Step: singleStep }, 'Step');
     simulationFolder.open();
 
-    // Transform controls folder
-    const transformFolder = gui.addFolder('Transform Controls');
+    // Camera controls
+    const cameraFolder = gui.addFolder('Camera');
+    const cameraActions = {
+        Global: () => console.warn("Global camera switch not implemented"),
+        Cabin: () => console.warn("Cabin camera switch not implemented"),
+        Trolley: () => console.warn("Trolley camera switch not implemented"),
+    };
+    cameraFolder.add(cameraActions, 'Global');
+    cameraFolder.add(cameraActions, 'Cabin');
+    cameraFolder.add(cameraActions, 'Trolley');
 
-    function addControl(folder, prop, min, max) {
-        controllers[prop] = folder.add(controlForces, prop, min, max)
-            .onChange((value) => {
-                controlForces[prop] = value; // Update value live
-            });
-    }
+    // Joystick controls folder
+    const joystickFolder = gui.addFolder('Joystick Controls');
+    const joystickContainer = document.createElement('div');
+    joystickContainer.style.position = 'relative';
+    joystickContainer.style.width = '150px';
+    joystickContainer.style.height = '150px';
+    joystickContainer.style.margin = '10px auto';
+    joystickContainer.style.background = '#424242';
+    joystickContainer.style.borderRadius = '50%';
+    joystickFolder.domElement.appendChild(joystickContainer);
 
-    addControl(transformFolder, 'BoomRotationZ', -1000000, 1000000);
-    addControl(transformFolder, 'TrolleyTranslationX', -50000, 50000);
+    const joystick = nipplejs.create({
+        zone: joystickContainer,
+        mode: 'static',
+        position: { left: '50%', top: '50%' },
+        color: '#27D0FF'
+    });
 
-    // Add a reset button
-    transformFolder.add({ reset: () => {
-        Object.keys(controlForces).forEach((key) => {
-            controlForces[key] = 0;
-            controllers[key].setValue(0); // Reset GUI sliders visually
-        });
-    }}, 'reset').name('Reset Inputs');
+    joystick.on('move', (evt, data) => {
+        if (data && data.force !== undefined && data.angle) {
+            const angle = data.angle.radian;
+            const force = data.force;
+            controlForces.BoomRotationZ = - Math.cos(angle) * force * 100000;
+            controlForces.TrolleyTranslationX = Math.sin(angle) * force * 15000;
+        }
+    });
 
-    transformFolder.open();
+    joystick.on('end', () => {
+        controlForces.BoomRotationZ = 0;
+        controlForces.TrolleyTranslationX = 0;
+    }); 
 }
+
 
 function getVar(name) {
     const { i, j } = variableMap[name];
     return Q[i][j];
+}
+
+function setVar(name, value) {
+    const { i, j } = variableMap[name];
+    Q[i][j] = value;
+}
+
+
+function updateSpline() {
+    const p1 = new THREE.Vector3(), p2 = new THREE.Vector3(), p3 = new THREE.Vector3();
+    body1.getWorldPosition(p1);
+    body2.getWorldPosition(p2);
+    body3.getWorldPosition(p3);
+
+    curve.points = [p1, p2, p3];
+
+    tubeMesh.geometry.dispose();  // Free memory
+    tubeMesh.geometry = new THREE.TubeGeometry(curve, 20, 0.1, 8, false);
 }
