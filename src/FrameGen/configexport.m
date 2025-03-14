@@ -6,39 +6,26 @@ function configexport(system, filename)
         [nRows, nCols] = size(matrix);
         nestedArray = cell(1, nRows);
 
-        if strcmp(field, "rotations")
-            % Special handling for rotation matrices
-            for row = 1:nRows
-                axisValue = str2double(char(matrix(row, 1))); % Extract axis (should be 1, 2, or 3)
-                varName = string(symvar(matrix(row, 2))); % Extract variable name from second column
-                if isempty(varName)
-                    varName = "";
+        if strcmp(field, "rotations") || strcmp(field, "initconditions")
+            continue; % Ignore special case matrices
+        end
+
+        % Default behavior for other matrices
+        for row = 1:nRows
+            rowArray = cell(1, nCols);
+            for col = 1:nCols
+                exprStr = formatExpression(char(matrix(row, col)));
+                varsList = string(symvar(matrix(row, col)));
+                
+                % Filter variables based on system.Qcoordinates
+                varsList = varsList(ismember(varsList, string(system.Qcoordinates)));
+                
+                if isempty(varsList)
+                    varsList = [];
                 end
-                nestedArray{row} = struct('axis', axisValue, 'vars', varName);
+                rowArray{col} = struct('expr', exprStr, 'vars', varsList);
             end
-        elseif strcmp(field, "initconditions")
-            % Directly export numeric values for initconditions
-            for row = 1:nRows
-                rowArray = zeros(1, nCols);
-                for col = 1:nCols
-                    rowArray(col) = double(matrix(row, col));
-                end
-                nestedArray{row} = rowArray;
-            end
-        else
-            % Default behavior for other matrices
-            for row = 1:nRows
-                rowArray = cell(1, nCols);
-                for col = 1:nCols
-                    exprStr = formatExpression(char(matrix(row, col)));
-                    varsList = string(symvar(matrix(row, col)));
-                    if isempty(varsList)
-                        varsList = [];
-                    end
-                    rowArray{col} = struct('expr', exprStr, 'vars', varsList);
-                end
-                nestedArray{row} = rowArray;
-            end
+            nestedArray{row} = rowArray;
         end
 
         system.(field) = nestedArray;

@@ -198,7 +198,7 @@ classdef Frame < handle
                     postdiff = diff(prediff, t);
                     EdotVec = subs(postdiff, t * Q(:,2), Q(:,1));
                     if i < 16
-                        EdotVec = obj.sympySimplify(EdotVec);
+                        %EdotVec = obj.sympySimplify(EdotVec);
                     end
                 end
                 framelist(i).EdotVec = EdotVec;
