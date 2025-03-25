@@ -1,14 +1,14 @@
 % Run the main function
-main();
+clear
+clc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Main Function
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function main()
     %% Define the dynamic (moving) box.
-    movingBox.center = [1; 1; 3];
-    movingBox.L = [1; 1; 1];
+    movingBox.center = [0.8; 1; 3];
+    movingBox.L = [0.9; 0.9; 0.9];
     % For example, rotate the moving box by 30° about the Z-axis.
     theta = deg2rad(30);
     movingBox.R = rotz(theta);
@@ -56,7 +56,6 @@ function main()
     
     %% Visualize the moving box, stationary boxes, and contact/closest points.
     visualize_boxes(movingBox, stationaryBoxes, collisions);
-end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Visualization Functions
