@@ -10,7 +10,7 @@ psidd = sym('psidd',[1, 2],'real');
 % Crane Vars
 syms cr crd crdd trolley trolleyd trolleydd real
 
-wiresegments = 3;
+wiresegments = 3 ;
 
 % Wire rotation - 3
 theta = sym('theta',[1, wiresegments+1],'real');
@@ -44,13 +44,13 @@ frames(2).setProperties('Fvec', [0,0,-9.81*16800], 'Tvec', [0,0,0], 'initconditi
 for i = 1:wiresegments  
     frames(2 + 3*i-2).setProperties('rotationaxis', 3, 'rotationvar', theta(i), 'Qcoordinates', [theta(i),thetad(i),thetadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
     frames(2 + 3*i-2).setProperties('mass', 5, 'Jmatrix', [41,0,0;0,41,0; 0,0, 0.025])
-    frames(2 + 3*i-2).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
+    frames(2 + 3*i-2).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
     frames(2 + 3*i-1).setProperties('rotationaxis', 1, 'rotationvar', phi(i), 'Qcoordinates', [phi(i),phid(i),phidd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,0])
     frames(2 + 3*i-1).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
-    frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
-    frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [lambda(i),lambdad(i),lambdadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,-lambda(i)])
+    frames(2 + 3*i-1).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
+    frames(2 + 3*i).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Qcoordinates', [lambda(i),lambdad(i),lambdadd(i)], 'cm2joint', [0,0,0], 'joint2cm',[0,0,lambda(i)])
     frames(2 + 3*i).setProperties('mass', 5, 'Jmatrix', [41,0,0; 0, 41,0; 0,0,0.025])
-    frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [0,0,0; 0,0,0])
+    frames(2 + 3*i).setProperties('Fvec', [0,0,-9.81*5], 'Tvec', [0,0,0], 'initconditions', [-5,0,0])
 end
 
 frames(wiresegments*3 + 3).setProperties('rotationaxis', 3, 'rotationvar', theta(wiresegments+1), 'Qcoordinates', [theta(wiresegments+1), thetad(wiresegments+1), thetadd(wiresegments+1)],'cm2joint',[0,0,0],'joint2cm',[0,0, -1.5])
@@ -91,7 +91,7 @@ system = struct( ...
 overwriteconfig = input('Overwrite Config? y/n: ', 's');
 %%overwriteconfig == 'y'
 if overwriteconfig == 'y'
-    configexport(system, 'Crane5link.json')
+    configexport(system, 'cullingtest.json')
 end
 %}
 

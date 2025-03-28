@@ -1,5 +1,8 @@
 function configexport(system, filename)
     fields = fieldnames(system);
+    Qdeepcopy = system.Qcoordinates;
+    trigMap = containers.Map;
+    
     for i = 1:numel(fields)
         field = fields{i};
         matrix = system.(field);
@@ -14,15 +17,24 @@ function configexport(system, filename)
         for row = 1:nRows
             rowArray = cell(1, nCols);
             for col = 1:nCols
-                exprStr = formatExpression(char(matrix(row, col)));
-                varsList = string(symvar(matrix(row, col)));
+                exprStr = char(matrix(row, col));
+                [exprStr, trigMap] = extractTrigFunctions(exprStr, trigMap);
                 
-                % Filter variables based on system.Qcoordinates
-                varsList = varsList(ismember(varsList, string(system.Qcoordinates)));
+                % Extract variables from original expression
+                varsList = string(symvar(matrix(row, col)));  
+                qCoordsStr = string(Qdeepcopy);  
+                varsList = varsList(ismember(varsList, qCoordsStr));  
+                
+                % Extract trig terms from substituted exprStr
+                trigTerms = regexp(exprStr, 'trig\d+', 'match');
+                trigTerms = string(trigTerms);
+                varsList = [varsList, trigTerms];
+                varsList = unique(varsList); % Remove duplicates
                 
                 if isempty(varsList)
                     varsList = [];
                 end
+                
                 rowArray{col} = struct('expr', exprStr, 'vars', varsList);
             end
             nestedArray{row} = rowArray;
@@ -31,22 +43,33 @@ function configexport(system, filename)
         system.(field) = nestedArray;
     end
 
+    % Convert trigMap to an array of structs for JSON export
+    trigFunctions = cellfun(@(k, v) struct('name', v, 'expr', k), keys(trigMap), values(trigMap), 'UniformOutput', false);
+    system.trigFunctions = trigFunctions;
+
     jsonStr = jsonencode(system, 'PrettyPrint', true);
     fid = fopen(filename, 'w');
     fwrite(fid, jsonStr);
     fclose(fid);
 end
 
-function formattedExpr = formatExpression(expr)
+function [formattedExpr, trigMap] = extractTrigFunctions(expr, trigMap)
     expr = strrep(expr, '^', '**');
     
-    % Use regex to replace whole function names only
-    expr = regexprep(expr, '\<asin\>', 'Math.asin');
-    expr = regexprep(expr, '\<acos\>', 'Math.acos');
-    expr = regexprep(expr, '\<atan\>', 'Math.atan');
-    expr = regexprep(expr, '\<sin\>', 'Math.sin');
-    expr = regexprep(expr, '\<cos\>', 'Math.cos');
-    expr = regexprep(expr, '\<tan\>', 'Math.tan');
-
+    trigPatterns = {'sin', 'cos', 'tan', 'asin', 'acos', 'atan'};
+    for i = 1:numel(trigPatterns)
+        pattern = trigPatterns{i};
+        matches = regexp(expr, [pattern '\(([^)]+)\)'], 'match');
+        
+        for j = 1:numel(matches)
+            trigExpr = ['Math.' matches{j}];
+            if ~isKey(trigMap, trigExpr)
+                trigKey = sprintf('trig%d', trigMap.Count + 1);
+                trigMap(trigExpr) = trigKey;
+            end
+            expr = strrep(expr, matches{j}, trigMap(trigExpr));
+        end
+    end
+    
     formattedExpr = expr;
 end

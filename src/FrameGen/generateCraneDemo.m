@@ -58,7 +58,7 @@ frames(wiresegments*3 + 3).setProperties('rotationaxis', 0, 'rotationvar', 0, 'Q
 frames(wiresegments*3 + 3).setProperties('mass', 5000, 'Jmatrix', [7500,  0, 0; 0,  7500,  0; 0,  0,  7500])
 frames(wiresegments*3 + 3).setProperties('Fvec', [0,0,-9.81*5000], 'Tvec', [0,0,0], 'initconditions', [0,0,0])
 
-%{
+
 
 noofframes = 2 + wiresegments*3
 
@@ -70,7 +70,7 @@ B = frames(noofframes).makeB(frames)
 Bdot = frames(noofframes).makeBdot(frames)
 D = frames(noofframes).makeD(frames); 
 M = frames(noofframes).makeM(frames); 
-F = frames(noofframes).makeF(frames)
+F = frames(noofframes).makeF(frames);
 
 Mstar = B' * M * B; %% Mstar = simplify(Mstar);
 Nstar = B' * (M*Bdot + D*M*B); %% Nstar = simplify(Nstar);
@@ -91,7 +91,6 @@ system = struct( ...
     'Bdot', Bdot,...
     'F', F); 
 
-%{
 
 configname = "CraneDemo3Wires.json",
 overwriteconfig = input('Overwrite Config: ' + configname + '| y/n: ', 's');
@@ -100,7 +99,3 @@ if overwriteconfig == 'y'
     configexport(system, configname)
 end
 
-
-%}
-
-%}

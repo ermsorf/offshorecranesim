@@ -50,10 +50,9 @@ system = struct( ...
     'Bdot', Bdot,...
     'F', F); 
 
-%{
+
 overwriteconfig = input("Overwrite config? y/n: ",'s');
 
 if overwriteconfig == "y"
     configexport(system,"singlePendulumConfig.json")
 end
-%}
