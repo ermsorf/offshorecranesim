@@ -47,6 +47,7 @@ export function loadModel(name, objPath, mtlPath, position, scene, parentName = 
       objLoader.load(
         objPath,
         (object) => {
+
           // Set the initial position.
           object.position.set(position.x, position.y, position.z);
 
