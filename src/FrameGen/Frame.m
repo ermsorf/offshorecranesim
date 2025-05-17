@@ -1,16 +1,19 @@
 classdef Frame < handle
+    %%%% REQUIRES Python with SymPy installed
+    %%%% For MatLab-Python compatibility: https://se.mathworks.com/support/requirements/python-compatibility.html
     properties
         framenumber
-
         rotationaxis
         rotationvar
-
         cm2joint = [0, 0, 0]
         joint2cm = [0, 0, 0]
-
-        Qcoordinates % Format: [theta, thetadot, thetaddot;...] for each coordinate
-
         initconditions
+        Qcoordinates % Format: [theta, thetadot, thetaddot;...] for each coordinate
+        Fvec
+        Tvec
+        mass
+        Jmatrix
+
 
         relativeEmatrix
         Ematrix
@@ -20,18 +23,10 @@ classdef Frame < handle
         relativeOmatrix
         Omatrix
         Wmatrix
-
         Bmatrix
         Bdotmatrix
-
-        mass
-        Jmatrix
         Mmatrix
-
         Dmatrix
-
-        Fvec
-        Tvec
 
     end
 
@@ -156,7 +151,7 @@ classdef Frame < handle
             syms t real
             for i = 1:obj.framenumber
                 E = framelist(i).Ematrix;
-                
+
 
                 % Vectorized substitution: replace Q(:,1) -> t*Q(:,2)
                 prediff = subs(E, Q(:,1), t * Q(:,2));
@@ -235,7 +230,12 @@ classdef Frame < handle
             if axis == 0 || obj.rotationvar == 0 || isempty(obj.Qcoordinates)
                 return
             end
-            thetad = obj.Qcoordinates(2);
+            thetad = 0;
+            for i = 1:height(obj.Qcoordinates)
+                if obj.Qcoordinates(i,1) == obj.rotationvar
+                    thetad = obj.Qcoordinates(i,2);
+                end
+            end
             switch axis
                 case 0
                     return;
@@ -262,7 +262,6 @@ classdef Frame < handle
                     else
                         W = framelist(i-1).Wmatrix;
                     end
-                    
                     fprintf("Done\n")
                 else
                     fprintf('W %i / %i : ', i, obj.framenumber);
@@ -281,7 +280,6 @@ classdef Frame < handle
                 end
                 frame.Wmatrix = W;
             end
-
         end
 
 
@@ -312,7 +310,6 @@ classdef Frame < handle
                 fprintf("B, frame %i / %i : ", i, obj.framenumber)
                 EdotVec = framelist(i).EdotVec;
                 W = framelist(i).Wmatrix;
-
                 posvec = collect(EdotVec(1:3,1), Qvars); % Collect terms
                 Ovec   = collect(obj.unskew(W(1:3,1:3)), Qvars);
 
@@ -382,10 +379,16 @@ classdef Frame < handle
         % ###############################################################
 
         function Q_combined = getQs(obj, framelist)
-            % Combines time-dependent Q coordinates from multiple frames
+            % Combines unique time-dependent Q coordinates from multiple frames (rows unique)
             Q_combined = sym([]);
-            for i = 1:(obj.framenumber)
-                Q_combined = [Q_combined; framelist(i).Qcoordinates];
+            for i = 1:obj.framenumber
+                Qs = framelist(i).Qcoordinates;
+                for j = 1:size(Qs,1)
+                    row = Qs(j,:);
+                    if isempty(Q_combined) || ~ismember(row, Q_combined, 'rows')
+                        Q_combined = [Q_combined; row];
+                    end
+                end
             end
         end
 
@@ -396,7 +399,8 @@ classdef Frame < handle
             % Combines time-dependent Q coordinates from multiple frames
             initCond = [];
             for i = 1:(obj.framenumber)
-                if ~isempty(framelist(i).initconditions) || ~isempty(framelist(i).Qcoordinates)
+                frame = framelist(i);
+                if ~isempty(frame.Qcoordinates) & (~isempty(frame.initconditions) || ~isempty(frame.Qcoordinates))
                     initCond = [initCond; framelist(i).initconditions];
                 end
             end
@@ -466,8 +470,10 @@ classdef Frame < handle
 
         function simplified = sympySimplify(~, mat)
             % Import sympy
+            % simplified = mat; return
+
             sympy = py.importlib.import_module('sympy');
-            fu = py.importlib.import_module('sympy.simplify.fu');  
+            fu = py.importlib.import_module('sympy.simplify.fu');
             [rows, cols] = size(mat);
 
             % Convert symbolic matrix to a cell array of strings
