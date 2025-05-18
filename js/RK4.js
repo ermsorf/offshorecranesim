@@ -1,7 +1,8 @@
 
 import { evaluateMatrix, computeTrigValues } from "./configimport.js";
-import { stopSimulation, system, variableMap, trigMap } from "./main_crane.js";
-import { logQStep, logReactions, logPerformance } from "./csv.js"; 
+import { system, variableMap, trigMap } from "./main_crane.js";
+import { logQStep, logReactions, logPerformance } from "./csv.js";
+import { stopSimulation, step, dt } from "./main_crane.js"; 
 import { create, all } from 'https://cdn.jsdelivr.net/npm/mathjs@12.4.1/+esm';
 
 const math = create(all);
@@ -55,7 +56,7 @@ export async function rk4Step(system, Q, variableMap, trigMap, dt, controlForces
 
     // Reshape x into Q format: [q1, q1d, 0; q2, q2d, 0; ...]
     const Q_new = Array.from({ length: n }, (_, i) => [q[i][0], qdot[i][0], 0]);
-    // console.log("Q_new", Q_new);
+    // Evaluate matrices
     const trigValues = computeTrigValues(Q_new, variableMap, trigMap, constants);
     const [Mstar, Nstar, Bt_local, F_local] = await Promise.all([
       evaluateMatrix(system.Mstar, Q_new, variableMap, trigValues, constants),
@@ -64,24 +65,23 @@ export async function rk4Step(system, Q, variableMap, trigMap, dt, controlForces
       evaluateMatrix(system.F, Q_new, variableMap, trigValues, constants),
     ]);
 
-    // logReactions(reactions, system); // Log the reactions
-    // console.log("Mstar", Mstar);
-    // console.log("Nstar", Nstar);
-    // console.log("Bt_local", Bt_local);
-    // console.log("F_local", F_local);
-    const Mstar_inv = math.inv(Mstar);
+    
     
     const FstarGravity = math.multiply(Bt_local, F_local);
-    // console.log("FstarGravity", FstarGravity);
+    // const FstarDamping = getDampingForces(Q_new, F_local, Bt_local);
     const FstarControl = getControlForces(Q_new, F_local, Bt_local, controlForces);
-    const FstarTemp = math.add(FstarGravity, FstarControl);
+    const FstarTemp = math.add(FstarGravity, FstarControl); 
+
 
     const FstarConstraint = getConstraintForces(Q_new, Mstar, Nstar, FstarTemp);
-    const Fstar = math.add(FstarTemp, FstarConstraint);
+    const FstarControlAfterConstraint = getControlAfterConstraintForces(Q_new, F_local, Bt_local, controlForces);
+    const Fstar = math.add(FstarTemp, FstarConstraint, FstarControlAfterConstraint); 
+
+    const Mstar_inv = math.inv(Mstar);
 
     const qddot = math.multiply(Mstar_inv, math.subtract(Fstar, math.multiply(Nstar, qdot)));
 
-    return math.concat(qdot, qddot, 0); // [2n,1]
+    return math.concat(qdot, qddot, 0); 
   }
 
   const k1 = math.multiply(await computeXdot(x), dt);
@@ -136,19 +136,29 @@ function getConstraintForces(Q, Mstar, Nstar, Fstar) {
 function getControlForces(Q, F, Bt, controlForces) {
   let Fcontrol = new Array(F.length).fill().map(() => [0]);
   Fcontrol[6*0+5][0] = controlForces.BoomRotationZ
-  Fcontrol[6*1+0][0] = (Q[1][0] < 10 ? 10000 : -10000)//controlForces.TrolleyTranslationX
-  Fcontrol[6*4+2][0] = 0// (Q[4][0] < -6 ? 10000 : -10000) //controlForces.TrolleyTranslationX
+  Fcontrol[6*1+0][0] = controlForces.TrolleyTranslationX
   // Fcontrol[6*4+2][0] = 250
 
   let FstarControl = math.multiply(Bt, Fcontrol);
   return FstarControl; // Fstarcontrol
 }
+function getControlAfterConstraintForces(Q, F, Bt, controlForces) {
+  let Fcontrol = new Array(F.length).fill().map(() => [0]);
+  if (step*dt > 3) {
+    // Fcontrol[6*4+2][0] = (Q[4][0] < -6 ? 10000 : -10000) //controlForces.TrolleyTranslationX
+    };
+  
+  
+
+  let FstarControlAfterConstraint = math.multiply(Bt, Fcontrol);
+  return FstarControlAfterConstraint; // Fstarcontrol
+}
 
 function getDampingForces(Q, F, Bt) {
 
   let Fdamping = new Array(F.length).fill().map(() => [0]);
-  Fdamping[5][0] = - 1 * 147000 * Q[0][1] // * math.abs(Q[0][1]); // Damping for Boom Rotation Z
-  Fdamping[6][0] = 0 //Q[1][0] > 20 ? - 16800 * Q[1][0]-20 / 0.1 : Q[1][0] < -3 ? -16800 * Q[1][1]-3 / 0.1 : - 0.5 * 16800 * Q[1][1] * math.abs(Q[1][1]); // Damping for Trolley Translation X
+  Fdamping[5][0] = - 14700 * Q[0][1] // * math.abs(Q[0][1]); // Damping for Boom Rotation Z
+  Fdamping[6][0] = - 1680 * Q[1][1]
   
   let ws = system.info.wiresegments; // # of wire segments
   if (ws >= 1) {

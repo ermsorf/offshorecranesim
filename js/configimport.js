@@ -19,7 +19,7 @@ export async function loadSystemConfig(filePath) {
     console.log("System Configuration:", system)
     console.log("Initial Q", system.initconditions);
     let Q = system.initconditions.map(row => [...row]);
-    // Q[4][0] = -10;
+    Q[4][0] = -10;
     Q[2][0] = Math.PI/2
 
     return { system, Q, variableMap, trigMap };

@@ -1,15 +1,18 @@
 import GUI from "../libs/js/lil-gui.module.min.js"; 
-import { downloadCSV } from './csv.js';
-import { startSimulation, stopSimulation, singleStep, controlForces } from './main_crane.js';
+import { downloadCSV, loadCSVFile } from './csv.js';
+import { startSimulation, stopSimulation, singleStep, setRunning, setStep, setPlaybackIndex } from './main_crane.js';
+import { controlForces } from "./main_crane.js"; 
+
 // Create UI buttons
+export let playbackMode = false;
 
 export function createUI() {
   const gui = new GUI();
   gui.domElement.style.position = "absolute";
   gui.domElement.style.top = "0px";
   gui.domElement.style.right = "0px";
-  gui.domElement.style.height = '100vh'; // Full vertical height
-  gui.domElement.style.overflowY = 'auto'; // Enable scrolling if needed
+  gui.domElement.style.height = '100vh';
+  gui.domElement.style.overflowY = 'auto';
 
   // Simulation controls
   const simulationFolder = gui.addFolder("RK4 Controls");
@@ -46,14 +49,14 @@ export function createUI() {
     mode: "static",
     position: { left: "50%", top: "50%" },
     color: "#27D0FF",
-  }); 
+  });
 
   joystick.on("move", (evt, data) => {
     if (data && data.force !== undefined && data.angle) {
       const angle = data.angle.radian;
-      const joystickMagnitude = data.force; // should be between 0 and 1 but isnt for some reason.
-      controlForces.BoomRotationZ = -Math.cos(angle) * joystickMagnitude * 100000; // Change 100000 to adjust force magnitude
-      controlForces.TrolleyTranslationX = Math.sin(angle) * joystickMagnitude * 1000; 
+      const joystickMagnitude = data.force;
+      controlForces.BoomRotationZ = -Math.cos(angle) * joystickMagnitude * 100000;
+      controlForces.TrolleyTranslationX = Math.sin(angle) * joystickMagnitude * 1000;
     }
   });
 
@@ -62,4 +65,51 @@ export function createUI() {
     controlForces.TrolleyTranslationX = 0;
   });
 
-};
+  // Playback Controls
+  const playbackFolder = gui.addFolder("Playback Controls");
+  const playbackActions = {
+    Start: () => {
+      playbackMode = true;
+      setStep(0);
+      setPlaybackIndex(0);
+      setRunning(true);
+    },
+    Stop: () => {
+      playbackMode = false;
+      setRunning(false);
+    }
+  };
+  playbackFolder.add(playbackActions, "Start");
+  playbackFolder.add(playbackActions, "Stop");
+
+  // CSV Upload Input
+  const csvLabel = document.createElement("label");
+  csvLabel.textContent = "Load CSV:";
+  csvLabel.style.display = "block";
+  csvLabel.style.marginTop = "8px";
+  csvLabel.style.fontSize = "14px";
+  csvLabel.style.color = "#fff";
+
+  const csvInput = document.createElement("input");
+  csvInput.type = "file";
+  csvInput.accept = ".csv";
+  csvInput.style.display = "block";
+  csvInput.style.margin = "4px 0 10px";
+
+  csvInput.addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      await loadCSVFile(file);  // Make sure loadCSVFile() is defined globally
+      setTimeout(() => {
+        playbackMode = true;
+        setStep(0);
+        setPlaybackIndex(0);
+        startSimulation();
+      }, 1000);
+      
+    }
+  });
+
+  playbackFolder.domElement.appendChild(csvLabel);
+  playbackFolder.domElement.appendChild(csvInput);
+}

@@ -6,19 +6,22 @@ necessary.
         ----------------|-------------------------------
         framenumber     |   int
         rotationaxis    |   0, 1, 2, 3
-        rotationvar     |   sym / float
+        rotationvar     |   sym / constant
         cm2joint        |   1x3 vector, syms / constants
         joint2cm        |   1x3 vector, syms / constants
-        initconditions  |   Nx3 vector, syms / constants
-        Qcoordinates    |   Nx3 vector, syms, Format: [theta, thetadot, thetaddot;...] for each coordinate
+        initconditions  |   Nx3 vector, syms / constants    
+        Qcoordinates    |   Nx3 vector, syms, Format: [theta, thetad, thetadd ; ...] for each coordinate
         Fvec            |   1x3 vector, syms / constants
         Tvec            |   1x3 vector, syms / constants
-        mass            |   float
+        mass            |   sym / constant
         Jmatrix         |   3x3 matrix, syms / constants
 
 %}
+clear
+clc
 
-wiresegments = 3;
+
+wiresegments = 1;
 wirelength = 10/wiresegments;
 % Optional config filename
 filename = sprintf('Crane%dEL.json', wiresegments);

@@ -88,3 +88,17 @@ export function downloadCSV(filename) {
   link.click();
   document.body.removeChild(link);
 }
+
+
+export let playbackData = [];
+
+export async function loadCSVFile(file) {
+  const text = await file.text();
+  const [headerLine, ...lines] = text.trim().split("\n");
+  const headers = headerLine.split(",");
+  playbackData = lines.map(line => {
+    const values = line.split(",").map(Number);
+    return Object.fromEntries(values.map((v, i) => [headers[i], v]));
+  });
+  console.log("CSV Loaded:", playbackData.length, "steps");
+}
