@@ -249,15 +249,13 @@ eqs     =  [eq1, eq2, eq3, eq4, eq5, eq6, eq7, eq8, eq9, ...
 unknowns =  [Re1I, Re2I, Re3I, ...
              Re11, Re21, Re31, ...
              Re12, Re22, Re32, ... 
-             Re15, Re25, Re35];
-
+             Re13, Re23, Re33, ... 
+             ];
 
 sol = solve(eqs, unknowns);
+
 solArray = struct2array(sol);
 reactions_1_wireSeg = solArray(6); %Newtons
 %reactions_1_wireSeg = (solArray(6)/g-m2-m3-mHook); % Output in kg
+
 end
-
-
-
- 

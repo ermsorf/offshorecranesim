@@ -4,7 +4,7 @@
 % Defining the subfolder
 subfolder = 'C:\GitHub\offshorecranesim\src\LoadCell\js';
 
-eqsStruct = Reaction_3_link(frames);
+eqsStruct = ReactionForces(frames);
 fields = fieldnames(eqsStruct);
 eqsForJS = struct();
 for i = 1:length(fields)
@@ -15,7 +15,7 @@ end
 jsonText = jsonencode(eqsForJS);
 
 % Build file path
-filepath = fullfile(subfolder, 'equations_3_link.json');
+filepath = fullfile(subfolder, 'equations.json');
 
 % Save to the file using the complete file path
 fid = fopen(filepath, 'w');
@@ -23,4 +23,4 @@ if fid == -1
     error('Failed to open file: %s', filepath);
 end
 fprintf(fid, '%s', jsonText);
-fclose(fid);q
+fclose(fid);

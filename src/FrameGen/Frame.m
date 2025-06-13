@@ -222,13 +222,12 @@ classdef Frame < handle
                     continue
                 end
                 if frame.rotationaxis == 0
-                    fprintf('W %i / %i : ', i, obj.framenumber);
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
                     if i == 1
                         W = sym(zeros(3,3));
                     else
-                        W = framelist(i-1).Wmatrix;
+                        W = framelist(i-1).Wmatrix
                     end
-                    fprintf("Done\n")
                 else
                     fprintf('W %i / %i : ', i, obj.framenumber);
                     Wrel = frame.makeRelativeW();

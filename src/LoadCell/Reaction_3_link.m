@@ -27,6 +27,21 @@ syms Re110 Re210 Re310 real
 
 %%   MASSES IN [kg]:
 mHook = 500;
+syms Xddot11 Xddot21 Xddot31 real
+syms Xddot12 Xddot22 Xddot32 real
+syms Xddot13 Xddot23 Xddot33 real
+syms Xddot14 Xddot24 Xddot34 real
+syms Xddot15 Xddot25 Xddot35 real
+syms Xddot16 Xddot26 Xddot36 real
+syms Xddot17 Xddot27 Xddot37 real
+syms Xddot18 Xddot28 Xddot38 real
+syms Xddot19 Xddot29 Xddot39 real
+syms Xddot110 Xddot210 Xddot310 real
+
+
+
+%   MASSES IN [kg]:
+
 m1 = frames(1).mass;
 m2 = frames(2).mass;
 m3 = frames(3).mass;

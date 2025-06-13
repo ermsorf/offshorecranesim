@@ -137,3 +137,30 @@ reactions = ReactionForces(frames);   % 1 link
 % fclose(fid);
 
 
+%% Three wire segment
+% frames(1) = Frame('framenumber',1, 'rotationaxis', 0, 'rotationvar',theta(1), 'mass', 147000, 'Qcoordinates',[theta(1),thetadot(1),thetaddot(1)],'cm2joint',[0,0,0],'joint2cm',[0, 0, 6077]);          % Tower                 %Body 1
+% frames(2) = Frame('framenumber',2, 'rotationaxis', 3, 'rotationvar',theta(2), 'mass', 147000, 'Qcoordinates',[theta(2),thetadot(2),thetaddot(2)],'cm2joint',[0,0,12155],'joint2cm',[4680 , 610, 4926]);% Boom                  %Body 2
+% frames(3) = Frame('framenumber',3, 'rotationaxis', 0, 'rotationvar',theta(3), 'mass', 17000,  'Qcoordinates',[theta(3),thetadot(3),thetaddot(3)],'cm2joint',[0,0,0],'joint2cm',[0, 0, 0]);             % Cart                  %Body 3
+% frames(4) = Frame('framenumber',4, 'rotationaxis', 3, 'rotationvar',theta(4), 'mass', 1,'Qcoordinates',[theta(4),thetadot(4),thetaddot(4)],'cm2joint',[0,0,-20],'joint2cm',[0, 0, -20]);               % First wire segment    
+% frames(5) = Frame('framenumber',5, 'rotationaxis', 1, 'rotationvar',theta(5), 'mass', 1, 'Qcoordinates',[theta(5),thetadot(5),thetaddot(5)],'cm2joint',[0,0,0],'joint2cm',[0, 0, 0]);                  % First wire segment
+% frames(6) = Frame('framenumber',6, 'rotationaxis', 0, 'rotationvar',theta(6), 'mass', 85, 'Qcoordinates',[theta(6),thetadot(6),thetaddot(6)],'cm2joint',[0,0,0],'joint2cm',[0, 0, 0]);                 % First wire segment    %Body 4
+% frames(7) = Frame('framenumber',7, 'rotationaxis', 3, 'rotationvar',theta(7), 'mass', 1,'Qcoordinates',[theta(7),thetadot(7),thetaddot(7)],'cm2joint',[0,0,-20],'joint2cm',[0,0,-20]);                 % Second wire segment   
+% frames(8) = Frame('framenumber',8, 'rotationaxis', 1, 'rotationvar',theta(8), 'mass', 1, 'Qcoordinates',[theta(8),thetadot(8),thetaddot(8)],'cm2joint',[0,0,0],'joint2cm',[0,0,0]);                    % Second wire segment
+% frames(9) = Frame('framenumber',9, 'rotationaxis', 0, 'rotationvar',theta(9), 'mass', 85, 'Qcoordinates',[theta(9),thetadot(9),thetaddot(9)],'cm2joint',[0,0,0],'joint2cm',[0,0,0]);                   % Second wire segment   %Body 5
+% frames(10) = Frame('framenumber',10, 'rotationaxis', 3, 'rotationvar',theta(10), 'mass', 1, 'Qcoordinates',[theta(10),thetadot(10),thetaddot(10)],'cm2joint',[0,0,-20],'joint2cm',[0,0,-20]);          % Third wire segment    
+% frames(11) = Frame('framenumber',11, 'rotationaxis', 1, 'rotationvar',theta(11), 'mass', 1, 'Qcoordinates',[theta(11),thetadot(11),thetaddot(11)],'cm2joint',[0,0,0],'joint2cm',[0,0,0]);              % Third wire segment
+% frames(12) = Frame('framenumber',12, 'rotationaxis', 0, 'rotationvar',theta(12), 'mass', 85, 'Qcoordinates',[theta(12),thetadot(12),thetaddot(12)],'cm2joint',[0,0,0],'joint2cm',[0,0,0]);             % Third wire segment    %Body 6
+% frames(13) = Frame('framenumber',13, 'rotationaxis', 3, 'rotationvar',theta(13), 'mass', 500, 'Qcoordinates',[theta(13),thetadot(13),thetaddot(13)],'cm2joint',[0,0,-15],'joint2cm',[0,0,-473]);       % Hook                  %Body 7
+% frames(14) = Frame('framenumber',14, 'rotationaxis', 1, 'rotationvar',theta(14), 'mass', 10000, 'Qcoordinates',[theta(14),thetadot(14),thetaddot(14)],'cm2joint',[0,0,-773],'joint2cm',[0,0,-50]);     % Box                   %Body 8
+
+%Reaction_3_link(frames)
+ReactionForces(frames)
+%GetXddots(frames)
+%DoublePendulum(frames)
+
+
+% %% B matrise til Erlend
+% frames(1) = Frame('framenumber',1, 'rotationaxis', 3, 'rotationvar',theta(1), 'mass', 1,'Qcoordinates',[theta(1),thetadot(1),thetaddot(1)],'cm2joint',[0,0,0],'joint2cm',[0, 0, 0]);          % First wire segment    
+% frames(2) = Frame('framenumber',2, 'rotationaxis', 1, 'rotationvar',theta(2), 'mass', 1, 'Qcoordinates',[theta(2),thetadot(2),thetaddot(2)],'cm2joint',[0,0,0],'joint2cm',[0, 0, -30]);         % First wire segment
+
+
