@@ -9,7 +9,7 @@ function configexport(system, filename)
         [nRows, nCols] = size(matrix);
         nestedArray = cell(1, nRows);
 
-        if strcmp(field, "rotations") || strcmp(field, "initconditions")
+        if strcmp(field, "rotations") || strcmp(field, "initconditions") || strcmp(field, "info")
             continue; % Ignore special case matrices
         end
 
@@ -31,10 +31,15 @@ function configexport(system, filename)
                 varsList = [varsList, trigTerms];
                 varsList = unique(varsList); % Remove duplicates
                 
+                % Wrap all variables (Q and trig) in parentheses
+                for v = varsList
+                    exprStr = regexprep(exprStr, ['(?<![\w$])' char(v) '(?![\w$])'], ['(' char(v) ')']);
+                end
+
                 if isempty(varsList)
                     varsList = [];
                 end
-                
+
                 rowArray{col} = struct('expr', exprStr, 'vars', varsList);
             end
             nestedArray{row} = rowArray;
@@ -64,12 +69,13 @@ function [formattedExpr, trigMap] = extractTrigFunctions(expr, trigMap)
         for j = 1:numel(matches)
             trigExpr = ['Math.' matches{j}];
             if ~isKey(trigMap, trigExpr)
-                trigKey = sprintf('trig%d', trigMap.Count + 1);
+                trigKey = sprintf('trig%02d', trigMap.Count + 1); % Leading zero formatting
                 trigMap(trigExpr) = trigKey;
             end
             expr = strrep(expr, matches{j}, trigMap(trigExpr));
         end
     end
+    expr = regexprep(expr, '(trig\d+)', '($1)');
     
     formattedExpr = expr;
 end

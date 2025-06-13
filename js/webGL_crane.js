@@ -3,18 +3,19 @@ import { OrbitControls } from '../libs/three/controls/OrbitControls.js';
 import { loadModel, sceneObjects, sceneTransformList } from '../libs/three/loaders/modelLoader.js';
 import GUI from '../libs/js/lil-gui.module.min.js';
 import { Water } from '../libs/three/Water.js';
-
+import { Sky } from '../libs/three/Sky.js';
+import { system } from './main_crane.js';
 
 export function initializeScene(graphicsDiv) {
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('white');
+    scene.background = new THREE.Color('#87CEEB');
     scene.up.set(0, 1, 0);
 
 
     const camera = new THREE.PerspectiveCamera(90, graphicsDiv.clientWidth / graphicsDiv.clientHeight, 0.1, 1000000);
-    camera.position.set(0, 50, 50);
+    camera.position.set(25, 75, -25);
     camera.up.set(0, 1, 0);
-    camera.lookAt(0, 0, 0);
+    camera.lookAt(0, 50, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(graphicsDiv.clientWidth, graphicsDiv.clientHeight);
@@ -39,6 +40,18 @@ export function initializeScene(graphicsDiv) {
         camera.aspect = graphicsDiv.clientWidth / graphicsDiv.clientHeight;
         camera.updateProjectionMatrix();
     });
+
+    // === Sky setup ===
+    const sky = new Sky();
+    sky.scale.setScalar(10000);
+    scene.add(sky);
+    const sun = new THREE.Vector3();
+    const phi = THREE.MathUtils.degToRad(70 - 10); // elevation angle
+    const theta = THREE.MathUtils.degToRad(180);   // azimuth angle
+    sun.setFromSphericalCoords(1, phi, theta);
+    sky.material.uniforms['sunPosition'].value.copy(sun);
+
+ 
 
     setTimeout(() => {
         console.log("Scene Transform List:", sceneTransformList);
@@ -70,8 +83,10 @@ export function loadModels(scene) {
         position: { x: [0, 30] },
         rotation: {}
     });
+    
 
     // Wire 1
+    if (system.info.wiresegments >= 1) {
     loadModel('Theta1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 9, y: 0, z: 18 }, scene, 'Trolley', {
         position: {},
         rotation: { z: [-Math.PI/2, Math.PI/2] }
@@ -80,12 +95,13 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi1', {
-        position: { z: [-10, 0]},
+    loadModel('Lambda1', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -5 }, scene, 'Phi1', {
+        position: { z: [0,1] },
         rotation: {}
     });
-    
+    }
     // Wire 2
+    if (system.info.wiresegments >= 2) {
     loadModel('Theta2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Lambda1', {
         position: {},
         rotation: { z: [-Math.PI/2, Math.PI/2] }
@@ -94,11 +110,12 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi2', {
-        position: { z: [-10, 0]},
+    loadModel('Lambda2', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -5 }, scene, 'Phi2', {
+        position: { z: [0,1] },
         rotation: {}
     });
-
+    }
+    if (system.info.wiresegments >= 3) {
     // Wire 3
     loadModel('Theta3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: 0 }, scene, 'Lambda2', {
         position: {},
@@ -108,11 +125,13 @@ export function loadModels(scene) {
         position: {},
         rotation: { x: [-Math.PI/2, Math.PI/2] }
     });
-    loadModel('Lambda3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -10 }, scene, 'Phi3', {
-        position: { z: [-10, 0] },
+    loadModel('Lambda3', '../assets/models/wireball.obj', '../assets/materials/wireball.mtl', { x: 0, y: 0, z: -5 }, scene, 'Phi3', {
+        position: { z: [0,1] },
         rotation: {}
     });
-    loadModel('container', '../assets/models/container.obj', '../assets/materials/container.mtl', { x: 0, y: 0, z: -3 }, scene, 'Lambda3', {
+    }
+
+    loadModel('Container', '../assets/models/container.obj', '../assets/materials/container.mtl', { x: 0, y: 0, z: -3 }, scene, `Lambda${system.info.wiresegments}`, {
         position: {},
         rotation: { z: [-Math.PI/2, Math.PI/2] }
     });
@@ -184,3 +203,16 @@ export function updateTransformListValues(newValues) {
     }
 }
 
+let wireLine = null;
+
+export function createOrUpdateWire(points, scene) {
+    if (!wireLine) {
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        const material = new THREE.LineBasicMaterial({ color: 0x000000 });
+        wireLine = new THREE.Line(geometry, material);
+        scene.add(wireLine);
+    } else {
+        wireLine.geometry.setFromPoints(points);
+        wireLine.geometry.attributes.position.needsUpdate = true;
+    }
+}

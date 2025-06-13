@@ -1,0 +1,3465 @@
+{
+  "Qcoordinates": [
+    [
+      {
+        "expr": "theta1",
+        "vars": "theta1"
+      },
+      {
+        "expr": "thetadot1",
+        "vars": "thetadot1"
+      },
+      {
+        "expr": "thetaddot1",
+        "vars": "thetaddot1"
+      }
+    ],
+    [
+      {
+        "expr": "lambda1",
+        "vars": "lambda1"
+      },
+      {
+        "expr": "lambdadot1",
+        "vars": "lambdadot1"
+      },
+      {
+        "expr": "lambdaddot1",
+        "vars": "lambdaddot1"
+      }
+    ],
+    [
+      {
+        "expr": "theta2",
+        "vars": "theta2"
+      },
+      {
+        "expr": "thetadot2",
+        "vars": "thetadot2"
+      },
+      {
+        "expr": "thetaddot2",
+        "vars": "thetaddot2"
+      }
+    ],
+    [
+      {
+        "expr": "theta3",
+        "vars": "theta3"
+      },
+      {
+        "expr": "thetadot3",
+        "vars": "thetadot3"
+      },
+      {
+        "expr": "thetaddot3",
+        "vars": "thetaddot3"
+      }
+    ],
+    [
+      {
+        "expr": "theta4",
+        "vars": "theta4"
+      },
+      {
+        "expr": "thetadot4",
+        "vars": "thetadot4"
+      },
+      {
+        "expr": "thetaddot4",
+        "vars": "thetaddot4"
+      }
+    ]
+  ],
+  "initconditions": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "Mstar": [
+    [
+      {
+        "expr": "((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig02 - 5000*l*trig01*trig02) + 20001*trig04**2 + trig02**2 + (trig05**2*trig02**2)/200000 + (trig01**2*trig02**2)/200000 + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig02 - 5000*l*trig05*trig02) + 20000*trig06**2*trig02**2 + 5000*trig02**2*trig03**2 + 12170602",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(10*trig05*trig02 - 5000*l*trig05*trig02)*(trig08 - theta1*trig07) + (10*trig01*trig02 - 5000*l*trig01*trig02)*(trig07 + theta1*trig08) + (trig05*trig02*(trig08 - theta1*trig07))/200 + (trig01*trig02*(trig07 + theta1*trig08))/200",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig02 - 5000*l*trig01*trig02) + 20001*trig04**2 + trig02**2 + (trig05**2*trig02**2)/200000 + (trig01**2*trig02**2)/200000 + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig02 - 5000*l*trig05*trig02) + 20000*trig06**2*trig02**2 + 5000*trig02**2*trig03**2 + 1",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(l*trig05*trig04 - (trig05*trig04)/500)*(10*trig01*trig02 - 5000*l*trig01*trig02) + ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig05*trig02 - 5000*l*trig05*trig02) - 15000*trig06*trig02*trig03",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "20000*trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "(5000*trig08 - 5000*theta1*trig07)*((trig05*trig02)/500 - l*trig05*trig02) + (5000*trig07 + 5000*theta1*trig08)*((trig01*trig02)/500 - l*trig01*trig02) + (trig05*trig02*(5*trig08 - 5*theta1*trig07))/1000 + (trig01*trig02*(5*trig07 + 5*theta1*trig08))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "2*(5*trig07 + 5*theta1*trig08)*(trig07 + theta1*trig08) + 2*(5*trig08 - 5*theta1*trig07)*(trig08 - theta1*trig07) + (5000*trig07 + 5000*theta1*trig08)*(trig07 + theta1*trig08) + (5000*trig08 - 5000*theta1*trig07)*(trig08 - theta1*trig07) + (16800*trig07 + 16800*theta1*trig08)*(trig07 + theta1*trig08) + (16800*trig08 - 16800*theta1*trig07)*(trig08 - theta1*trig07)",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(5000*trig08 - 5000*theta1*trig07)*((trig05*trig02)/500 - l*trig05*trig02) + (5000*trig07 + 5000*theta1*trig08)*((trig01*trig02)/500 - l*trig01*trig02) + (trig05*trig02*(5*trig08 - 5*theta1*trig07))/1000 + (trig01*trig02*(5*trig07 + 5*theta1*trig08))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(5000*trig07 + 5000*theta1*trig08)*(l*trig05*trig04 - (trig05*trig04)/500) + (5000*trig08 - 5000*theta1*trig07)*((trig01*trig04)/500 - l*trig01*trig04) - (trig05*trig04*(5*trig07 + 5*theta1*trig08))/1000 + (trig01*trig04*(5*trig08 - 5*theta1*trig07))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig02 - 5000*l*trig01*trig02) + 20001*trig04**2 + trig02**2 + (trig05**2*trig02**2)/200000 + (trig01**2*trig02**2)/200000 + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig02 - 5000*l*trig05*trig02) + 20000*trig06**2*trig02**2 + 5000*trig02**2*trig03**2 + 1",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(10*trig05*trig02 - 5000*l*trig05*trig02)*(trig08 - theta1*trig07) + (10*trig01*trig02 - 5000*l*trig01*trig02)*(trig07 + theta1*trig08) + (trig05*trig02*(trig08 - theta1*trig07))/200 + (trig01*trig02*(trig07 + theta1*trig08))/200",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig02 - 5000*l*trig01*trig02) + 20001*trig04**2 + trig02**2 + (trig05**2*trig02**2)/200000 + (trig01**2*trig02**2)/200000 + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig02 - 5000*l*trig05*trig02) + 20000*trig06**2*trig02**2 + 5000*trig02**2*trig03**2 + 1",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(l*trig05*trig04 - (trig05*trig04)/500)*(10*trig01*trig02 - 5000*l*trig01*trig02) + ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig05*trig02 - 5000*l*trig05*trig02) - 15000*trig06*trig02*trig03",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "20000*trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig04 - 5000*l*trig01*trig04) - (10*trig05*trig04 - 5000*l*trig05*trig04)*((trig01*trig02)/500 - l*trig01*trig02) - 15000*trig06*trig02*trig03",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(10*trig01*trig04 - 5000*l*trig01*trig04)*(trig08 - theta1*trig07) - (10*trig05*trig04 - 5000*l*trig05*trig04)*(trig07 + theta1*trig08) - (trig05*trig04*(trig07 + theta1*trig08))/200 + (trig01*trig04*(trig08 - theta1*trig07))/200",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig04 - 5000*l*trig01*trig04) - (10*trig05*trig04 - 5000*l*trig05*trig04)*((trig01*trig02)/500 - l*trig01*trig02) - 15000*trig06*trig02*trig03",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "5000*trig06**2 - (l*trig02 - trig02/500)*(10*trig02 - 5000*l*trig02) + trig02**2/200000 + 20000*trig03**2 - (l*trig05*trig04 - (trig05*trig04)/500)*(10*trig05*trig04 - 5000*l*trig05*trig04) + (trig05**2*trig04**2)/200000 + (trig01**2*trig04**2)/200000 + ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig01*trig04 - 5000*l*trig01*trig04) + 1",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "20000*trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "20000*trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "20000",
+        "vars": []
+      }
+    ]
+  ],
+  "Nstar": [
+    [
+      {
+        "expr": "trig04*(trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))) - ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) + (trig01*trig02*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - trig06*trig02*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig02*trig03*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - (trig05*trig02*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(10000*thetadot1*trig08 - 5000*theta1*thetadot1*trig07)*((trig01*trig02)/500 - l*trig01*trig02) - (10000*thetadot1*trig07 + 5000*theta1*thetadot1*trig08)*((trig05*trig02)/500 - l*trig05*trig02) - (trig05*trig02*(10*thetadot1*trig07 + 5*theta1*thetadot1*trig08))/1000 + (trig01*trig02*(10*thetadot1*trig08 - 5*theta1*thetadot1*trig07))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig04*(trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))) - ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) + (trig01*trig02*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - trig06*trig02*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig02*trig03*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - (trig05*trig02*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig04*(trig06*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2)) - trig03*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2))) + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig04*(thetadot1 + thetadot2) - 10*thetadot3*trig01*trig02 - 5000*l*trig05*trig04*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig01*trig02) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig04*(thetadot1 + thetadot2) + 10*thetadot3*trig05*trig02 - 5000*l*trig01*trig04*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig05*trig02) + (trig01*trig02*((trig01*trig04*(thetadot1 + thetadot2))/200 + (thetadot3*trig05*trig02)/200))/1000 - trig02*trig03*(5000*thetadot4*trig03 - trig03*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - trig06*trig02*(20000*thetadot4*trig06 - trig06*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) + (trig05*trig02*((trig05*trig04*(thetadot1 + thetadot2))/200 - (thetadot3*trig01*trig02)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "- trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - trig02*trig03*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200)*(trig07 + theta1*trig08) - ((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200)*(trig08 - theta1*trig07) + (trig07 + theta1*trig08)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) - (trig08 - theta1*trig07)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04)",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "2*(10*thetadot1*trig08 - 5*theta1*thetadot1*trig07)*(trig07 + theta1*trig08) - 2*(10*thetadot1*trig07 + 5*theta1*thetadot1*trig08)*(trig08 - theta1*trig07) + (10000*thetadot1*trig08 - 5000*theta1*thetadot1*trig07)*(trig07 + theta1*trig08) - (10000*thetadot1*trig07 + 5000*theta1*thetadot1*trig08)*(trig08 - theta1*trig07) + (33600*thetadot1*trig08 - 16800*theta1*thetadot1*trig07)*(trig07 + theta1*trig08) - (33600*thetadot1*trig07 + 16800*theta1*thetadot1*trig08)*(trig08 - theta1*trig07)",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200)*(trig07 + theta1*trig08) - ((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200)*(trig08 - theta1*trig07) + (trig07 + theta1*trig08)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) - (trig08 - theta1*trig07)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04)",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig01*trig04*(thetadot1 + thetadot2))/200 + (thetadot3*trig05*trig02)/200)*(trig07 + theta1*trig08) + ((trig05*trig04*(thetadot1 + thetadot2))/200 - (thetadot3*trig01*trig02)/200)*(trig08 - theta1*trig07) + (trig07 + theta1*trig08)*(10*trig01*trig04*(thetadot1 + thetadot2) + 10*thetadot3*trig05*trig02 - 5000*l*trig01*trig04*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig05*trig02) + (trig08 - theta1*trig07)*(10*trig05*trig04*(thetadot1 + thetadot2) - 10*thetadot3*trig01*trig02 - 5000*l*trig05*trig04*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig01*trig02)",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig04*(trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))) - ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) + (trig01*trig02*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - trig06*trig02*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig02*trig03*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - (trig05*trig02*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(10000*thetadot1*trig08 - 5000*theta1*thetadot1*trig07)*((trig01*trig02)/500 - l*trig01*trig02) - (10000*thetadot1*trig07 + 5000*theta1*thetadot1*trig08)*((trig05*trig02)/500 - l*trig05*trig02) - (trig05*trig02*(10*thetadot1*trig07 + 5*theta1*thetadot1*trig08))/1000 + (trig01*trig02*(10*thetadot1*trig08 - 5*theta1*thetadot1*trig07))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig04*(trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))) - ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) + (trig01*trig02*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - trig06*trig02*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig02*trig03*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - (trig05*trig02*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig04*(trig06*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2)) - trig03*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2))) + ((trig05*trig02)/500 - l*trig05*trig02)*(10*trig05*trig04*(thetadot1 + thetadot2) - 10*thetadot3*trig01*trig02 - 5000*l*trig05*trig04*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig01*trig02) + ((trig01*trig02)/500 - l*trig01*trig02)*(10*trig01*trig04*(thetadot1 + thetadot2) + 10*thetadot3*trig05*trig02 - 5000*l*trig01*trig04*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig05*trig02) + (trig01*trig02*((trig01*trig04*(thetadot1 + thetadot2))/200 + (thetadot3*trig05*trig02)/200))/1000 - trig02*trig03*(5000*thetadot4*trig03 - trig03*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - trig06*trig02*(20000*thetadot4*trig06 - trig06*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) + (trig05*trig02*((trig05*trig04*(thetadot1 + thetadot2))/200 - (thetadot3*trig01*trig02)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "- trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - trig02*trig03*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "trig03*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig06*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - ((trig05*trig04)/500 - l*trig05*trig04)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) - ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) - (trig05*trig04*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - (trig01*trig04*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "- (10000*thetadot1*trig08 - 5000*theta1*thetadot1*trig07)*((trig05*trig04)/500 - l*trig05*trig04) - (10000*thetadot1*trig07 + 5000*theta1*thetadot1*trig08)*((trig01*trig04)/500 - l*trig01*trig04) - (trig05*trig04*(10*thetadot1*trig08 - 5*theta1*thetadot1*trig07))/1000 - (trig01*trig04*(10*thetadot1*trig07 + 5*theta1*thetadot1*trig08))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "trig01",
+          "trig04",
+          "trig05",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig03*(trig04*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig04*trig06 + 20000*thetadot4*trig02*trig03 - trig02*trig03*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig06*(trig04*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2)) - 5000*thetadot3*trig04*trig03 - 5000*thetadot4*trig06*trig02 + trig06*trig02*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - ((trig05*trig04)/500 - l*trig05*trig04)*(10*trig05*trig02*(thetadot1 + thetadot2) + 10*thetadot3*trig01*trig04 - 5000*l*trig05*trig02*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig01*trig04) - ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig01*trig02*(thetadot1 + thetadot2) - 10*thetadot3*trig05*trig04 - 5000*l*trig01*trig02*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig05*trig04) - (trig05*trig04*((trig05*trig02*(thetadot1 + thetadot2))/200 + (thetadot3*trig01*trig04)/200))/1000 - (trig01*trig04*((trig01*trig02*(thetadot1 + thetadot2))/200 - (thetadot3*trig05*trig04)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig03*(20000*thetadot4*trig06 - trig06*(5000*thetadot4 + 5000*thetadot1*trig04 + 5000*thetadot2*trig04)) - trig06*(5000*thetadot4*trig03 - trig03*(20000*thetadot4 + 20000*thetadot1*trig04 + 20000*thetadot2*trig04)) - ((trig05*trig04)/500 - l*trig05*trig04)*(10*trig01*trig04*(thetadot1 + thetadot2) + 10*thetadot3*trig05*trig02 - 5000*l*trig01*trig04*(thetadot1 + thetadot2) - 5000*l*thetadot3*trig05*trig02) + ((trig01*trig04)/500 - l*trig01*trig04)*(10*trig05*trig04*(thetadot1 + thetadot2) - 10*thetadot3*trig01*trig02 - 5000*l*trig05*trig04*(thetadot1 + thetadot2) + 5000*l*thetadot3*trig01*trig02) + (10*thetadot3*trig04 - 5000*l*thetadot3*trig04)*(trig02/500 - l*trig02) + (thetadot3*trig04*trig02)/200000 - (trig05*trig04*((trig01*trig04*(thetadot1 + thetadot2))/200 + (thetadot3*trig05*trig02)/200))/1000 + (trig01*trig04*((trig05*trig04*(thetadot1 + thetadot2))/200 - (thetadot3*trig01*trig02)/200))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "thetadot4",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig03*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - trig06*(20000*thetadot3*trig03 - 20000*trig06*trig02*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig06*trig02*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2)) - 20000*thetadot3*trig02 + trig02*trig03*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig06*(5000*thetadot3*trig03 - 5000*trig06*trig02*(thetadot1 + thetadot2)) - trig03*(20000*thetadot3*trig06 + 20000*trig02*trig03*(thetadot1 + thetadot2))",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "B": [
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig05*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig01*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "-(trig05*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-trig02/1000",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig02",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig05*trig02)/500 - l*trig05*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02)/500 - l*trig05*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig04)/500 - l*trig01*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig01*trig02)/500 - l*trig01*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/500 - l*trig01*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "l*trig05*trig04 - (trig05*trig04)/500",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "l*trig02 - trig02/500",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "trig06",
+        "vars": [
+          "theta4",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "-trig03",
+        "vars": [
+          "theta4",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      }
+    ]
+  ],
+  "Bt": [
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "(trig05*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02)/500 - l*trig05*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/500 - l*trig01*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig08 - theta1*trig07",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "trig07 + theta1*trig08",
+        "vars": [
+          "theta1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "(trig05*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02)/500 - l*trig05*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig02)/500 - l*trig01*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "trig04",
+        "vars": [
+          "theta3",
+          "trig04"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(trig01*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "-(trig05*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "-trig02/1000",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(trig01*trig04)/500 - l*trig01*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig01",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "l*trig05*trig04 - (trig05*trig04)/500",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "l*trig02 - trig02/500",
+        "vars": [
+          "theta3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "trig06",
+        "vars": [
+          "theta4",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "-trig03",
+        "vars": [
+          "theta4",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      }
+    ]
+  ],
+  "Bdot": [
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "- 2*thetadot1*trig07 - theta1*thetadot1*trig08",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "2*thetadot1*trig08 - theta1*thetadot1*trig07",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "- 2*thetadot1*trig07 - theta1*thetadot1*trig08",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "2*thetadot1*trig08 - theta1*thetadot1*trig07",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(thetadot3*trig05*trig04)/1000 - (trig01*trig02*(thetadot1 + thetadot2))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "- 2*thetadot1*trig07 - theta1*thetadot1*trig08",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(thetadot3*trig05*trig04)/1000 - (trig01*trig02*(thetadot1 + thetadot2))/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig05*trig04*(thetadot1 + thetadot2))/1000 - (thetadot3*trig01*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig05*trig02*(thetadot1 + thetadot2))/1000 + (thetadot3*trig01*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "2*thetadot1*trig08 - theta1*thetadot1*trig07",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02*(thetadot1 + thetadot2))/1000 + (thetadot3*trig01*trig04)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig04*(thetadot1 + thetadot2))/1000 + (thetadot3*trig05*trig02)/1000",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-(thetadot3*trig04)/1000",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "thetadot3*trig04",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "thetadot3*trig04",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-thetadot3*trig02",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-thetadot3*trig02",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(thetadot3*trig05*trig04)/500 - (trig01*trig02*(thetadot1 + thetadot2))/500 + l*trig01*trig02*(thetadot1 + thetadot2) - l*thetadot3*trig05*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "- 2*thetadot1*trig07 - theta1*thetadot1*trig08",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(thetadot3*trig05*trig04)/500 - (trig01*trig02*(thetadot1 + thetadot2))/500 + l*trig01*trig02*(thetadot1 + thetadot2) - l*thetadot3*trig05*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig05*trig04*(thetadot1 + thetadot2))/500 - (thetadot3*trig01*trig02)/500 - l*trig05*trig04*(thetadot1 + thetadot2) + l*thetadot3*trig01*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trig05*trig02*(thetadot1 + thetadot2))/500 + (thetadot3*trig01*trig04)/500 - l*trig05*trig02*(thetadot1 + thetadot2) - l*thetadot3*trig01*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "2*thetadot1*trig08 - theta1*thetadot1*trig07",
+        "vars": [
+          "theta1",
+          "thetadot1",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(trig05*trig02*(thetadot1 + thetadot2))/500 + (thetadot3*trig01*trig04)/500 - l*trig05*trig02*(thetadot1 + thetadot2) - l*thetadot3*trig01*trig04",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(trig01*trig04*(thetadot1 + thetadot2))/500 + (thetadot3*trig05*trig02)/500 - l*trig01*trig04*(thetadot1 + thetadot2) - l*thetadot3*trig05*trig02",
+        "vars": [
+          "theta1",
+          "theta2",
+          "theta3",
+          "thetadot1",
+          "thetadot2",
+          "thetadot3",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "l*thetadot3*trig04 - (thetadot3*trig04)/500",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "thetadot3*trig04*trig03 + thetadot4*trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot3",
+          "thetadot4",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "thetadot3*trig04*trig03 + thetadot4*trig06*trig02",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot3",
+          "thetadot4",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "-thetadot4*trig03",
+        "vars": [
+          "theta4",
+          "thetadot4",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "thetadot3*trig04*trig06 - thetadot4*trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot3",
+          "thetadot4",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "thetadot3*trig04*trig06 - thetadot4*trig02*trig03",
+        "vars": [
+          "theta3",
+          "theta4",
+          "thetadot3",
+          "thetadot4",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "-thetadot4*trig06",
+        "vars": [
+          "theta4",
+          "thetadot4",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-thetadot3*trig02",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-thetadot3*trig02",
+        "vars": [
+          "theta3",
+          "thetadot3",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "F": [
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-5000*g",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "trigFunctions": [
+    {
+      "name": "trig05",
+      "expr": "Math.cos(theta1 + theta2)"
+    },
+    {
+      "name": "trig08",
+      "expr": "Math.cos(theta1)"
+    },
+    {
+      "name": "trig04",
+      "expr": "Math.cos(theta3)"
+    },
+    {
+      "name": "trig06",
+      "expr": "Math.cos(theta4)"
+    },
+    {
+      "name": "trig01",
+      "expr": "Math.sin(theta1 + theta2)"
+    },
+    {
+      "name": "trig07",
+      "expr": "Math.sin(theta1)"
+    },
+    {
+      "name": "trig02",
+      "expr": "Math.sin(theta3)"
+    },
+    {
+      "name": "trig03",
+      "expr": "Math.sin(theta4)"
+    }
+  ]
+}

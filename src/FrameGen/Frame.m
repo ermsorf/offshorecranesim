@@ -13,6 +13,8 @@ classdef Frame < handle
         Tvec
         mass
         Jmatrix
+
+
         relativeEmatrix
         Ematrix
         relativeEdotmatrix
@@ -25,7 +27,9 @@ classdef Frame < handle
         Bdotmatrix
         Mmatrix
         Dmatrix
+
     end
+    
     methods
         function obj = Frame(varargin)
             % Constructor accepting Name-Value pairs
@@ -228,6 +232,8 @@ classdef Frame < handle
                     else
                         W = framelist(i-1).Wmatrix
                     end
+
+                    fprintf("Done\n")
                 else
                     fprintf('W %i / %i : ', i, obj.framenumber);
                     Wrel = frame.makeRelativeW();
@@ -271,7 +277,6 @@ classdef Frame < handle
                 fprintf("B, frame %i / %i : ", i, obj.framenumber)
                 EdotVec = framelist(i).EdotVec;
                 W = framelist(i).Wmatrix;
-                EdotVec
                 posvec = collect(EdotVec(1:3,1), Qvars); % Collect terms
                 Ovec   = collect(obj.unskew(W(1:3,1:3)), Qvars);
                 % Extract coefficients for all directions at once
@@ -407,6 +412,8 @@ classdef Frame < handle
         end
         function simplified = sympySimplify(~, mat)
             % Import sympy
+            % simplified = mat; return
+
             sympy = py.importlib.import_module('sympy');
             fu = py.importlib.import_module('sympy.simplify.fu');
             [rows, cols] = size(mat);

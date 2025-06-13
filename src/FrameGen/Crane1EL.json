@@ -1,0 +1,4964 @@
+{
+  "info": {
+    "wiresegments": 1
+  },
+  "Qcoordinates": [
+    [
+      {
+        "expr": "(cr)",
+        "vars": "cr"
+      },
+      {
+        "expr": "(crd)",
+        "vars": "crd"
+      },
+      {
+        "expr": "(crdd)",
+        "vars": "crdd"
+      }
+    ],
+    [
+      {
+        "expr": "(trolley)",
+        "vars": "trolley"
+      },
+      {
+        "expr": "(trolleyd)",
+        "vars": "trolleyd"
+      },
+      {
+        "expr": "(trolleydd)",
+        "vars": "trolleydd"
+      }
+    ],
+    [
+      {
+        "expr": "(theta1)",
+        "vars": "theta1"
+      },
+      {
+        "expr": "(thetad1)",
+        "vars": "thetad1"
+      },
+      {
+        "expr": "(thetadd1)",
+        "vars": "thetadd1"
+      }
+    ],
+    [
+      {
+        "expr": "(phi1)",
+        "vars": "phi1"
+      },
+      {
+        "expr": "(phid1)",
+        "vars": "phid1"
+      },
+      {
+        "expr": "(phidd1)",
+        "vars": "phidd1"
+      }
+    ],
+    [
+      {
+        "expr": "(lambda1)",
+        "vars": "lambda1"
+      },
+      {
+        "expr": "(lambdad1)",
+        "vars": "lambdad1"
+      },
+      {
+        "expr": "(lambdadd1)",
+        "vars": "lambdadd1"
+      }
+    ],
+    [
+      {
+        "expr": "(container)",
+        "vars": "container"
+      },
+      {
+        "expr": "(containerd)",
+        "vars": "containerd"
+      },
+      {
+        "expr": "(containerdd)",
+        "vars": "containerdd"
+      }
+    ]
+  ],
+  "initconditions": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      -5,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0
+    ]
+  ],
+  "Mstar": [
+    [
+      {
+        "expr": "((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)*((29718*((trig05)))/25 + 127*(lambda1)*((trig01))*((trig02))) - (((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25)*((29718*((trig03)))/25 - 127*(lambda1)*((trig06))*((trig02))) + (117187804*((trig07))**2)/15625 + 7296*((trig02))**2 + 16800*((trig05))**2*((trolley) + 117/25)**2 + 7500*((trig08))**2*((trig02))**2 + 16800*((trig03))**2*((trolley) + 117/25)**2 + ((117*((trig05)))/25 - (61*((trig03)))/100)*(687960*((trig05)) - 89670*((trig03))) + ((61*((trig05)))/100 + (117*((trig03)))/25)*(89670*((trig05)) + 687960*((trig03))) + 7500*((trig04))**2*((trig02))**2 + ((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)) + (117*((trig03)))/25)*(23400*((trig03)) + 7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))) + ((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02)))*(23400*((trig05)) - 7500*((trig01))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))) + 12170601",
+        "vars": [
+          "container",
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "(((trig03)) + (cr)*((trig05)))*(23400*((trig05)) - 7500*((trig01))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))) - (((trig05)) - (cr)*((trig03)))*(23400*((trig03)) + 7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))) + (((trig03)) + (cr)*((trig05)))*((29718*((trig05)))/25 + 127*(lambda1)*((trig01))*((trig02))) - (((trig05)) - (cr)*((trig03)))*((29718*((trig03)))/25 - 127*(lambda1)*((trig06))*((trig02)))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(117187804*((trig07))**2)/15625 + 7296*((trig02))**2 - ((lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2)*(23400*((trig03)) + 7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))) + 7500*((trig08))**2*((trig02))**2 + ((lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2)*(23400*((trig05)) - 7500*((trig01))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))) + 7500*((trig04))**2*((trig02))**2 - ((lambda1)*((trig06))*((trig02))*((29718*((trig03)))/25 - 127*(lambda1)*((trig06))*((trig02))))/2 + ((lambda1)*((trig01))*((trig02))*((29718*((trig05)))/25 + 127*(lambda1)*((trig01))*((trig02))))/2",
+        "vars": [
+          "container",
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07))*(23400*((trig05)) - 7500*((trig01))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))))/2 + (3*((trig01))*((trig07))*(23400*((trig03)) + 7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- (((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(23400*((trig05)) - 7500*((trig01))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))) - (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(23400*((trig03)) + 7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))) - ((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*((29718*((trig05)))/25 + 127*(lambda1)*((trig01))*((trig02))) - ((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*((29718*((trig03)))/25 - 127*(lambda1)*((trig06))*((trig02)))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "7500*((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "(5000*((trig03)) + 5000*(cr)*((trig05)))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))) - (5000*((trig05)) - 5000*(cr)*((trig03)))*((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)) + (117*((trig03)))/25) + (254*((trig05)) - 254*(cr)*((trig03)))*(((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25) + (254*((trig03)) + 254*(cr)*((trig05)))*((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "16800*((trig05))**2 + 16800*((trig03))**2 + (254*((trig03)) + 254*(cr)*((trig05)))*(((trig03)) + (cr)*((trig05))) + (254*((trig05)) - 254*(cr)*((trig03)))*(((trig05)) - (cr)*((trig03))) + (5000*((trig03)) + 5000*(cr)*((trig05)))*(((trig03)) + (cr)*((trig05))) + (5000*((trig05)) - 5000*(cr)*((trig03)))*(((trig05)) - (cr)*((trig03)))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(5000*((trig05)) - 5000*(cr)*((trig03)))*((lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2) + (5000*((trig03)) + 5000*(cr)*((trig05)))*((lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2) + ((lambda1)*((trig06))*((trig02))*(254*((trig05)) - 254*(cr)*((trig03))))/2 + ((lambda1)*((trig01))*((trig02))*(254*((trig03)) + 254*(cr)*((trig05))))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07))*(5000*((trig03)) + 5000*(cr)*((trig05))))/2 - (3*((trig01))*((trig07))*(5000*((trig05)) - 5000*(cr)*((trig03))))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(254*((trig05)) - 254*(cr)*((trig03)))*((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2) + (5000*((trig05)) - 5000*(cr)*((trig03)))*(((trig01))*((trig02)) + (phi1)*((trig01))*((trig07))) - (254*((trig03)) + 254*(cr)*((trig05)))*((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2) - (5000*((trig03)) + 5000*(cr)*((trig05)))*(((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(117187804*((trig07))**2)/15625 + 7296*((trig02))**2 + (7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02)))*((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)) + (117*((trig03)))/25) + 7500*((trig08))**2*((trig02))**2 - (7500*((trig01))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02)))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))) + 7500*((trig04))**2*((trig02))**2 + 127*(lambda1)*((trig06))*((trig02))*(((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25) + 127*(lambda1)*((trig01))*((trig02))*((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)",
+        "vars": [
+          "container",
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "127*(lambda1)*((trig06))*((trig02))*(((trig05)) - (cr)*((trig03))) - (7500*((trig01))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02)))*(((trig03)) + (cr)*((trig05))) - (7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02)))*(((trig05)) - (cr)*((trig03))) + 127*(lambda1)*((trig01))*((trig02))*(((trig03)) + (cr)*((trig05)))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(117187804*((trig07))**2)/15625 + 7296*((trig02))**2 - ((lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2)*(7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))) - ((lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2)*(7500*((trig01))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))) + 7500*((trig08))**2*((trig02))**2 + 7500*((trig04))**2*((trig02))**2 + (127*(lambda1)**2*((trig06))**2*((trig02))**2)/2 + (127*(lambda1)**2*((trig01))**2*((trig02))**2)/2",
+        "vars": [
+          "container",
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(3*((trig01))*((trig07))*(7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))))/2 - (3*((trig06))*((trig07))*(7500*((trig01))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(7500*((trig01))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))) - (7500*((trig06))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02)))*(((trig01))*((trig02)) + (phi1)*((trig01))*((trig07))) - 127*(lambda1)*((trig01))*((trig02))*((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2) + 127*(lambda1)*((trig06))*((trig02))*((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "7500*((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "7500*((trig06))*((trig07))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))) + 7500*((trig01))*((trig07))*((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)) + (117*((trig03)))/25)",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "7500*((trig06))*((trig07))*(((trig03)) + (cr)*((trig05))) - 7500*((trig01))*((trig07))*(((trig05)) - (cr)*((trig03)))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "7500*((trig06))*((trig07))*((lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2) - 7500*((trig01))*((trig07))*((lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2)",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "7500*((trig08))**2 + 7500*((trig04))**2 + 11250*((trig02))**2 + 11250*((trig06))**2*((trig07))**2 + 11250*((trig01))**2*((trig07))**2 + 7296",
+        "vars": [
+          "container",
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "7500*((trig02))*(((trig07)) - (phi1)*((trig02))) - 7500*((trig06))*((trig07))*(((trig06))*((trig02)) + (phi1)*((trig06))*((trig07))) - 7500*((trig01))*((trig07))*(((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(127*((trig01))*((trig02)) + 127*(phi1)*((trig01))*((trig07)))*(((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25) - (5000*((trig01))*((trig02)) + 5000*(phi1)*((trig01))*((trig07)))*((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)) + (117*((trig03)))/25) - (127*((trig06))*((trig02)) + 127*(phi1)*((trig06))*((trig07)))*((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2) - (5000*((trig06))*((trig02)) + 5000*(phi1)*((trig06))*((trig07)))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02)))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(127*((trig01))*((trig02)) + 127*(phi1)*((trig01))*((trig07)))*(((trig05)) - (cr)*((trig03))) - (5000*((trig06))*((trig02)) + 5000*(phi1)*((trig06))*((trig07)))*(((trig03)) + (cr)*((trig05))) - (127*((trig06))*((trig02)) + 127*(phi1)*((trig06))*((trig07)))*(((trig03)) + (cr)*((trig05))) + (5000*((trig01))*((trig02)) + 5000*(phi1)*((trig01))*((trig07)))*(((trig05)) - (cr)*((trig03)))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2)*(5000*((trig01))*((trig02)) + 5000*(phi1)*((trig01))*((trig07))) - (5000*((trig06))*((trig02)) + 5000*(phi1)*((trig06))*((trig07)))*((lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2) - ((lambda1)*((trig01))*((trig02))*(127*((trig06))*((trig02)) + 127*(phi1)*((trig06))*((trig07))))/2 + ((lambda1)*((trig06))*((trig02))*(127*((trig01))*((trig02)) + 127*(phi1)*((trig01))*((trig07))))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(3*((trig02))*(5000*((trig07)) - 5000*(phi1)*((trig02))))/2 - (3*((trig06))*((trig07))*(5000*((trig06))*((trig02)) + 5000*(phi1)*((trig06))*((trig07))))/2 - (3*((trig01))*((trig07))*(5000*((trig01))*((trig02)) + 5000*(phi1)*((trig01))*((trig07))))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*(127*((trig06))*((trig02)) + 127*(phi1)*((trig06))*((trig07))) + (((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(5000*((trig06))*((trig02)) + 5000*(phi1)*((trig06))*((trig07))) + (5000*((trig07)) - 5000*(phi1)*((trig02)))*(((trig07)) - (phi1)*((trig02))) + ((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*(127*((trig01))*((trig02)) + 127*(phi1)*((trig01))*((trig07))) + (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(5000*((trig01))*((trig02)) + 5000*(phi1)*((trig01))*((trig07))) + (((trig07))/2 - ((phi1)*((trig02)))/2)*(127*((trig07)) - 127*(phi1)*((trig02)))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "7500*((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "7500*((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "7500",
+        "vars": []
+      }
+    ]
+  ],
+  "Nstar": [
+    [
+      {
+        "expr": "(687960*(crd)*((trig05)) - 89670*(crd)*((trig03)))*((61*((trig05)))/100 + (117*((trig03)))/25) - (89670*(crd)*((trig05)) + 687960*(crd)*((trig03)))*((117*((trig05)))/25 - (61*((trig03)))/100) - ((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02)))*(23400*(crd)*((trig03)) + 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig01))*((trig07)) - 5000*(lambdad1)*((trig01))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) + ((117*((trig03)))/25 - ((lambda1)*((trig06))*((trig02)))/2)*((29718*(crd)*((trig05)))/25 - 127*(lambdad1)*((trig06))*((trig02)) + 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 127*(lambdad1)*(phi1)*((trig06))*((trig07))) + ((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)*(127*(lambdad1)*((trig01))*((trig02)) - (29718*(crd)*((trig03)))/25 + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) + ((117*((trig03)))/25 + (3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(23400*(crd)*((trig05)) - 7500*((trig01))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig07)) - 5000*(lambdad1)*((trig06))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) + ((trig07))*(((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))) - ((trig04))*((trig02))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) - ((trig08))*((trig02))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) + ((trig05))*(16800*(trolleyd)*((trig05)) - 16800*(crd)*((trig03))*((trolley) + 117/25))*((trolley) + 117/25) + ((trig03))*(16800*(trolleyd)*((trig03)) + 16800*(crd)*((trig05))*((trolley) + 117/25))*((trolley) + 117/25) + (227999392*(phid1)*((trig07))*((trig02)))/15625",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "(10000*(crd)*((trig03)) + 5000*(cr)*(crd)*((trig05)))*((117*((trig03)))/25 + (3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02))) + (10000*(crd)*((trig05)) - 5000*(cr)*(crd)*((trig03)))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))) + ((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)*(508*(crd)*((trig05)) - 254*(cr)*(crd)*((trig03))) + ((117*((trig03)))/25 - ((lambda1)*((trig06))*((trig02)))/2)*(508*(crd)*((trig03)) + 254*(cr)*(crd)*((trig05))) + 16800*(crd)*((trig05))**2*((trolley) + 117/25) + 16800*(crd)*((trig03))**2*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)*(127*(lambdad1)*((trig01))*((trig02)) + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) - ((117*((trig03)))/25 - ((lambda1)*((trig06))*((trig02)))/2)*(127*(lambdad1)*((trig06))*((trig02)) - 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig06))*((trig07))) - ((117*((trig03)))/25 + (3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(7500*((trig01))*((trig02))*((crd) + (thetad1)) - 7500*(phid1)*((trig06))*((trig07)) + 5000*(lambdad1)*((trig06))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) + ((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02)))*(5000*(lambdad1)*((trig01))*((trig02)) - 7500*(phid1)*((trig01))*((trig07)) - 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) + ((trig07))*(((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))) - ((trig04))*((trig02))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) - ((trig08))*((trig02))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) + (227999392*(phid1)*((trig07))*((trig02)))/15625",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig07))*(((trig08))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) - ((trig04))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1)))) + (7500*((trig06))*((trig07))*((crd) + (thetad1)) - 7500*(phid1)*((trig01))*((trig02)))*((117*((trig03)))/25 + (3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02))) - (7500*((trig01))*((trig07))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig02)))*((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))) + ((trig08))*((trig02))*(((trig08))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))) + ((trig04))*((trig02))*(((trig04))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig04)))",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02)))*(5000*((trig01))*((trig02))*((crd) + (thetad1)) - 10000*(phid1)*((trig06))*((trig07)) + 5000*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 5000*(phi1)*(phid1)*((trig06))*((trig02))) - ((117*((trig03)))/25 + (3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(5000*((trig06))*((trig02))*((crd) + (thetad1)) + 10000*(phid1)*((trig01))*((trig07)) + 5000*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 5000*(phi1)*(phid1)*((trig01))*((trig02))) + ((117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2)*(127*((trig01))*((trig02))*((crd) + (thetad1)) - 254*(phid1)*((trig06))*((trig07)) + 127*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 127*(phi1)*(phid1)*((trig06))*((trig02))) - ((117*((trig03)))/25 - ((lambda1)*((trig06))*((trig02)))/2)*(127*((trig06))*((trig02))*((crd) + (thetad1)) + 254*(phid1)*((trig01))*((trig07)) + 127*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 127*(phi1)*(phid1)*((trig01))*((trig02)))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- ((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "((trig03))*(16800*(trolleyd)*((trig05)) - 16800*(crd)*((trig03))*((trolley) + 117/25)) - ((trig05))*(16800*(trolleyd)*((trig03)) + 16800*(crd)*((trig05))*((trolley) + 117/25)) - (((trig05)) - (cr)*((trig03)))*((29718*(crd)*((trig05)))/25 - 127*(lambdad1)*((trig06))*((trig02)) + 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 127*(lambdad1)*(phi1)*((trig06))*((trig07))) - (((trig03)) + (cr)*((trig05)))*(23400*(crd)*((trig03)) + 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig01))*((trig07)) - 5000*(lambdad1)*((trig01))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) + (((trig03)) + (cr)*((trig05)))*(127*(lambdad1)*((trig01))*((trig02)) - (29718*(crd)*((trig03)))/25 + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) - (((trig05)) - (cr)*((trig03)))*(23400*(crd)*((trig05)) - 7500*((trig01))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig07)) - 5000*(lambdad1)*((trig06))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig06))*((trig07)))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "(((trig03)) + (cr)*((trig05)))*(508*(crd)*((trig05)) - 254*(cr)*(crd)*((trig03))) - (((trig05)) - (cr)*((trig03)))*(508*(crd)*((trig03)) + 254*(cr)*(crd)*((trig05))) + (((trig03)) + (cr)*((trig05)))*(10000*(crd)*((trig05)) - 5000*(cr)*(crd)*((trig03))) - (((trig05)) - (cr)*((trig03)))*(10000*(crd)*((trig03)) + 5000*(cr)*(crd)*((trig05)))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(((trig05)) - (cr)*((trig03)))*(127*(lambdad1)*((trig06))*((trig02)) - 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig06))*((trig07))) + (((trig03)) + (cr)*((trig05)))*(127*(lambdad1)*((trig01))*((trig02)) + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) + (((trig05)) - (cr)*((trig03)))*(7500*((trig01))*((trig02))*((crd) + (thetad1)) - 7500*(phid1)*((trig06))*((trig07)) + 5000*(lambdad1)*((trig06))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) + (((trig03)) + (cr)*((trig05)))*(5000*(lambdad1)*((trig01))*((trig02)) - 7500*(phid1)*((trig01))*((trig07)) - 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig01))*((trig07)))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- (((trig03)) + (cr)*((trig05)))*(7500*((trig01))*((trig07))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig02))) - (((trig05)) - (cr)*((trig03)))*(7500*((trig06))*((trig07))*((crd) + (thetad1)) - 7500*(phid1)*((trig01))*((trig02)))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(((trig03)) + (cr)*((trig05)))*(127*((trig01))*((trig02))*((crd) + (thetad1)) - 254*(phid1)*((trig06))*((trig07)) + 127*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 127*(phi1)*(phid1)*((trig06))*((trig02))) + (((trig05)) - (cr)*((trig03)))*(127*((trig06))*((trig02))*((crd) + (thetad1)) + 254*(phid1)*((trig01))*((trig07)) + 127*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 127*(phi1)*(phid1)*((trig01))*((trig02))) + (((trig03)) + (cr)*((trig05)))*(5000*((trig01))*((trig02))*((crd) + (thetad1)) - 10000*(phid1)*((trig06))*((trig07)) + 5000*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 5000*(phi1)*(phid1)*((trig06))*((trig02))) + (((trig05)) - (cr)*((trig03)))*(5000*((trig06))*((trig02))*((crd) + (thetad1)) + 10000*(phid1)*((trig01))*((trig07)) + 5000*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 5000*(phi1)*(phid1)*((trig01))*((trig02)))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(23400*(crd)*((trig05)) - 7500*((trig01))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig07)) - 5000*(lambdad1)*((trig06))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) + ((trig07))*(((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))) + ((3*((trig01))*((trig02)))/2 - (lambda1)*((trig01))*((trig02)))*(23400*(crd)*((trig03)) + 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig01))*((trig07)) - 5000*(lambdad1)*((trig01))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) - ((trig04))*((trig02))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) - ((trig08))*((trig02))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) + (227999392*(phid1)*((trig07))*((trig02)))/15625 - ((lambda1)*((trig06))*((trig02))*((29718*(crd)*((trig05)))/25 - 127*(lambdad1)*((trig06))*((trig02)) + 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 127*(lambdad1)*(phi1)*((trig06))*((trig07))))/2 + ((lambda1)*((trig01))*((trig02))*(127*(lambdad1)*((trig01))*((trig02)) - (29718*(crd)*((trig03)))/25 + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))))/2",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(10000*(crd)*((trig03)) + 5000*(cr)*(crd)*((trig05))) - ((3*((trig01))*((trig02)))/2 - (lambda1)*((trig01))*((trig02)))*(10000*(crd)*((trig05)) - 5000*(cr)*(crd)*((trig03))) - ((lambda1)*((trig06))*((trig02))*(508*(crd)*((trig03)) + 254*(cr)*(crd)*((trig05))))/2 + ((lambda1)*((trig01))*((trig02))*(508*(crd)*((trig05)) - 254*(cr)*(crd)*((trig03))))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "((trig07))*(((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))) - ((3*((trig01))*((trig02)))/2 - (lambda1)*((trig01))*((trig02)))*(5000*(lambdad1)*((trig01))*((trig02)) - 7500*(phid1)*((trig01))*((trig07)) - 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) - ((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(7500*((trig01))*((trig02))*((crd) + (thetad1)) - 7500*(phid1)*((trig06))*((trig07)) + 5000*(lambdad1)*((trig06))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) - ((trig04))*((trig02))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) - ((trig08))*((trig02))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) + (227999392*(phid1)*((trig07))*((trig02)))/15625 + ((lambda1)*((trig06))*((trig02))*(127*(lambdad1)*((trig06))*((trig02)) - 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig06))*((trig07))))/2 + ((lambda1)*((trig01))*((trig02))*(127*(lambdad1)*((trig01))*((trig02)) + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))))/2",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig07))*(((trig08))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) - ((trig04))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1)))) + ((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(7500*((trig06))*((trig07))*((crd) + (thetad1)) - 7500*(phid1)*((trig01))*((trig02))) + ((3*((trig01))*((trig02)))/2 - (lambda1)*((trig01))*((trig02)))*(7500*((trig01))*((trig07))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig02))) + ((trig08))*((trig02))*(((trig08))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))) + ((trig04))*((trig02))*(((trig04))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig04)))",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig06))*((trig02))*(127*((trig06))*((trig02))*((crd) + (thetad1)) + 254*(phid1)*((trig01))*((trig07)) + 127*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 127*(phi1)*(phid1)*((trig01))*((trig02))))/2 - ((3*((trig06))*((trig02)))/2 - (lambda1)*((trig06))*((trig02)))*(5000*((trig06))*((trig02))*((crd) + (thetad1)) + 10000*(phid1)*((trig01))*((trig07)) + 5000*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 5000*(phi1)*(phid1)*((trig01))*((trig02))) - ((3*((trig01))*((trig02)))/2 - (lambda1)*((trig01))*((trig02)))*(5000*((trig01))*((trig02))*((crd) + (thetad1)) - 10000*(phid1)*((trig06))*((trig07)) + 5000*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 5000*(phi1)*(phid1)*((trig06))*((trig02))) + ((lambda1)*((trig01))*((trig02))*(127*((trig01))*((trig02))*((crd) + (thetad1)) - 254*(phid1)*((trig06))*((trig07)) + 127*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 127*(phi1)*(phid1)*((trig06))*((trig02))))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- ((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "((trig04))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) - ((trig08))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) - (113999696*((trig07))*((trig02))*((crd) + (thetad1)))/15625 + (3*((trig01))*((trig07))*(23400*(crd)*((trig05)) - 7500*((trig01))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig07)) - 5000*(lambdad1)*((trig06))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig06))*((trig07))))/2 - (3*((trig06))*((trig07))*(23400*(crd)*((trig03)) + 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig01))*((trig07)) - 5000*(lambdad1)*((trig01))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig01))*((trig07))))/2",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig04",
+          "trig05",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07))*(10000*(crd)*((trig05)) - 5000*(cr)*(crd)*((trig03))))/2 + (3*((trig01))*((trig07))*(10000*(crd)*((trig03)) + 5000*(cr)*(crd)*((trig05))))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig04))*(((trig07))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig08))*((trig07)) - ((trig04))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) + 7500*(containerd)*((trig04))*((trig02))) - ((trig08))*(((trig07))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) + ((trig08))*((trig02))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))*((trig02)) - 7500*(phid1)*((trig07))*((trig04))) + (3*((trig06))*((trig07))*(5000*(lambdad1)*((trig01))*((trig02)) - 7500*(phid1)*((trig01))*((trig07)) - 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig01))*((trig07))))/2 - (3*((trig01))*((trig07))*(7500*((trig01))*((trig02))*((crd) + (thetad1)) - 7500*(phid1)*((trig06))*((trig07)) + 5000*(lambdad1)*((trig06))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig06))*((trig07))))/2 - (113999696*((trig07))*((trig02))*((crd) + (thetad1)))/15625",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig08))*(((trig04))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig04))) - ((trig04))*(((trig08))*(7500*(containerd) + 7500*(crd)*((trig07)) + 7500*(thetad1)*((trig07))) - 7500*(containerd)*((trig08))) + 11250*(phid1)*((trig07))*((trig02)) - (3*((trig06))*((trig07))*(7500*((trig01))*((trig07))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig02))))/2 + (3*((trig01))*((trig07))*(7500*((trig06))*((trig07))*((crd) + (thetad1)) - 7500*(phid1)*((trig01))*((trig02))))/2",
+        "vars": [
+          "container",
+          "containerd",
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig04",
+          "trig06",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07))*(5000*((trig01))*((trig02))*((crd) + (thetad1)) - 10000*(phid1)*((trig06))*((trig07)) + 5000*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 5000*(phi1)*(phid1)*((trig06))*((trig02))))/2 - (3*((trig02))*(10000*(phid1)*((trig02)) + 5000*(phi1)*(phid1)*((trig07))))/2 - (3*((trig01))*((trig07))*(5000*((trig06))*((trig02))*((crd) + (thetad1)) + 10000*(phid1)*((trig01))*((trig07)) + 5000*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 5000*(phi1)*(phid1)*((trig01))*((trig02))))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig04))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - ((trig08))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "(((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(23400*(crd)*((trig03)) + 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig01))*((trig07)) - 5000*(lambdad1)*((trig01))*((trig02)) - 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) - ((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*((29718*(crd)*((trig05)))/25 - 127*(lambdad1)*((trig06))*((trig02)) + 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 127*(lambdad1)*(phi1)*((trig06))*((trig07))) - ((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*(127*(lambdad1)*((trig01))*((trig02)) - (29718*(crd)*((trig03)))/25 + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) - (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(23400*(crd)*((trig05)) - 7500*((trig01))*((trig02))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig07)) - 5000*(lambdad1)*((trig06))*((trig02)) + 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) - 5000*(lambdad1)*(phi1)*((trig06))*((trig07)))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- ((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*(508*(crd)*((trig05)) - 254*(cr)*(crd)*((trig03))) - (((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(10000*(crd)*((trig05)) - 5000*(cr)*(crd)*((trig03))) - ((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*(508*(crd)*((trig03)) + 254*(cr)*(crd)*((trig05))) - (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(10000*(crd)*((trig03)) + 5000*(cr)*(crd)*((trig05)))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(7500*((trig01))*((trig02))*((crd) + (thetad1)) - 7500*(phid1)*((trig06))*((trig07)) + 5000*(lambdad1)*((trig06))*((trig02)) - 5000*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig06))*((trig07))) - (((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(5000*(lambdad1)*((trig01))*((trig02)) - 7500*(phid1)*((trig01))*((trig07)) - 7500*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 5000*(lambdad1)*(phi1)*((trig01))*((trig07))) - ((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*(127*(lambdad1)*((trig01))*((trig02)) + 127*(lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig01))*((trig07))) + ((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*(127*(lambdad1)*((trig06))*((trig02)) - 127*(lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + 127*(lambdad1)*(phi1)*((trig06))*((trig07)))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(7500*((trig01))*((trig07))*((crd) + (thetad1)) + 7500*(phid1)*((trig06))*((trig02))) - (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(7500*((trig06))*((trig07))*((crd) + (thetad1)) - 7500*(phid1)*((trig01))*((trig02))) + 7500*(phid1)*((trig07))*(((trig07)) - (phi1)*((trig02)))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2)*(127*((trig06))*((trig02))*((crd) + (thetad1)) + 254*(phid1)*((trig01))*((trig07)) + 127*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 127*(phi1)*(phid1)*((trig01))*((trig02))) + (((trig01))*((trig02)) + (phi1)*((trig01))*((trig07)))*(5000*((trig06))*((trig02))*((crd) + (thetad1)) + 10000*(phid1)*((trig01))*((trig07)) + 5000*(phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - 5000*(phi1)*(phid1)*((trig01))*((trig02))) - (10000*(phid1)*((trig02)) + 5000*(phi1)*(phid1)*((trig07)))*(((trig07)) - (phi1)*((trig02))) - (254*(phid1)*((trig02)) + 127*(phi1)*(phid1)*((trig07)))*(((trig07))/2 - ((phi1)*((trig02)))/2) - ((((trig06))*((trig02)))/2 + ((phi1)*((trig06))*((trig07)))/2)*(127*((trig01))*((trig02))*((crd) + (thetad1)) - 254*(phid1)*((trig06))*((trig07)) + 127*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 127*(phi1)*(phid1)*((trig06))*((trig02))) - (((trig06))*((trig02)) + (phi1)*((trig06))*((trig07)))*(5000*((trig01))*((trig02))*((crd) + (thetad1)) - 10000*(phid1)*((trig06))*((trig07)) + 5000*(phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + 5000*(phi1)*(phid1)*((trig06))*((trig02)))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig08))*((trig02))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1))) - 7500*(phid1)*((trig02)) + ((trig04))*((trig02))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig08))*(7500*(phid1)*((trig04)) - 7500*((trig08))*((trig02))*((crd) + (thetad1))) - ((trig04))*(7500*(phid1)*((trig08)) + 7500*((trig04))*((trig02))*((crd) + (thetad1)))",
+        "vars": [
+          "container",
+          "crd",
+          "phi1",
+          "phid1",
+          "thetad1",
+          "trig02",
+          "trig04",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "B": [
+    [
+      {
+        "expr": "- (61*((trig05)))/100 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(117*((trig05)))/25 - (61*((trig03)))/100",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "((trig05)) - (cr)*((trig03))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03)) + (cr)*((trig05))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "- (((trig06))*((trig02)))/2 - ((phi1)*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig07))/2 - ((phi1)*((trig02)))/2",
+        "vars": [
+          "phi1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "((trig05)) - (cr)*((trig03))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "-(3*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig01))*((trig02)) + (phi1)*((trig01))*((trig07))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03)) + (cr)*((trig05))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- ((trig06))*((trig02)) - (phi1)*((trig06))*((trig07))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(3*((trig02)))/2",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig07)) - (phi1)*((trig02))",
+        "vars": [
+          "phi1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "((trig08))",
+        "vars": [
+          "container",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig08))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig08))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "-((trig04))",
+        "vars": [
+          "container",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      }
+    ]
+  ],
+  "Bt": [
+    [
+      {
+        "expr": "- (61*((trig05)))/100 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(117*((trig05)))/25 - (61*((trig03)))/100",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "-((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig03",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "trig05",
+          "trolley"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig06))*((trig02)))/2 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(117*((trig05)))/25 + ((lambda1)*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2 - (117*((trig03)))/25",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig03",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(117*((trig05)))/25 - (3*((trig01))*((trig02)))/2 + (lambda1)*((trig01))*((trig02))",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "((trig08))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig05))",
+        "vars": [
+          "cr",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03))",
+        "vars": [
+          "cr",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig05)) - (cr)*((trig03))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03)) + (cr)*((trig05))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig05)) - (cr)*((trig03))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((trig03)) + (cr)*((trig05))",
+        "vars": [
+          "cr",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "((lambda1)*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig02))",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(lambda1)*((trig06))*((trig02)) - (3*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06"
+        ]
+      },
+      {
+        "expr": "(lambda1)*((trig01))*((trig02)) - (3*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "lambda1",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "((trig08))*((trig02))",
+        "vars": [
+          "container",
+          "phi1",
+          "trig02",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "((trig07))",
+        "vars": [
+          "phi1",
+          "trig07"
+        ]
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-(3*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(3*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(3*((trig02)))/2",
+        "vars": [
+          "phi1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "((trig08))",
+        "vars": [
+          "container",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "-((trig04))",
+        "vars": [
+          "container",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(((trig01))*((trig02)))/2 + ((phi1)*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- (((trig06))*((trig02)))/2 - ((phi1)*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig07))/2 - ((phi1)*((trig02)))/2",
+        "vars": [
+          "phi1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "((trig01))*((trig02)) + (phi1)*((trig01))*((trig07))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig01",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- ((trig06))*((trig02)) - (phi1)*((trig06))*((trig07))",
+        "vars": [
+          "cr",
+          "phi1",
+          "theta1",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig07)) - (phi1)*((trig02))",
+        "vars": [
+          "phi1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "1",
+        "vars": []
+      }
+    ]
+  ],
+  "Bdot": [
+    [
+      {
+        "expr": "(61*(crd)*((trig03)))/100 - (117*(crd)*((trig05)))/25",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "- (61*(crd)*((trig05)))/100 - (117*(crd)*((trig03)))/25",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "- (trolleyd)*((trig03)) - (crd)*((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "-(crd)*((trig03))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trolleyd)*((trig05)) - (crd)*((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "(crd)*((trig05))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "- (trolleyd)*((trig03)) - (crd)*((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "-(crd)*((trig03))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trolleyd)*((trig05)) - (crd)*((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "(crd)*((trig05))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "- (trolleyd)*((trig03)) - (crd)*((trig05))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "-(crd)*((trig03))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(trolleyd)*((trig05)) - (crd)*((trig03))*((trolley) + 117/25)",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05",
+          "trolley",
+          "trolleyd"
+        ]
+      },
+      {
+        "expr": "(crd)*((trig05))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(phid1)*((trig07))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(phid1)*((trig07))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((lambdad1)*((trig06))*((trig02)))/2 - (117*(crd)*((trig05)))/25 - ((lambda1)*((trig01))*((trig02))*((crd) + (thetad1)))/2 + ((lambdad1)*(phi1)*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- 2*(crd)*((trig03)) - (cr)*(crd)*((trig05))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((lambdad1)*((trig06))*((trig02)))/2 - ((lambda1)*((trig01))*((trig02))*((crd) + (thetad1)))/2 + ((lambdad1)*(phi1)*((trig06))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(((trig06))*((trig02))*((crd) + (thetad1)))/2 + (phid1)*((trig01))*((trig07)) + ((phi1)*((trig06))*((trig07))*((crd) + (thetad1)))/2 - ((phi1)*(phid1)*((trig01))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "((lambdad1)*((trig01))*((trig02)))/2 - (117*(crd)*((trig03)))/25 + ((lambda1)*((trig06))*((trig02))*((crd) + (thetad1)))/2 + ((lambdad1)*(phi1)*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "2*(crd)*((trig05)) - (cr)*(crd)*((trig03))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "((lambdad1)*((trig01))*((trig02)))/2 + ((lambda1)*((trig06))*((trig02))*((crd) + (thetad1)))/2 + ((lambdad1)*(phi1)*((trig01))*((trig07)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(((trig01))*((trig02))*((crd) + (thetad1)))/2 - (phid1)*((trig06))*((trig07)) + ((phi1)*((trig01))*((trig07))*((crd) + (thetad1)))/2 + ((phi1)*(phid1)*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "- (phid1)*((trig02)) - ((phi1)*(phid1)*((trig07)))/2",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(phid1)*((trig07))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(phid1)*((trig07))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(3*((trig01))*((trig02))*((crd) + (thetad1)))/2 - (117*(crd)*((trig05)))/25 - (3*(phid1)*((trig06))*((trig07)))/2 + (lambdad1)*((trig06))*((trig02)) - (lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + (lambdad1)*(phi1)*((trig06))*((trig07))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig05",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- 2*(crd)*((trig03)) - (cr)*(crd)*((trig05))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(3*((trig01))*((trig02))*((crd) + (thetad1)))/2 - (3*(phid1)*((trig06))*((trig07)))/2 + (lambdad1)*((trig06))*((trig02)) - (lambda1)*((trig01))*((trig02))*((crd) + (thetad1)) + (lambdad1)*(phi1)*((trig06))*((trig07))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "(3*(phid1)*((trig01))*((trig02)))/2 - (3*((trig06))*((trig07))*((crd) + (thetad1)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig06))*((trig02))*((crd) + (thetad1)) + 2*(phid1)*((trig01))*((trig07)) + (phi1)*((trig06))*((trig07))*((crd) + (thetad1)) - (phi1)*(phid1)*((trig01))*((trig02))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(lambdad1)*((trig01))*((trig02)) - (3*((trig06))*((trig02))*((crd) + (thetad1)))/2 - (3*(phid1)*((trig01))*((trig07)))/2 - (117*(crd)*((trig03)))/25 + (lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + (lambdad1)*(phi1)*((trig01))*((trig07))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig03",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "2*(crd)*((trig05)) - (cr)*(crd)*((trig03))",
+        "vars": [
+          "cr",
+          "crd",
+          "trig03",
+          "trig05"
+        ]
+      },
+      {
+        "expr": "(lambdad1)*((trig01))*((trig02)) - (3*(phid1)*((trig01))*((trig07)))/2 - (3*((trig06))*((trig02))*((crd) + (thetad1)))/2 + (lambda1)*((trig06))*((trig02))*((crd) + (thetad1)) + (lambdad1)*(phi1)*((trig01))*((trig07))",
+        "vars": [
+          "cr",
+          "crd",
+          "lambda1",
+          "lambdad1",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- (3*((trig01))*((trig07))*((crd) + (thetad1)))/2 - (3*(phid1)*((trig06))*((trig02)))/2",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "((trig01))*((trig02))*((crd) + (thetad1)) - 2*(phid1)*((trig06))*((trig07)) + (phi1)*((trig01))*((trig07))*((crd) + (thetad1)) + (phi1)*(phid1)*((trig06))*((trig02))",
+        "vars": [
+          "cr",
+          "crd",
+          "phi1",
+          "phid1",
+          "theta1",
+          "thetad1",
+          "trig01",
+          "trig02",
+          "trig06",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(3*(phid1)*((trig07)))/2",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "- 2*(phid1)*((trig02)) - (phi1)*(phid1)*((trig07))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig07"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(containerd)*((trig08))*((trig02)) + (phid1)*((trig07))*((trig04))",
+        "vars": [
+          "container",
+          "containerd",
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig04",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(containerd)*((trig08))*((trig02)) + (phid1)*((trig07))*((trig04))",
+        "vars": [
+          "container",
+          "containerd",
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig04",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "-(containerd)*((trig04))",
+        "vars": [
+          "container",
+          "containerd",
+          "trig04"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "(phid1)*((trig08))*((trig07)) - (containerd)*((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "containerd",
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig04",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "(phid1)*((trig08))*((trig07)) - (containerd)*((trig04))*((trig02))",
+        "vars": [
+          "container",
+          "containerd",
+          "phi1",
+          "phid1",
+          "trig02",
+          "trig04",
+          "trig07",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "-(containerd)*((trig08))",
+        "vars": [
+          "container",
+          "containerd",
+          "trig08"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "-(phid1)*((trig02))",
+        "vars": [
+          "phi1",
+          "phid1",
+          "trig02"
+        ]
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      },
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "F": [
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-1442070",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-164808",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-5479394206789141/2199023255552",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "-49050",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ],
+    [
+      {
+        "expr": "0",
+        "vars": []
+      }
+    ]
+  ],
+  "reactions": [
+    [
+      {
+        "expr": "7500*(phid1)**2*((trig07)) + 5125*(lambdadd1)*((trig07)) + 7500*(phidd1)*((trig02)) - 10250*(lambdad1)*(phid1)*((trig02)) - 5125*(lambdadd1)*(phi1)*((trig02)) - 5125*(lambdad1)*(phi1)*(phid1)*((trig07)) + 442431/2",
+        "vars": [
+          "lambdad1",
+          "lambdadd1",
+          "phi1",
+          "phid1",
+          "phidd1",
+          "trig02",
+          "trig07"
+        ]
+      }
+    ]
+  ],
+  "trigFunctions": [
+    {
+      "name": "trig08",
+      "expr": "Math.cos(container)"
+    },
+    {
+      "name": "trig06",
+      "expr": "Math.cos(cr + theta1)"
+    },
+    {
+      "name": "trig05",
+      "expr": "Math.cos(cr)"
+    },
+    {
+      "name": "trig07",
+      "expr": "Math.cos(phi1)"
+    },
+    {
+      "name": "trig04",
+      "expr": "Math.sin(container)"
+    },
+    {
+      "name": "trig01",
+      "expr": "Math.sin(cr + theta1)"
+    },
+    {
+      "name": "trig03",
+      "expr": "Math.sin(cr)"
+    },
+    {
+      "name": "trig02",
+      "expr": "Math.sin(phi1)"
+    }
+  ]
+}
