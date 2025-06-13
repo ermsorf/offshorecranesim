@@ -29,7 +29,7 @@ classdef Frame < handle
         Dmatrix
 
     end
-
+    
     methods
         function obj = Frame(varargin)
             % Constructor accepting Name-Value pairs
@@ -37,17 +37,14 @@ classdef Frame < handle
                 obj.setProperties(varargin{:});
             end
         end
-
         function setProperties(obj, varargin)
             % Set multiple properties using Name-Value pairs
             if mod(length(varargin), 2) ~= 0
                 error('Arguments must be Name-Value pairs.');
             end
-
             for i = 1:2:length(varargin)
                 propName = varargin{i};
                 propValue = varargin{i+1};
-
                 if isprop(obj, propName)
                     obj.(propName) = propValue;
                 else
@@ -55,7 +52,6 @@ classdef Frame < handle
                 end
             end
         end % function setProperties
-
         function skewmat = skew(~,vector)
             % Skew a 1x3 or 3x1 vector
             %   Detailed explanation goes here
@@ -71,8 +67,6 @@ classdef Frame < handle
             % Unskew SO3 matrix to vector
             V = [matrix(3,2); matrix(1,3); matrix(2,1)];
         end
-
-
         %% Make E's #####################################################
         function Er = makeEr(obj)
             % Create an SE3 transformation matrix for a given rotation axis
@@ -87,7 +81,6 @@ classdef Frame < handle
             % Symbolic cos(theta) and sin(theta) for symbolic compatibility
             c = cos(theta);
             s = sin(theta);
-
             switch axis % Rotation matrix depending on the chosen axis
                 case 1
                     Er(2,2) = c;  Er(2,3) = -s;
@@ -100,19 +93,16 @@ classdef Frame < handle
                     Er(2,1) = s;  Er(2,2) = c;
             end
         end
-
         function Ev = makeEv(~, dispv)
             % Create an SE3 transformation matrix using object properties
             % Uses joint2cm as the default displacement vector
             Ev = sym(eye(4));
             Ev(1:3, 4) = dispv(:)'; % Ensure column vector format
         end
-
         function relativeE = makeRelativeE(obj)
             relativeE = obj.makeEv(obj.cm2joint) * obj.makeEr() * obj.makeEv(obj.joint2cm);
             obj.relativeEmatrix = relativeE;
         end
-
         function E = makeE(obj, framelist)
             % Creates absolute transformation matrix E
             E = eye(4);  % Initialize as identity matrix
@@ -123,7 +113,6 @@ classdef Frame < handle
                 frame.Ematrix = E;
             end
         end
-
         function relativeEdot = makeRelativeEdot(obj)
             % Computes the time derivative of the transformation matrix E
             E = makeRelativeE(obj);
@@ -132,43 +121,30 @@ classdef Frame < handle
             syms t real
             % Vectorized substitution: replace each theta with t*thetadot
             prediff = subs(E, Q(:,1), t * Q(:,2));
-
             % Differentiate with respect to t
             postdiff = diff(prediff, t);
-
             % Reverse substitution: replace t*thetadot back with theta
             relativeEdot = subs(postdiff, t * Q(:,2), Q(:,1));
-
             obj.relativeEdotmatrix = relativeEdot;
         end
-
-
         function Edot = makeEdot(obj, framelist)
             % Computes the time derivative of the transformation matrix E
             obj.makeE(framelist);
-
             Q = obj.getQs(framelist);  % Assumes Q(:,1)=theta, Q(:,2)=thetadot, Q(:,3)=thetaddot
             syms t real
             for i = 1:obj.framenumber
                 E = framelist(i).Ematrix;
-
-
                 % Vectorized substitution: replace Q(:,1) -> t*Q(:,2)
                 prediff = subs(E, Q(:,1), t * Q(:,2));
-
                 % Differentiate with respect to t
                 postdiff = diff(prediff, t);
-
                 % Reverse substitution: replace t*Q(:,2) -> Q(:,1)
                 Edot = subs(postdiff, t * Q(:,2), Q(:,1));
-
                 % Simplify result
                 Edot = obj.sympySimplify(Edot);
-
                 framelist(i).Edotmatrix = Edot;
             end
         end
-
         function EdotVec = makeEdotVec(obj, framelist);
             if isempty(obj.Ematrix)
                 obj.makeE(framelist);
@@ -200,11 +176,7 @@ classdef Frame < handle
                 fprintf("Done\n")
             end
         end
-
-
         % ###########################################################
-
-
         %% Make O's ######################################################
         %{
         function relativeO = makeRelativeO(obj)
@@ -223,7 +195,6 @@ classdef Frame < handle
             obj.relativeOmatrix = relativeO;
         end % function makeO
         %}
-
         function relativeW = makeRelativeW(obj)
             relativeW = sym(zeros(3,3));
             axis = obj.rotationaxis;
@@ -247,7 +218,6 @@ classdef Frame < handle
                     relativeW(2,1) = thetad; relativeW(1,2) = -thetad;
             end
         end
-
         function W = makeW(obj, framelist)
             W = sym(zeros(3,3));
             for i = 1:obj.framenumber
@@ -256,12 +226,13 @@ classdef Frame < handle
                     continue
                 end
                 if frame.rotationaxis == 0
-                    fprintf('W %i / %i : ', i, obj.framenumber);
+                    fprintf('W for frame %d / %d\n', i, obj.framenumber);
                     if i == 1
                         W = sym(zeros(3,3));
                     else
-                        W = framelist(i-1).Wmatrix;
+                        W = framelist(i-1).Wmatrix
                     end
+
                     fprintf("Done\n")
                 else
                     fprintf('W %i / %i : ', i, obj.framenumber);
@@ -281,8 +252,6 @@ classdef Frame < handle
                 frame.Wmatrix = W;
             end
         end
-
-
         function O = makeO(obj, framelist)
             % Compute overall transformation matrix E and its time derivative Edot
             E = obj.makeE(framelist);
@@ -296,7 +265,6 @@ classdef Frame < handle
             O(1:3,4) = Ovec_simplified;
             obj.Omatrix = O;
         end
-
         %% Make B #########################################################
         function B = makeB(obj, framelist)
             Q = getQs(obj, framelist);
@@ -305,22 +273,18 @@ classdef Frame < handle
             B = sym(zeros(obj.framenumber * 6, numQs));
             obj.makeW(framelist);
             obj.makeEdotVec(framelist);
-
             for i = 1:obj.framenumber
                 fprintf("B, frame %i / %i : ", i, obj.framenumber)
                 EdotVec = framelist(i).EdotVec;
                 W = framelist(i).Wmatrix;
                 posvec = collect(EdotVec(1:3,1), Qvars); % Collect terms
                 Ovec   = collect(obj.unskew(W(1:3,1:3)), Qvars);
-
                 % Extract coefficients for all directions at once
                 [cp_pos, tp_pos] = arrayfun(@(dir) coeffs(posvec(dir), Qvars), 1:3, 'UniformOutput', false);
                 [cp_omega, tp_omega] = arrayfun(@(dir) coeffs(Ovec(dir), Qvars), 1:3, 'UniformOutput', false);
-
                 % Calculate row indices for this frame
                 rowPos = 6*(i-1) + (1:3);
                 rowOmega = rowPos + 3;
-
                 % Populate B matrix efficiently
                 for q = 1:numQs
                     qvar = Qvars(q);
@@ -332,7 +296,6 @@ classdef Frame < handle
                         else
                             B(rowPos(direction), q) = sym(0);
                         end
-
                         % For omegas
                         idx = find(tp_omega{direction} == qvar, 1);
                         if ~isempty(idx)
@@ -347,8 +310,6 @@ classdef Frame < handle
             % B = obj.sympySimplify(B);  % Simplify O using sympySimplify
             obj.Bmatrix = B;
         end
-
-
         function Bdot = makeBdot(obj, framelist)
             % Compute B and retrieve Q values
             if isempty(obj.Bmatrix)
@@ -358,26 +319,20 @@ classdef Frame < handle
             end
             Q = obj.getQs(framelist);  % Assumes Q(:,1)=theta, Q(:,2)=thetadot, Q(:,3)=thetaddot
             syms t real
-
             % Vectorized substitution: replace Q(:,2) -> t*Q(:,3) and Q(:,1) -> t*Q(:,2)
             oldVars = [Q(:,2); Q(:,1)];
             newVals = [t * Q(:,3); t * Q(:,2)];
             prediff = subs(B, oldVars, newVals);
-
             % Differentiate with respect to t
             postdiff = diff(prediff, t);
-
             % Reverse substitution: replace t*Q(:,3) -> Q(:,2) and t*Q(:,2) -> Q(:,1)
             revOld = [t * Q(:,3); t * Q(:,2)];
             revNew = [Q(:,2); Q(:,1)];
             Bdot = subs(postdiff, revOld, revNew);
-
             % Optionally, assign to the object's property if desired:
             % obj.Bdotmatrix = Bdot;
         end
-
         % ###############################################################
-
         function Q_combined = getQs(obj, framelist)
             % Combines unique time-dependent Q coordinates from multiple frames (rows unique)
             Q_combined = sym([]);
@@ -391,10 +346,6 @@ classdef Frame < handle
                 end
             end
         end
-
-
-
-
         function initCond = getInitCond(obj, framelist)
             % Combines time-dependent Q coordinates from multiple frames
             initCond = [];
@@ -405,11 +356,9 @@ classdef Frame < handle
                 end
             end
         end
-
         function D = makeD(obj, framelist)
             % Construct D matrix
             D = sym(zeros(obj.framenumber*6,obj.framenumber*6));
-
             for i = 1:obj.framenumber
                 if ~isempty(framelist(i).Wmatrix)
                     W = framelist(i).Wmatrix;
@@ -421,12 +370,10 @@ classdef Frame < handle
                 D(index1:index2,index1:index2) = W;
             end
         end % function makeD
-
         function Mmatrix = makeM(obj, framelist)
             % Makes M matrix
             size = obj.framenumber *6;
             Mmatrix = sym(zeros(size,size));
-
             for i = 1:obj.framenumber
                 if isempty(framelist(i).mass) | isempty(framelist(i).Jmatrix)
                     error('Missing mass or J for frame %i',framelist(i).framenumber)
@@ -436,16 +383,13 @@ classdef Frame < handle
                 Mmatrix(i*6-2:i*6,i*6-2:i*6) = framelist(i).Jmatrix;
             end
         end % function makeM
-
         function F = makeF(obj, framelist)
             F = sym(zeros(obj.framenumber*6,1));
             for i = 1:obj.framenumber
                 F(6*i-5:6*i-3,1) = framelist(i).Fvec';
                 F(6*i-2:6*i,1) = framelist(i).Tvec';
             end
-
         end
-
         function T = getTransformMat(obj, framelist)
             % Constructs T matrix
             T = sym(zeros(obj.framenumber, 3));
@@ -460,14 +404,12 @@ classdef Frame < handle
                 T(i,1:3) = posvec;
             end % for i
         end %function posExpr
-
         function rotations = exportRotations(obj, framelist)
             rotations = sym(zeros(obj.framenumber,2));
             for i = 1:obj.framenumber
                 rotations(i,:) = [framelist(i).rotationaxis, framelist(i).rotationvar];
             end
         end
-
         function simplified = sympySimplify(~, mat)
             % Import sympy
             % simplified = mat; return
@@ -475,10 +417,8 @@ classdef Frame < handle
             sympy = py.importlib.import_module('sympy');
             fu = py.importlib.import_module('sympy.simplify.fu');
             [rows, cols] = size(mat);
-
             % Convert symbolic matrix to a cell array of strings
             matStr = arrayfun(@char, mat, 'UniformOutput', false);
-
             % Build a Python nested list by processing each row at once
             pyList = py.list();
             for i = 1:rows
@@ -486,26 +426,20 @@ classdef Frame < handle
                 pyRow = py.list(cellfun(@(s) sympy.sympify(s), matStr(i, :), 'UniformOutput', false));
                 pyList.append(pyRow);
             end
-
             % Create a sympy Matrix and apply element‐wise simplification
             pyMat = sympy.Matrix(pyList);
             simpPyMat1 = pyMat.applyfunc(sympy.trigsimp);
             %simpPyMat2 = simpPyMat1.applyfunc(sympy.simplify);
             %simpPyMat2 = simppyMat1.applyfunc(sympy.simplify);
-
             % **Force MATLAB row-major format** before converting back
             simpPyMat2 = simpPyMat1.T;  % **Transpose in Python before sending to MATLAB**
-
             % Convert the simplified Python matrix back to a cell array
             nestedList = cell(simpPyMat2.tolist());
-
             % Replace '**' with '^' before converting to symbolic form
             sanitizedCell = cellfun(@(x) strrep(char(py.str(x)), '**', '^'), nestedList, 'UniformOutput', false);
-
             % Convert sanitized expressions back to MATLAB symbolic expressions
             simplifiedCell = cellfun(@str2sym, sanitizedCell, 'UniformOutput', false);
             simplified = reshape([simplifiedCell{:}], rows, cols);
         end
-
     end % methods
 end % classdef

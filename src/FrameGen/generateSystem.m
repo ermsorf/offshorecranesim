@@ -1,5 +1,5 @@
-clear
-clc
+% clear
+% clc
 
 defineSystem
 
@@ -16,6 +16,8 @@ F = frames(noframes).makeF(frames)
 initCond = frames(noframes).getInitCond(frames)
 Mstar = B' * M * B; 
 Nstar = B' * (M*Bdot + D*M*B);
+
+
 % Fstar = B' * F;
 % eqs_of_motion = Mstar * Q(:,3) + Nstar*Q(:,2); eqs_of_motion =
 % simplify(eqs_of_motion)
